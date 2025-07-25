@@ -1,0 +1,35 @@
+body{
+    background: linear-gradient(90deg,#fdc5f5,#f7aef8,#b388eb,#8093f1,#72ddf7);
+}
+
+.home_mainTopic h1 {
+    background: linear-gradient(90deg,#00a6fb,#0582ca,#006494,#003554,#051923);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text; 
+    font-size: 5rem;
+    margin-top: 15rem;
+    margin-bottom: 0;
+}
+
+.home_mainTopic span {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.generate {
+    margin-top: 5rem;
+}
+
+.generate button{
+    font-size: 3rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    background: linear-gradient(90deg,#00a6fb,#0582ca,#006494,#003554,#051923);
+    color: white;
+}
+
+.generate button:hover {
+    box-shadow: 0 0 10px #6C63FF, 0 0 20px #00C9FF;;
+    transform: translateY(-0.25em);
+}

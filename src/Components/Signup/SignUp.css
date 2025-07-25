@@ -1,0 +1,71 @@
+body{
+    background-color: white;
+}
+
+.first_grid{
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+.signup_container{
+    margin-top: 10rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+}
+
+.signup_container_topic{
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+
+.signup_container_topic span{
+    font-size: 3rem;
+    font-family: 'Poppins', Cabin;
+    font-weight: bold;
+}
+
+.input{
+    width: 22rem;
+    height: 3rem;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    margin-top: 1.5rem;
+    border-radius: 8px;
+}
+
+.signup{
+    margin-top: 2rem; 
+}
+
+.signup button{
+    height: 2.5rem;
+    width: 22rem;
+    border-radius: 8px;
+    background: linear-gradient(90deg,#00a6fb,#0582ca,#006494,#003554,#051923);
+    color: white;
+}
+
+.or{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.signup_g button{
+    border: none;
+    background: white;
+    margin-bottom: 2rem;
+}
+
+.have_account{
+    margin-bottom: 2rem;
+}
+
+.second_grid{
+    background-color: blue;
+    color: white;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+} 
