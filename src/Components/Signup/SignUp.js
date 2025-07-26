@@ -2,12 +2,11 @@ import React, { Component } from 'react'
 import './SignUp.css'
 import Grid from '@mui/material/Grid';
 import signup_g from '../assests/signup_g.png'
-import "@fontsource/poppins"; 
 
 class SignUp extends Component {
   render() {
     return (
-      <div>
+      <div className='signup_back'>
         <Grid container>
             <Grid className='first_grid' item xs={6}>
                 <div className='signup_container'>
@@ -15,7 +14,7 @@ class SignUp extends Component {
                         <span>Sign Up</span>
                     </div>
                     <div>
-                        <input className='input' type='text' placeholder='username'/><br />
+                        <input className='input' type='text' placeholder='Username'/><br />
                         <input className='input' type='password' placeholder='Password' /><br />
                     </div>
                     <div className='signup'>
@@ -28,11 +27,15 @@ class SignUp extends Component {
                         <button><img src={signup_g}/></button>
                     </div>
                     <div className='have_account'>
-                        <span>Have an account? <a href=''>Log In</a></span>
+                        <span>Have an account? <a href=''>Log in</a></span>
                     </div>
                 </div>
             </Grid>
-            <Grid className='second_grid' item xs={6}></Grid>
+            <Grid className='second_grid' item xs={6}>
+                <div className='tagline'>
+                    <span>Getting <br />Started with <br />AI-Powered Presentations.</span>
+                </div>
+            </Grid>
         </Grid>
       </div>
     )

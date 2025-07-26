@@ -1,29 +1,29 @@
-.signup_back{
+.login_back{
     background: linear-gradient(90deg,#7400b8,#6930c3,#5e60ce,#5390d9,#4ea8de,#48bfe3,#56cfe1,#64dfdf,#72efdd,#80ffdb);
 }
 
-.first_grid{
+.second_grid{
     display: flex; 
     justify-content: center;
     align-items: center;
     width: 50%;
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
     background-color: white;
 }
 
-.signup_container{
-    margin-top: 9.51rem;
-    margin-bottom: 9.6rem;
+.login_container{
+    margin-top: 8.5rem;
+    margin-bottom: 8.5rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
 }
 
-.signup_container_topic{
+.login_container_topic{
     margin-bottom: 2rem;
     margin-top: 2rem;
 }
 
-.signup_container_topic span{
+.login_container_topic span{
     font-size: 3rem;
     font-family: 'Poppins', Cabin;
     font-weight: bold;
@@ -38,11 +38,17 @@
     border-radius: 8px;
 }
 
-.signup{
+.checkbox{
+    justify-content: left;
+    display: flex;
+    margin-left: 5rem;
+}
+
+.login{
     margin-top: 2rem; 
 }
 
-.signup button{
+.login button{
     height: 2.5rem;
     width: 22rem;
     border-radius: 8px;
@@ -55,7 +61,7 @@
     margin-bottom: 2rem;
 }
 
-.signup_g button{
+.login_g button{
     border: none;
     background: white;
     margin-bottom: 2rem;
@@ -65,7 +71,7 @@
     margin-bottom: 2rem;
 }
 
-.second_grid{
+.first_grid{
     color: white;
     display: flex; 
     width: 50%;
@@ -79,4 +85,3 @@
     margin-top: 2rem;
     margin-left: 2rem;
 }
-
