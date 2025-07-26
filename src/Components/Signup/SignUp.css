@@ -2,7 +2,7 @@
     background: linear-gradient(90deg,#7400b8,#6930c3,#5e60ce,#5390d9,#4ea8de,#48bfe3,#56cfe1,#64dfdf,#72efdd,#80ffdb);
 }
 
-.first_grid{
+.signup_first_grid{
     display: flex; 
     justify-content: center;
     align-items: center;
@@ -29,7 +29,7 @@
     font-weight: bold;
 }
 
-.input{
+.signup_input{
     width: 22rem;
     height: 3rem;
     margin-left: 5rem;
@@ -50,7 +50,7 @@
     color: white;
 }
 
-.or{
+.signup_or{
     margin-top: 2rem;
     margin-bottom: 2rem;
 }
@@ -61,18 +61,18 @@
     margin-bottom: 2rem;
 }
 
-.have_account{
+.havent_account{
     margin-bottom: 2rem;
 }
 
-.second_grid{
+.signup_second_grid{
     color: white;
     display: flex; 
     width: 50%;
     text-align: left;
 } 
 
-.tagline{
+.signup_tagline{
     font-family: "Source Code Pro", monospace;
     font-size: 2rem;
     font-weight: bold;

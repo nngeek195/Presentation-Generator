@@ -2,7 +2,7 @@
     background: linear-gradient(90deg,#7400b8,#6930c3,#5e60ce,#5390d9,#4ea8de,#48bfe3,#56cfe1,#64dfdf,#72efdd,#80ffdb);
 }
 
-.second_grid{
+.login_second_grid{
     display: flex; 
     justify-content: center;
     align-items: center;
@@ -29,7 +29,7 @@
     font-weight: bold;
 }
 
-.input{
+.login_input{
     width: 22rem;
     height: 3rem;
     margin-left: 5rem;
@@ -38,7 +38,7 @@
     border-radius: 8px;
 }
 
-.checkbox{
+.login_checkbox{
     justify-content: left;
     display: flex;
     margin-left: 5rem;
@@ -56,7 +56,7 @@
     color: white;
 }
 
-.or{
+.login_or{
     margin-top: 2rem;
     margin-bottom: 2rem;
 }
@@ -71,14 +71,14 @@
     margin-bottom: 2rem;
 }
 
-.first_grid{
+.login_first_grid{
     color: white;
     display: flex; 
     width: 50%;
     text-align: left;
 } 
 
-.tagline{
+.login_tagline{
     font-family: "Source Code Pro", monospace;
     font-size: 2rem;
     font-weight: bold;

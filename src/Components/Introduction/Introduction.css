@@ -1,0 +1,64 @@
+.intro_back{
+    height: 100vh;
+    background: linear-gradient(90deg,#fcfbf9,#feebcb,#fed0b9,#f6aeb6,#d27f94,#697cac,#7197c9,#85afd5,#c2bcd4);
+}
+
+.signup_and_login{
+    justify-content: right;
+    display: flex;  
+}
+
+.intro_sign{
+    margin-right: 1rem;
+    height: 3rem;
+    width: 7rem;
+    border-radius: 20px;
+    font-size: 1rem;
+    border-color: #6930c3;
+    font-weight: bold;
+    background-color: white;
+    margin-top: 2rem; 
+}
+
+.intro_sign:hover{
+    color: white;
+    font-weight: bold;
+    background: linear-gradient(90deg,#00a6fb,#0582ca,#006494,#003554,#051923);
+}
+
+.intro_login{
+    margin-right: 2rem;
+    width: 7rem;
+    height: 3rem;
+    border-radius: 20px;
+    font-size: 1rem;
+    border-color: #6930c3;
+    font-weight: bold;
+    background-color: white;
+    margin-top: 2rem;
+}   
+
+.intro_login:hover{
+    color: white;
+    font-weight: bold;
+    background: linear-gradient(90deg,#00a6fb,#0582ca,#006494,#003554,#051923);
+}
+
+.intro_heading{
+    font-size: 4rem;
+    font-family: "Bungee Spice", sans-serif;
+    margin-top: 12rem;
+}
+
+.intro_subheading{
+    font-size: 1.5rem;
+    font-family: "Oswald", sans-serif;
+    color: #4A4A4A;
+}
+
+.start_button button{
+    height: 6rem;
+    width: 15rem;
+    border-radius: 40px;
+    font-size: 2rem;
+}

@@ -2,37 +2,38 @@ import React, { Component } from 'react'
 import './SignUp.css'
 import Grid from '@mui/material/Grid';
 import signup_g from '../assests/signup_g.png'
+import { Link } from 'react-router-dom'
 
 class SignUp extends Component {
   render() {
     return (
       <div className='signup_back'>
         <Grid container>
-            <Grid className='first_grid' item xs={6}>
+            <Grid className='signup_first_grid' item xs={6}>
                 <div className='signup_container'>
                     <div className='signup_container_topic'>
                         <span>Sign Up</span>
                     </div>
                     <div>
-                        <input className='input' type='text' placeholder='Username'/><br />
-                        <input className='input' type='password' placeholder='Password' /><br />
+                        <input className='signup_input' type='text' placeholder='Username'/><br />
+                        <input className='signup_input' type='password' placeholder='Password' /><br />
                     </div>
                     <div className='signup'>
-                        <button type='submit'>SIGN UP</button>
+                        <Link to="/login"><button type='submit'>SIGN UP</button></Link>
                     </div>
-                    <div className='or'>
+                    <div className='signup_or'>
                         <span>OR</span>
                     </div >
                     <div className='signup_g'>
                         <button><img src={signup_g}/></button>
                     </div>
-                    <div className='have_account'>
-                        <span>Have an account? <a href=''>Log in</a></span>
+                    <div className='havent_account'>
+                        <span>Have an account? <Link to="/login">Log in</Link></span>
                     </div>
                 </div>
             </Grid>
-            <Grid className='second_grid' item xs={6}>
-                <div className='tagline'>
+            <Grid className='signup_second_grid' item xs={6}>
+                <div className='signup_tagline'>
                     <span>Getting <br />Started with <br />AI-Powered Presentations.</span>
                 </div>
             </Grid>
