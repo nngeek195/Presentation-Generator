@@ -9,15 +9,15 @@
 }
 
 .intro_sign{
-    margin-right: 1rem;
-    height: 3rem;
-    width: 7rem;
-    border-radius: 20px;
-    font-size: 1rem;
+    margin-right: 0.8rem;
+    height: 2.4rem;
+    width: 5.6rem;
+    border-radius: 16px;
+    font-size: 0.8rem;
     border-color: #6930c3;
     font-weight: bold;
     background-color: white;
-    margin-top: 2rem; 
+    margin-top: 1.6rem; 
 }
 
 .intro_sign:hover{
@@ -27,15 +27,15 @@
 }
 
 .intro_login{
-    margin-right: 2rem;
-    width: 7rem;
-    height: 3rem;
-    border-radius: 20px;
-    font-size: 1rem;
+    margin-right: 1.6rem;
+    width: 5.6rem;
+    height: 2.4rem;
+    border-radius: 16px;
+    font-size: 0.8rem;
     border-color: #6930c3;
     font-weight: bold;
     background-color: white;
-    margin-top: 2rem;
+    margin-top: 1.6rem;
 }   
 
 .intro_login:hover{
@@ -45,20 +45,21 @@
 }
 
 .intro_heading{
-    font-size: 4rem;
+    font-size: 3.2rem;
     font-family: "Bungee Spice", sans-serif;
-    margin-top: 12rem;
+    margin-top: 9.6rem;
+    color: #051923;
 }
 
 .intro_subheading{
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-family: "Oswald", sans-serif;
     color: #4A4A4A;
 }
 
 .start_button button{
-    height: 6rem;
-    width: 15rem;
-    border-radius: 40px;
-    font-size: 2rem;
+    height: 4.8rem;
+    width: 12rem;
+    border-radius: 32px;
+    font-size: 1.6rem;
 }

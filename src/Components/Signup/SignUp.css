@@ -7,62 +7,62 @@
     justify-content: center;
     align-items: center;
     width: 50%;
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
+    border-top-right-radius: 24px;
+    border-bottom-right-radius: 24px;
     background-color: white;
 }
 
 .signup_container{
-    margin-top: 9.51rem;
-    margin-bottom: 9.6rem;
+    margin-top: 7.1rem;
+    margin-bottom: 7.1rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
 }
 
 .signup_container_topic{
-    margin-bottom: 2rem;
-    margin-top: 2rem;
+    margin-bottom: 1.6rem;
+    margin-top: 1.6rem;
 }
 
 .signup_container_topic span{
-    font-size: 3rem;
+    font-size: 2.4rem;
     font-family: 'Poppins', Cabin;
     font-weight: bold;
 }
 
 .signup_input{
-    width: 22rem;
-    height: 3rem;
-    margin-left: 5rem;
-    margin-right: 5rem;
-    margin-top: 1.5rem;
-    border-radius: 8px;
+    width: 17.6rem;
+    height: 2.4rem;
+    margin-left: 4rem;
+    margin-right: 4rem;
+    margin-top: 1.2rem;
+    border-radius: 6.4px;
 }
 
 .signup{
-    margin-top: 2rem; 
+    margin-top: 1.6rem; 
 }
 
 .signup button{
-    height: 2.5rem;
-    width: 22rem;
-    border-radius: 8px;
+    height: 2rem;
+    width: 17.6rem;
+    border-radius: 6.4px;
     background: linear-gradient(90deg,#00a6fb,#0582ca,#006494,#003554,#051923);
     color: white;
 }
 
 .signup_or{
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin-top: 1.6rem;
+    margin-bottom: 1.6rem;
 }
 
 .signup_g button{
     border: none;
     background: white;
-    margin-bottom: 2rem;
+    margin-bottom: 1.6rem;
 }
 
 .havent_account{
-    margin-bottom: 2rem;
+    margin-bottom: 1.6rem;
 }
 
 .signup_second_grid{
@@ -74,9 +74,9 @@
 
 .signup_tagline{
     font-family: "Source Code Pro", monospace;
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-weight: bold;
-    margin-top: 2rem;
-    margin-left: 2rem;
+    margin-top: 1.6rem;
+    margin-left: 1.6rem;
 }
 
