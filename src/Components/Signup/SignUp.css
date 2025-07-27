@@ -11,8 +11,6 @@
     border-bottom-right-radius: 24px;
     border-top-right-radius: 24px;
     background-color: white;
-    /* background:linear-gradient(90deg, white,white,white,white,white,#4ea8de);
-    border: #5390d9; */
     height: 100vh;
 }
 
@@ -74,7 +72,6 @@
     height: 100vh;
     justify-content: center;
     align-items: center; 
-    /* border: #4ea8de; */
 } 
 
 .slideshow_container{
