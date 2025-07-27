@@ -3,6 +3,7 @@ import './SignUp.css'
 import Grid from '@mui/material/Grid';
 import signup_g from '../assests/signup_g.png'
 import { Link } from 'react-router-dom'
+import SlideShow from '../SlideShow/SlideShow';
 
 class SignUp extends Component {
   render() {
@@ -35,6 +36,9 @@ class SignUp extends Component {
             <Grid className='signup_second_grid' item xs={6}>
                 <div className='signup_tagline'>
                     <span>Getting <br />Started with <br />AI-Powered Presentations.</span>
+                </div>
+                <div>
+                    <SlideShow />
                 </div>
             </Grid>
         </Grid>
