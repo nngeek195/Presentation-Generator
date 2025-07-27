@@ -37,7 +37,7 @@ class SignUp extends Component {
                 <div className='signup_tagline'>
                     <span>Getting <br />Started with <br />AI-Powered Presentations.</span>
                 </div>
-                <div>
+                <div className='slideshow_container'>
                     <SlideShow />
                 </div>
             </Grid>

@@ -1,9 +1,7 @@
 .slideshow{
-    width: 500px;
-    height: 600px;
+    width: 400px;
+    height: 500px;
     margin: auto;
-    margin-top: 15rem;
-    margin-right: 40rem;
 }
 
 .mySwiper .swiper-slide {
