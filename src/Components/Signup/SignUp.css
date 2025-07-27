@@ -1,5 +1,6 @@
 .signup_back{
     background: linear-gradient(90deg,#7400b8,#6930c3,#5e60ce,#5390d9,#4ea8de,#48bfe3,#56cfe1,#64dfdf,#72efdd,#80ffdb);
+    overflow: hidden;
 }
 
 .signup_first_grid{
@@ -7,14 +8,15 @@
     justify-content: center;
     align-items: center;
     width: 50%;
-    border-top-right-radius: 24px;
     border-bottom-right-radius: 24px;
+    border-top-right-radius: 24px;
     background-color: white;
+    /* background:linear-gradient(90deg, white,white,white,white,white,#4ea8de);
+    border: #5390d9; */
+    height: 100vh;
 }
 
 .signup_container{
-    margin-top: 7.1rem;
-    margin-bottom: 7.1rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
 }
 
@@ -69,19 +71,17 @@
     color: white;
     display: flex; 
     width: 50%;
-    text-align: left;
+    height: 100vh;
+    justify-content: center;
+    align-items: center; 
+    /* border: #4ea8de; */
 } 
 
-.signup_tagline{
-    font-family: "Source Code Pro", monospace;
-    font-size: 1.6rem;
-    font-weight: bold;
-    margin-top: 1.6rem;
-    margin-left: 1.6rem;
-}
-
 .slideshow_container{
-    margin-top: 15rem;
-    margin-right: 15rem;
+    margin-bottom: 0;
+    margin-top: 22rem;
+    margin-left: 5rem;
+    margin-right: 10rem;
+    display: flex;
 }
 

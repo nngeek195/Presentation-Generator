@@ -34,9 +34,6 @@ class SignUp extends Component {
                 </div>
             </Grid>
             <Grid className='signup_second_grid' item xs={6}>
-                <div className='signup_tagline'>
-                    <span>Getting <br />Started with <br />AI-Powered Presentations.</span>
-                </div>
                 <div className='slideshow_container'>
                     <SlideShow />
                 </div>
