@@ -49,7 +49,6 @@
     background: linear-gradient(90deg,#e3f2fd,#bbdefb,#90caf9,#64b5f6,#42a5f5);
     color: white;
     font-weight: bold;
-    -webkit-text-stroke: 0.25px black;
 }
 
 .signup button:hover{
@@ -110,5 +109,36 @@
     margin-left: 5rem;
     margin-right: 10rem;
     display: flex;
+}
+
+@media screen and (max-width:480px) {
+    .signup_back{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .signup_first_grid, .signup_second_grid{
+        width: 100%;
+        border-radius: 0;
+        align-items: flex-start;
+        height: 100%;
+    }
+
+    .signup_container{
+      box-shadow: 0;
+      width: 90%;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .slideshow_container{
+      margin-bottom: 0;
+      margin-top: 2rem;
+      margin-left: 5rem;
+      margin-right: 2.5rem;
+      display: flex;
+    }
+
 }
 
