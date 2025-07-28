@@ -26,7 +26,7 @@
 .signup_container_topic span{
     font-size: 2.4rem;
     font-family: "Merriweather", serif;
-    font-weight: 400;
+    font-weight: 700;
 }
 
 .signup_input{
@@ -49,6 +49,7 @@
     background: linear-gradient(90deg,#e3f2fd,#bbdefb,#90caf9,#64b5f6,#42a5f5);
     color: white;
     font-weight: bold;
+    -webkit-text-stroke: 0.25px black;
 }
 
 .signup button:hover{
