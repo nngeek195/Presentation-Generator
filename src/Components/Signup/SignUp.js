@@ -24,7 +24,9 @@ class SignUp extends Component {
                         <Link to="/login"><button type='submit'>SIGN UP</button></Link>
                     </div>
                     <div className='signup_or'>
+                        <hr className='hr1'/>
                         <span>OR</span>
+                        <hr className='hr2'/>
                     </div >
                     <div className='signup_g'>
                         <button><img src={signup_g}/></button>

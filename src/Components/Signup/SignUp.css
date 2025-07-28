@@ -53,6 +53,24 @@
 .signup_or{
     margin-top: 1.6rem;
     margin-bottom: 1.6rem;
+    align-items: center;
+    display: flex;
+}
+
+.hr1{
+    flex: 1;
+    height: 1px;
+    margin-left: 4rem;
+    margin-right: 1rem;
+    background-color: gray;
+}
+
+.hr2{
+    flex: 1;
+    height: 1px;
+    margin-left: 1rem;
+    margin-right: 4rem;
+    background-color: gray;
 }
 
 .signup_g button{
