@@ -16,6 +16,7 @@ class SignUp extends Component {
                         <span>Sign Up</span>
                     </div>
                     <div>
+                        <input className='signup_input' type='email' placeholder='Email'/><br />
                         <input className='signup_input' type='text' placeholder='Username'/><br />
                         <input className='signup_input' type='password' placeholder='Password' /><br />
                     </div>

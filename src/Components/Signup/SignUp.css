@@ -45,7 +45,7 @@
 .signup button{
     height: 2rem;
     width: 17.6rem;
-    border-radius: 6.4px;
+    border-radius: 2rem;
     background: linear-gradient(90deg,#00a6fb,#0582ca,#006494,#003554,#051923);
     color: white;
 }
@@ -63,6 +63,7 @@
 
 .havent_account{
     margin-bottom: 1.6rem;
+    font-size: 0.8rem;
 }
 
 .signup_second_grid{
