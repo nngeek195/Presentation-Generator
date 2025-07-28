@@ -25,8 +25,8 @@
 
 .signup_container_topic span{
     font-size: 2.4rem;
-    font-family: 'Poppins', Cabin;
-    font-weight: bold;
+    font-family: "Merriweather", serif;
+    font-weight: 400;
 }
 
 .signup_input{
@@ -46,7 +46,7 @@
     height: 2rem;
     width: 17.6rem;
     border-radius: 2rem;
-    background: linear-gradient(90deg,#00a6fb,#0582ca,#006494,#003554,#051923);
+    background: linear-gradient(90deg,#e3f2fd,#bbdefb,#90caf9,#64b5f6,#42a5f5,#2196f3,#1e88e5,#1976d2,#1565c0,#0d47a1);
     color: white;
 }
 

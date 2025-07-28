@@ -7,7 +7,7 @@ import WebFont from 'webfontloader';
 
 WebFont.load({
   google: {
-    families: ['Dancing Script:400,700', 'Source Code Pro:200,900','Bungee Spice:400','Oswald:300']
+    families: ['Dancing Script:400,700', 'Source Code Pro:200,900','Bungee Spice:400','Oswald:300','Merriweather:400']
   }
 })
 
