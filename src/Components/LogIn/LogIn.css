@@ -1,5 +1,6 @@
 .login_back{
     background: linear-gradient(90deg,#7400b8,#6930c3,#5e60ce,#5390d9,#4ea8de,#48bfe3,#56cfe1,#64dfdf,#72efdd,#80ffdb);
+    overflow: hidden;
 }
 
 .login_second_grid{
@@ -10,12 +11,11 @@
     border-top-left-radius: 24px;
     border-bottom-left-radius: 24px;
     background-color: white;
+    height: 100vh;
 }
 
 .login_container{
-    margin-top: 5.8rem;
-    margin-bottom: 5.8rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .login_container_topic{
@@ -25,8 +25,8 @@
 
 .login_container_topic span{
     font-size: 2.4rem;
-    font-family: 'Poppins', Cabin;
-    font-weight: bold;
+    font-family: "Merriweather", serif;
+    font-weight: 700;
 }
 
 .login_input{
@@ -51,14 +51,38 @@
 .login button{
     height: 2rem;
     width: 17.6rem;
-    border-radius: 6.4px;
-    background: linear-gradient(90deg,#00a6fb,#0582ca,#006494,#003554,#051923);
+    border-radius: 2rem;
+    background: linear-gradient(90deg,#e3f2fd,#bbdefb,#90caf9,#64b5f6,#42a5f5);
     color: white;
+    font-weight: bold;
+}
+
+.login button:hover{
+    background: linear-gradient(90deg,#e3f2fd,#bbdefb,#90caf9,#64b5f6,#42a5f5,#2196f3);
+    box-shadow: 0 0 5px #6C63FF, 0 0 10px #00C9FF;;
 }
 
 .login_or{
     margin-top: 1.6rem;
     margin-bottom: 1.6rem;
+    align-items: center;
+    display: flex;
+}
+
+.hr1_login{
+    flex: 1;
+    height: 1px;
+    margin-left: 4rem;
+    margin-right: 1rem;
+    background-color: gray;
+}
+
+.hr2_login{
+    flex: 1;
+    height: 1px;
+    margin-left: 1rem;
+    margin-right: 4rem;
+    background-color: gray;
 }
 
 .login_g button{
@@ -67,21 +91,29 @@
     margin-bottom: 1.6rem;
 }
 
+.login_g img{
+    filter: contrast(130%) brightness(105%) saturate(130%);
+}
+
+
 .have_account{
     margin-bottom: 1.6rem;
+    font-size: 0.8rem;
 }
 
 .login_first_grid{
     color: white;
     display: flex; 
     width: 50%;
-    text-align: left;
+    height: 100vh;
+    justify-content: center;
+    align-items: center; 
 } 
 
-.login_tagline{
-    font-family: "Source Code Pro", monospace;
-    font-size: 1.6rem;
-    font-weight: bold;
-    margin-top: 1.6rem;
-    margin-left: 1.6rem;
+.slideshow_2_container{
+    margin-bottom: 0;
+    margin-top: 22rem;
+    margin-left: 5rem;
+    margin-right: 10rem;
+    display: flex;
 }

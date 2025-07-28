@@ -4,9 +4,11 @@ import 'swiper/css/effect-coverflow';
 import {Swiper, SwiperSlide} from 'swiper/react';
 import {EffectCoverflow, Autoplay} from 'swiper/modules';
 import './SlideShow_2.css'
-import image_1 from './Images/image_1.jpg'
-import image_2 from './Images/image_2.jpg'
-import image_3 from './Images/image_3.jpg'
+import image_4 from './Images/image_4.jpg'
+import image_5 from './Images/image_5.jpg'
+import image_6 from './Images/image_6.jpg'
+import image_7 from './Images/image_7.jpg'
+import image_8 from './Images/image_8.jpg'
 
 
 function SlideShow() {
@@ -21,9 +23,11 @@ function SlideShow() {
           }}
           className='mySwiper_2'
         >
-            <SwiperSlide><img src={image_1} alt='Slide_1'/></SwiperSlide>
-            <SwiperSlide><img src={image_2} alt='Slide_2'/></SwiperSlide>
-            <SwiperSlide><img src={image_3} alt='Slide_3'/></SwiperSlide>
+            <SwiperSlide><img src={image_4} alt='Slide_4'/></SwiperSlide>
+            <SwiperSlide><img src={image_5} alt='Slide_5'/></SwiperSlide>
+            <SwiperSlide><img src={image_6} alt='Slide_6'/></SwiperSlide>
+            <SwiperSlide><img src={image_7} alt='Slide_7'/></SwiperSlide>
+            <SwiperSlide><img src={image_8} alt='Slide_8'/></SwiperSlide>
         </Swiper>
     </div>
   )
