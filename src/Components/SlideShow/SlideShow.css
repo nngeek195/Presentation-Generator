@@ -24,6 +24,7 @@
   .slideshow{
     width: 300px;
     height: 400px;
-    margin: auto;
+    margin-bottom: -7rem;
+    margin-top: 1rem;
   }
 }

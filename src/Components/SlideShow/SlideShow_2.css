@@ -28,3 +28,11 @@
 .mySwiper_2 .swiper-slide-active {
   filter: brightness(100%) blur(0); 
 }
+
+@media screen and (max-width:480px) {
+   .slideshow_2{
+    width: 600px;
+    height: 700px;
+    margin-bottom: -20rem;
+}
+}
