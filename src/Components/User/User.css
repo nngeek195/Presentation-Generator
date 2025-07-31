@@ -36,8 +36,11 @@
 }
 
 .user_profile{
+    display: flex;
+    width: 25%;
     align-items: center;
     justify-content: center;
+    margin-top: 2rem;
 }
 
 .user_profile_details{
@@ -48,11 +51,97 @@
 .default_icon_2{
     height: 10rem;
     width: 10rem;
-    margin-left: 6rem;
-    /*margin-top: 2rem; */
 }
 
-/* .presentations{
-    background-color: #00C9FF;
-    margin-bottom: 5rem;
-} */
+.user_email, .user_username{
+    width: 17.6rem;
+    height: 2rem;
+    margin-top: 1.2rem;
+    border-radius: 0.4rem;
+}
+
+.recover_pw{
+    width: 17.6rem;
+    height: 2rem;
+    border-radius: 0.4rem;
+    margin-top: 1.2rem;
+    border-width: 0.1rem;
+    background-color: white;
+    border-color: #1e90ff ;
+    color: #1e90ff ;
+    font-weight: bold;
+}
+
+.recover_pw:hover{
+    background-color: #1e90ff;
+    color: white;
+}
+
+.presentations{
+    justify-content: center;
+    width: 50%;
+    margin-left: 5rem;
+}
+
+.presentations_create button{
+    margin-left: -41rem;
+    height: 2.5rem;
+    width: 7rem;
+    border-radius: 1rem;
+    background-color: white;
+    border-color: #1e90ff ;
+    color: #1e90ff ;
+    font-weight: bold;
+}
+
+.plusicon{
+    height: 0.7rem;
+    width: 0.7rem;
+}
+
+.presentations_create button:hover{
+    background-color: #1e90ff;
+    color: white;
+}
+
+.presentations_container{
+    display: flex;
+}
+
+.presentation_1{
+    height: 14rem;
+    width: 12rem;
+    border: 2px solid black;
+    margin-top: 2rem;
+    border-radius: 1rem;
+    margin-right: 1rem;
+}
+
+.presentation_1_image img{
+    width: 12rem;
+    height: 7rem;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+.presentation_1_icons{
+    margin-top: 2rem;
+    justify-self: left;
+    margin-left: 0.5rem;
+}
+
+.presentation_1_view button{
+    /* margin-top: 3.5rem; */
+    width: 11rem;
+    border-radius: 2rem;
+    border-width: 0.1rem;
+    background-color: white;
+    border-color: #1e90ff ;
+    color: #1e90ff ;
+    font-weight: bold;
+}
+
+.presentation_1_view button:hover{
+    background-color: #1e90ff;
+    color: white;
+}

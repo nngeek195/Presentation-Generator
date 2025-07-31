@@ -2,7 +2,10 @@ import React, { Component } from 'react'
 import './User.css'
 import Grid from '@mui/material/Grid'
 import Logo from './Logo.png'
-import {FaUserCircle} from 'react-icons/fa'
+import {FaUserCircle, FaPlus} from 'react-icons/fa'
+import Presentation_1 from './Presentation_1.png'
+import { MdOutlineDelete, MdOutlineDriveFileRenameOutline } from "react-icons/md";
+import { RiShareForwardLine } from "react-icons/ri";
 
 class User extends Component {
   render() {
@@ -30,9 +33,74 @@ class User extends Component {
                     <button className='recover_pw'>Recover Password</button>
                   </div>
               </Grid>
-              <Grid item xs={8}>
-                  <div className='presentations'>
+              <Grid item xs={8} className='presentations'>
+                  <div className='presentations_create'>
+                    <button><FaPlus className='plusicon'/> Create New</button>
+                  </div>
+                  <div className='presentations_container'>
+                  <div className='presentation_1'>
+                    <div className='presentation_1_image'><img src={Presentation_1} /></div>
+                    <div className='presentation_1_topic'><span>Presentation 01</span></div>
+                    <div className='presentation_1_icons'><MdOutlineDelete /> <RiShareForwardLine /> <MdOutlineDriveFileRenameOutline /></div>
+                    <div className='presentation_1_view'><button>View</button></div>
+                  </div>
+                  <div className='presentation_1'>
+                    <div className='presentation_1_image'><img src={Presentation_1} /></div>
+                    <div className='presentation_1_topic'><span>Presentation 02</span></div>
+                    <div className='presentation_1_icons'><MdOutlineDelete /> <RiShareForwardLine /> <MdOutlineDriveFileRenameOutline /></div>
+                    <div className='presentation_1_view'><button>View</button></div>
+                  </div>
+                  <div className='presentation_1'>
+                    <div className='presentation_1_image'><img src={Presentation_1} /></div>
+                    <div className='presentation_1_topic'><span>Presentation 03</span></div>
+                    <div className='presentation_1_icons'><MdOutlineDelete /> <RiShareForwardLine /> <MdOutlineDriveFileRenameOutline /></div>
+                    <div className='presentation_1_view'><button>View</button></div>
+                  </div>
+                  <div className='presentation_1'>
+                    <div className='presentation_1_image'><img src={Presentation_1} /></div>
+                    <div className='presentation_1_topic'><span>Presentation 04</span></div>
+                    <div className='presentation_1_icons'><MdOutlineDelete /> <RiShareForwardLine /> <MdOutlineDriveFileRenameOutline /></div>
+                    <div className='presentation_1_view'><button>View</button></div>
+                  </div>
+                  <div className='presentation_1'>
+                    <div className='presentation_1_image'><img src={Presentation_1} /></div>
+                    <div className='presentation_1_topic'><span>Presentation 05</span></div>
+                    <div className='presentation_1_icons'><MdOutlineDelete /> <RiShareForwardLine /> <MdOutlineDriveFileRenameOutline /></div>
+                    <div className='presentation_1_view'><button>View</button></div>
+                  </div>
+                  </div>
 
+                  <div className='presentations_container'>
+                  <div className='presentation_1'>
+                    <div className='presentation_1_image'><img src={Presentation_1} /></div>
+                    <div className='presentation_1_topic'><span>Presentation 06</span></div>
+                    <div className='presentation_1_icons'><MdOutlineDelete /> <RiShareForwardLine /> <MdOutlineDriveFileRenameOutline /></div>
+                    <div className='presentation_1_view'><button>View</button></div>
+                  </div>
+                  <div className='presentation_1'>
+                    <div className='presentation_1_image'><img src={Presentation_1} /></div>
+                    <div className='presentation_1_topic'><span>Presentation 07</span></div>
+                    <div className='presentation_1_icons'><MdOutlineDelete /> <RiShareForwardLine /> <MdOutlineDriveFileRenameOutline /></div>
+                    <div className='presentation_1_view'><button>View</button></div>
+                  </div>
+                  <div className='presentation_1'>
+                    <div className='presentation_1_image'><img src={Presentation_1} /></div>
+                    <div className='presentation_1_topic'><span>Presentation 08</span></div>
+                    <div className='presentation_1_icons'><MdOutlineDelete /> <RiShareForwardLine /> <MdOutlineDriveFileRenameOutline /></div>
+                    <div className='presentation_1_view'><button>View</button></div>
+                  </div>
+                  <div className='presentation_1'>
+                    <div className='presentation_1_image'><img src={Presentation_1} /></div>
+                    <div className='presentation_1_topic'><span>Presentation 09</span></div>
+                    <div className='presentation_1_icons'><MdOutlineDelete /> <RiShareForwardLine /> <MdOutlineDriveFileRenameOutline /></div>
+                    <div className='presentation_1_view'><button>View</button></div>
+                  </div>
+                  <div className='presentation_1'>
+                    <div className='presentation_1_image'><img src={Presentation_1} /></div>
+                    <div className='presentation_1_topic'><span>Presentation 10</span></div>
+                    <div className='presentation_1_icons'><MdOutlineDelete /> <RiShareForwardLine /> <MdOutlineDriveFileRenameOutline /></div>
+                    <div className='presentation_1_view'><button>View</button></div>
+                  </div>
                   </div>
               </Grid>
           </Grid>
