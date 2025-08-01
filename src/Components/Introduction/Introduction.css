@@ -1,6 +1,17 @@
 .intro_back{
     height: 100vh;
-    background: linear-gradient(90deg,#fcfbf9,#feebcb,#fed0b9,#f6aeb6,#d27f94,#697cac,#7197c9,#85afd5,#c2bcd4);
+   background: linear-gradient(90deg,#7400b8,#6930c3,#5e60ce,#5390d9,#4ea8de,#48bfe3,#56cfe1,#64dfdf,#72efdd,#80ffdb);
+    position: relative; 
+}
+
+#bg-wrap {
+    position: absolute;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1; /* SVG animation stays in the back */
+    pointer-events: none;
+    overflow: hidden;
 }
 
 .signup_and_login{
@@ -16,14 +27,14 @@
     font-size: 0.8rem;
     border-color: #6930c3;
     font-weight: bold;
-    background-color: white;
+    background-color: rgb(192, 216, 233);
     margin-top: 1.6rem; 
 }
 
 .intro_sign:hover{
     color: white;
     font-weight: bold;
-    background: linear-gradient(90deg,#00a6fb,#0582ca,#006494,#003554,#051923);
+    background: linear-gradient(90deg,#e3f2fd,#bbdefb,#90caf9,#64b5f6,#42a5f5,#2196f3);
 }
 
 .intro_login{
@@ -34,21 +45,53 @@
     font-size: 0.8rem;
     border-color: #6930c3;
     font-weight: bold;
-    background-color: white;
+    background-color: rgb(192, 216, 233);
     margin-top: 1.6rem;
 }   
 
 .intro_login:hover{
     color: white;
     font-weight: bold;
-    background: linear-gradient(90deg,#00a6fb,#0582ca,#006494,#003554,#051923);
+   background: linear-gradient(90deg,#e3f2fd,#bbdefb,#90caf9,#64b5f6,#42a5f5,#2196f3);
 }
 
-.intro_heading{
-    font-size: 3.2rem;
-    font-family: "Bungee Spice", sans-serif;
+
+.intro_heading {
+    font-size: 5rem;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
     margin-top: 9.6rem;
-    color: #051923;
+    text-align: center;
+    color: #fff;
+    animation: dark-glow 1.2s ease-in-out infinite alternate;
+    
+}
+
+@keyframes dark-glow {
+    from {
+        text-shadow:
+            0 0 10px #fff,
+            0 0 20px #5390d9,
+            0 0 30px #7400b8,
+            0 0 40px #6930c3,
+            0 0 50px #5390d9,
+            0 0 60px #7400b8,
+            0 0 70px #6930c3'
+            0 0 100px #5390d9'  
+            0 0 120px #7400b8;
+    }
+    to {
+        text-shadow:
+            0 0 20px #fff,
+            0 0 30px #5390d9,
+            0 0 40px #7400b8,
+            0 0 50px #6930c3,
+            0 0 60px #5390d9,
+            0 0 70px #7400b8,
+            0 0 80px #6930c3,
+            0 0 100px #5390d9, 
+            0 0 120px #7400b8;
+    }
 }
 
 .intro_subheading{
@@ -57,9 +100,51 @@
     color: #4A4A4A;
 }
 
-.start_button button{
+.start_button button {
     height: 4.8rem;
     width: 12rem;
     border-radius: 32px;
     font-size: 1.6rem;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(90deg, #5390d9, #56cfe1, #80ffdb, #64dfdf);
+    box-shadow: 0 4px 24px rgba(80, 0, 128, 0.18), 0 0 0 4px #56cfe133;
+    border: none;
+    transition: box-shadow 0.3s, transform 0.2s;
+}
+
+.start_button button:hover {
+    background: linear-gradient(90deg, #5390d9, #4ea8de, #56cfe1, #80ffdb, #fff);
+    box-shadow: 0 8px 32px #56cfe188, 0 0 0 6px #80ffdb44;
+    transform: scale(1.04);
+}
+
+.intro_content {
+    position: relative;
+    z-index: 2; /* Content stays in front */
+}
+
+.typewriter-text {
+    display: inline-block;
+    font-size: 1.2rem;
+    font-family: "Oswald", sans-serif;
+    color: #4A4A4A;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    animation: typing 0.3s steps(20, end);
+}
+
+.typewriter-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.2em;
+    background: #5390d9;
+    margin-left: 2px;
+    vertical-align: bottom;
+    animation: blink-cursor 0.75s step-end infinite;
+}
+
+@keyframes blink-cursor {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
 }
