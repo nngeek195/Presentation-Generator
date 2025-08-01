@@ -104,11 +104,20 @@
     color: white;
 }
 
-.presentations_container{
+.presentations_container_1, .presentations_container_2{
     display: flex;
 }
 
-.presentation_1{
+.presentation_1,
+.presentation_2,
+.presentation_3,
+.presentation_4,
+.presentation_5,
+.presentation_6,
+.presentation_7,
+.presentation_8,
+.presentation_9,
+.presentation_10{
     height: 14rem;
     width: 12rem;
     border: 2px solid black;
@@ -117,20 +126,47 @@
     margin-right: 1rem;
 }
 
-.presentation_1_image img{
+.presentation_1_image img,
+.presentation_2_image img,
+.presentation_3_image img,
+.presentation_4_image img,
+.presentation_5_image img,
+.presentation_6_image img,
+.presentation_7_image img,
+.presentation_8_image img,
+.presentation_9_image img,
+.presentation_10_image img{
     width: 12rem;
     height: 7rem;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
 }
 
-.presentation_1_icons{
+.presentation_1_icons,
+.presentation_2_icons,
+.presentation_3_icons,
+.presentation_4_icons,
+.presentation_5_icons,
+.presentation_6_icons,
+.presentation_7_icons,
+.presentation_8_icons,
+.presentation_9_icons,
+.presentation_10_icons{
     margin-top: 2rem;
     justify-self: left;
     margin-left: 0.5rem;
 }
 
-.presentation_1_view button{
+.presentation_1_view button,
+.presentation_2_view button,
+.presentation_3_view button,
+.presentation_4_view button,
+.presentation_5_view button,
+.presentation_6_view button,
+.presentation_7_view button,
+.presentation_8_view button,
+.presentation_9_view button,
+.presentation_10_view button{
     /* margin-top: 3.5rem; */
     width: 11rem;
     border-radius: 2rem;
@@ -141,7 +177,16 @@
     font-weight: bold;
 }
 
-.presentation_1_view button:hover{
+.presentation_1_view button:hover,
+.presentation_2_view button:hover,
+.presentation_3_view button:hover,
+.presentation_4_view button:hover,
+.presentation_5_view button:hover,
+.presentation_6_view button:hover,
+.presentation_7_view button:hover,
+.presentation_8_view button:hover,
+.presentation_9_view button:hover,
+.presentation_10_view button:hover{
     background-color: #1e90ff;
     color: white;
 }
