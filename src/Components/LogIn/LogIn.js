@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import './LogIn.css'
 import Grid from '@mui/material/Grid';
-import signup_g from '../assests/signup_g.png'
 import login_g from '../assests/login_g.png'
 import { Link } from 'react-router-dom'
 import SlideShow_2 from '../SlideShow/SlideShow_2';
@@ -30,7 +29,7 @@ class LogIn extends Component {
                         <input type='checkbox' />Remember Me
                     </div>
                     <div className='login'>
-                        <Link to="/home"><button type='submit'>LOGIN</button></Link>
+                        <Link to="/user"><button type='submit'>LOGIN</button></Link>
                     </div>
                     <div className='login_or'>
                         <hr className='hr1_login'/>

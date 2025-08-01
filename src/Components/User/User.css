@@ -1,0 +1,147 @@
+.header_one{
+    display: flex;
+    align-items: center;
+}
+
+.header_two{
+    display: flex;
+    align-items: center;
+}
+
+.header_logout{
+    height: 2.4rem;
+    width: 5.6rem;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    background: linear-gradient(90deg,#e3f2fd,#bbdefb,#90caf9,#64b5f6,#42a5f5);
+    color: white;
+}
+
+.header_logout:hover{
+    background: linear-gradient(90deg,#e3f2fd,#bbdefb,#90caf9,#64b5f6,#42a5f5,#2196f3);
+    box-shadow: 0 0 5px #6C63FF, 0 0 10px #00C9FF;
+}
+
+.default_icon_1{
+    height: 2.5rem;
+    width: 2.5rem;
+    margin-left: 0.5rem;
+}
+
+.logo{
+    width: 256px;
+    height: 62px;
+    margin-right: 70rem;
+}
+
+.user_profile{
+    display: flex;
+    width: 25%;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.user_profile_details{
+    display: flex;
+    margin-left: 5rem;
+}
+
+.default_icon_2{
+    height: 10rem;
+    width: 10rem;
+}
+
+.user_email, .user_username{
+    width: 17.6rem;
+    height: 2rem;
+    margin-top: 1.2rem;
+    border-radius: 0.4rem;
+}
+
+.recover_pw{
+    width: 17.6rem;
+    height: 2rem;
+    border-radius: 0.4rem;
+    margin-top: 1.2rem;
+    border-width: 0.1rem;
+    background-color: white;
+    border-color: #1e90ff ;
+    color: #1e90ff ;
+    font-weight: bold;
+}
+
+.recover_pw:hover{
+    background-color: #1e90ff;
+    color: white;
+}
+
+.presentations{
+    justify-content: center;
+    width: 50%;
+    margin-left: 5rem;
+}
+
+.presentations_create button{
+    margin-left: -41rem;
+    height: 2.5rem;
+    width: 7rem;
+    border-radius: 1rem;
+    background-color: white;
+    border-color: #1e90ff ;
+    color: #1e90ff ;
+    font-weight: bold;
+}
+
+.plusicon{
+    height: 0.7rem;
+    width: 0.7rem;
+}
+
+.presentations_create button:hover{
+    background-color: #1e90ff;
+    color: white;
+}
+
+.presentations_container{
+    display: flex;
+}
+
+.presentation_1{
+    height: 14rem;
+    width: 12rem;
+    border: 2px solid black;
+    margin-top: 2rem;
+    border-radius: 1rem;
+    margin-right: 1rem;
+}
+
+.presentation_1_image img{
+    width: 12rem;
+    height: 7rem;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+.presentation_1_icons{
+    margin-top: 2rem;
+    justify-self: left;
+    margin-left: 0.5rem;
+}
+
+.presentation_1_view button{
+    /* margin-top: 3.5rem; */
+    width: 11rem;
+    border-radius: 2rem;
+    border-width: 0.1rem;
+    background-color: white;
+    border-color: #1e90ff ;
+    color: #1e90ff ;
+    font-weight: bold;
+}
+
+.presentation_1_view button:hover{
+    background-color: #1e90ff;
+    color: white;
+}
