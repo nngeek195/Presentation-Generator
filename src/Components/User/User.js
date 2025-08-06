@@ -6,11 +6,13 @@ import {FaUserCircle, FaPlus} from 'react-icons/fa'
 import Presentation_1 from './Presentation_1.png'
 import { MdOutlineDelete, MdOutlineDriveFileRenameOutline, MdOutlineDownload } from "react-icons/md";
 import { RiShareForwardLine } from "react-icons/ri";
+import Background from '../Background/Background'
 
 class User extends Component {
   render() {
     return (
       <div>
+        <Background />
         <div className='header'>
             <Grid container>
                 <Grid item xs={6} className='header_one'>
