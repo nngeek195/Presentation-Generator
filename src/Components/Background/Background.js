@@ -4,9 +4,8 @@ import './Background.css'
 class Background extends Component {
   render() {
     return (
-      <div className="ocean">
-        <div className="wave"></div>
-        <div className="wave"></div>
+      <div className="container">
+        <div className="waves" />
       </div>
     )
   }

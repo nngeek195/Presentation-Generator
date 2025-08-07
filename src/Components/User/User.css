@@ -1,3 +1,11 @@
+.user_back{
+    background: url('../assests/background.jpg');
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 .header_one{
     display: flex;
     align-items: center;
