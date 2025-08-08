@@ -59,6 +59,7 @@
 .default_icon_2{
     height: 10rem;
     width: 10rem;
+    margin-top: -10rem;
 }
 
 .user_email, .user_username{
