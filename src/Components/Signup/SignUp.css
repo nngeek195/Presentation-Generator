@@ -95,6 +95,11 @@
     filter: contrast(130%) brightness(105%) saturate(130%);
 }
 
+.signup_g img:hover {
+    filter: contrast(100%) brightness(90%) saturate(140%);
+    cursor: pointer;
+}
+
 .havent_account {
     margin-bottom: 1.6rem;
     font-size: 0.8rem;

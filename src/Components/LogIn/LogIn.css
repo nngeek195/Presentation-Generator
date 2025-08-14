@@ -66,6 +66,7 @@
     ;
 }
 
+
 .login_or {
     margin-top: 1.6rem;
     margin-bottom: 1.6rem;
@@ -99,6 +100,10 @@
     filter: contrast(130%) brightness(105%) saturate(130%);
 }
 
+.login_g img:hover {
+    filter: contrast(100%) brightness(90%) saturate(140%);
+    cursor: pointer;
+}
 
 .have_account {
     margin-bottom: 1.6rem;
