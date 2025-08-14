@@ -1,10 +1,10 @@
-.login_back{
-    background: linear-gradient(90deg,#7400b8,#6930c3,#5e60ce,#5390d9,#4ea8de,#48bfe3,#56cfe1,#64dfdf,#72efdd,#80ffdb);
+.login_back {
+    background: linear-gradient(90deg, #7400b8, #6930c3, #5e60ce, #5390d9, #4ea8de, #48bfe3, #56cfe1, #64dfdf, #72efdd, #80ffdb);
     overflow: hidden;
 }
 
-.login_second_grid{
-    display: flex; 
+.login_second_grid {
+    display: flex;
     justify-content: center;
     align-items: center;
     width: 50%;
@@ -14,22 +14,22 @@
     height: 100vh;
 }
 
-.login_container{
+.login_container {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-.login_container_topic{
+.login_container_topic {
     margin-bottom: 1.6rem;
     margin-top: 1.6rem;
 }
 
-.login_container_topic span{
+.login_container_topic span {
     font-size: 2.4rem;
     font-family: "Merriweather", serif;
     font-weight: 700;
 }
 
-.login_input{
+.login_input {
     width: 17.6rem;
     height: 2.4rem;
     margin-left: 4rem;
@@ -38,38 +38,42 @@
     border-radius: 6.4px;
 }
 
-.login_checkbox{
+.login_checkbox {
     justify-content: left;
     display: flex;
     margin-left: 4rem;
 }
 
-.login{
-    margin-top: 1.6rem; 
+.login {
+    margin-top: 1.6rem;
 }
 
-.login button{
+.login button {
     height: 2rem;
     width: 17.6rem;
     border-radius: 2rem;
-    background: linear-gradient(90deg,#e3f2fd,#bbdefb,#90caf9,#64b5f6,#42a5f5);
+    background: linear-gradient(90deg, #e3f2fd, #bbdefb, #90caf9, #64b4f6c5, #42a4f5c5);
     color: white;
-    font-weight: bold;
+    font-weight: 700;
+
+
 }
 
-.login button:hover{
-    background: linear-gradient(90deg,#e3f2fd,#bbdefb,#90caf9,#64b5f6,#42a5f5,#2196f3);
-    box-shadow: 0 0 5px #6C63FF, 0 0 10px #00C9FF;;
+.login button:hover {
+    background: linear-gradient(90deg, #e3f2fd, #bbdefb, #90caf9, #64b5f6, #42a5f5, #2196f3);
+    box-shadow: 0 0 3px #6b63ff97, 0 0 10px #00c8ff86;
+    font-weight: 800;
+    ;
 }
 
-.login_or{
+.login_or {
     margin-top: 1.6rem;
     margin-bottom: 1.6rem;
     align-items: center;
     display: flex;
 }
 
-.hr1_login{
+.hr1_login {
     flex: 1;
     height: 1px;
     margin-left: 4rem;
@@ -77,7 +81,7 @@
     background-color: gray;
 }
 
-.hr2_login{
+.hr2_login {
     flex: 1;
     height: 1px;
     margin-left: 1rem;
@@ -85,32 +89,32 @@
     background-color: gray;
 }
 
-.login_g button{
+.login_g button {
     border: none;
     background: white;
     margin-bottom: 1.6rem;
 }
 
-.login_g img{
+.login_g img {
     filter: contrast(130%) brightness(105%) saturate(130%);
 }
 
 
-.have_account{
+.have_account {
     margin-bottom: 1.6rem;
     font-size: 0.8rem;
 }
 
-.login_first_grid{
+.login_first_grid {
     color: white;
-    display: flex; 
+    display: flex;
     width: 50%;
     height: 100vh;
     justify-content: center;
-    align-items: center; 
-} 
+    align-items: center;
+}
 
-.slideshow_2_container{
+.slideshow_2_container {
     align-items: center;
     justify-content: center;
     margin-top: 33rem;
@@ -118,31 +122,32 @@
 }
 
 @media screen and (max-width: 480px) {
-    .login_back{
+    .login_back {
         display: flex;
         flex-direction: column;
         height: auto;
     }
 
-    .login_first_grid, .login_second_grid{
+    .login_first_grid,
+    .login_second_grid {
         width: 100%;
         border-radius: 0;
         align-items: flex-start;
         height: 100%;
     }
 
-    .login_container{
-      box-shadow: 0;
-      width: 90%;
-      margin-top: 2rem;
-      margin-bottom: 2rem;
+    .login_container {
+        box-shadow: 0;
+        width: 90%;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
     }
 
-    .slideshow_2_container{
-      margin-bottom: 0;
-      margin-top: 2rem;
-      margin-left: 5rem;
-      margin-right: 2.5rem;
-      display: flex;
+    .slideshow_2_container {
+        margin-bottom: 0;
+        margin-top: 2rem;
+        margin-left: 5rem;
+        margin-right: 2.5rem;
+        display: flex;
     }
 }
