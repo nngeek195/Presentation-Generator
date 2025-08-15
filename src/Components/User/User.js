@@ -118,7 +118,7 @@ class User extends Component {
                     <div className='presentation_view'><button>View</button></div>
                   </div>
                   </div>
-
+              </div>
               <div className='presentations_container'>
                 <div className='presentation'>
                   <div className='presentation_image'><img src={Presentation_1} alt='' /></div>
@@ -187,7 +187,6 @@ class User extends Component {
                   </div>
               </div>
         </div>
-      </div>
     )
   }
 }
