@@ -27,7 +27,7 @@ class User extends Component {
                     <img src={Logo} className='logo' alt='' />
                 </Grid>
                 <Grid item xs={6} className='header_two'>
-                  <button className='workspace_button'>User's Workspace</button>
+                  <button>User's Workspace</button>
                   {/* Logout button */}
                     {/* <Link to="/login"><button className='header_logout'>Log Out</button></Link> */}
                     {/* profile icon */}
