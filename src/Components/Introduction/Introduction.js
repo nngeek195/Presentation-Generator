@@ -2,85 +2,80 @@ import React, { Component } from 'react'
 import './Introduction.css'
 import { Link } from 'react-router-dom'
 import TypewriterEffect from './TypewriterEffect';
-
+import Logo from './Logo.png'
 class Introduction extends Component {
   render() {
     return (
       <div className='intro_back'>
         <div id="bg-wrap">
           {/* SVG animation */}
-          <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
+
+          <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'>
+            <rect fill='#ffffff' width='1600' height='900' />
             <defs>
-              <radialGradient id="Gradient1" cx="50%" cy="50%" fx="0.441602%" fy="50%" r=".5">
-                <animate attributeName="fx" dur="34s" values="0%;3%;0%" repeatCount="indefinite"></animate>
-                <stop offset="0%" stop-color="#cec1d5ff"></stop>
-                <stop offset="100%" stop-color="rgba(179, 170, 221, 0)"></stop>
-              </radialGradient>
-              <radialGradient id="Gradient2" cx="50%" cy="50%" fx="2.68147%" fy="50%" r=".5">
-                <animate attributeName="fx" dur="23.5s" values="0%;3%;0%" repeatCount="indefinite"></animate>
-                <stop offset="0%" stop-color="#f1ecfaff"></stop>
-                <stop offset="100%" stop-color="rgba(63, 142, 238, 0)"></stop>
-              </radialGradient>
-              <radialGradient id="Gradient3" cx="50%" cy="50%" fx="0.836536%" fy="50%" r=".5">
-                <animate attributeName="fx" dur="21.5s" values="0%;3%;0%" repeatCount="indefinite"></animate>
-                <stop offset="0%" stop-color="#cdcef4ff"></stop>
-                <stop offset="100%" stop-color="rgba(125, 127, 226, 0)"></stop>
-              </radialGradient>
-              <radialGradient id="Gradient4" cx="50%" cy="50%" fx="4.56417%" fy="50%" r=".5">
-                <animate attributeName="fx" dur="23s" values="0%;5%;0%" repeatCount="indefinite"></animate>
-                <stop offset="0%" stop-color="#5390d9"></stop>
-                <stop offset="100%" stop-color="rgba(118, 172, 238, 0)"></stop>
-              </radialGradient>
-              <radialGradient id="Gradient5" cx="50%" cy="50%" fx="2.65405%" fy="50%" r=".5">
-                <animate attributeName="fx" dur="24.5s" values="0%;5%;0%" repeatCount="indefinite"></animate>
-                <stop offset="0%" stop-color="#4ea8de"></stop>
-                <stop offset="100%" stop-color="#4ea8de00"></stop>
-              </radialGradient>
-              <radialGradient id="Gradient6" cx="50%" cy="50%" fx="0.981338%" fy="50%" r=".5">
-                <animate attributeName="fx" dur="25.5s" values="0%;5%;0%" repeatCount="indefinite"></animate>
-                <stop offset="0%" stop-color="#48bfe3"></stop>
-                <stop offset="100%" stop-color="#48bfe300"></stop>
-              </radialGradient>
-              
+              <linearGradient id='a' x1='0' x2='0' y1='1' y2='0' gradientTransform='rotate(0,0.5,0.5)'>
+                <stop offset='0' stop-color='rgba(0, 255, 255, 1)' />
+                <stop offset='1' stop-color='rgba(204, 255, 102, 1)' />
+              </linearGradient>
+              <linearGradient id='b' x1='0' x2='0' y1='0' y2='1' gradientTransform='rotate(0,0.5,0.5)'>
+                <stop offset='0' stop-color='rgba(255, 0, 0, 1)' />
+                <stop offset='1' stop-color='rgba(255, 204, 0, 1)' />
+              </linearGradient>
             </defs>
-            <rect x="13.744%" y="1.18473%" width="100%" height="100%" fill="url(#Gradient1)" transform="rotate(334.41 50 50)">
-              <animate attributeName="x" dur="20s" values="25%;0%;25%" repeatCount="indefinite"></animate>
-              <animate attributeName="y" dur="21s" values="0%;25%;0%" repeatCount="indefinite"></animate>
-              <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="7s" repeatCount="indefinite"></animateTransform>
-            </rect>
-            <rect x="-2.17916%" y="35.4267%" width="100%" height="100%" fill="url(#Gradient2)" transform="rotate(255.072 50 50)">
-              <animate attributeName="x" dur="23s" values="-25%;0%;-25%" repeatCount="indefinite"></animate>
-              <animate attributeName="y" dur="24s" values="0%;50%;0%" repeatCount="indefinite"></animate>
-              <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="12s" repeatCount="indefinite"></animateTransform>
-            </rect>
-            <rect x="9.00483%" y="14.5733%" width="100%" height="100%" fill="url(#Gradient3)" transform="rotate(139.903 50 50)">
-              <animate attributeName="x" dur="25s" values="0%;25%;0%" repeatCount="indefinite"></animate>
-              <animate attributeName="y" dur="12s" values="0%;25%;0%" repeatCount="indefinite"></animate>
-              <animateTransform attributeName="transform" type="rotate" from="360 50 50" to="0 50 50" dur="9s" repeatCount="indefinite"></animateTransform>
-            </rect>
-          
+            <g fill='#FFF' fill-opacity='0' stroke-miterlimit='10'>
+              <g stroke='url(#a)' stroke-width='4.62'>
+                <path transform='translate(-10.5 2.4) rotate(1.5 1409 581) scale(1.006)' d='M1409 581 1450.35 511 1490 581z'>
+                  <animateTransform attributeName="transform" type="rotate" from="1.5 1409 581" to="360 1409 581" dur="10s" repeatCount="indefinite" />
+                </path>
+                <circle stroke-width='1.54' transform='translate(-6 6) rotate(1.8 800 450) scale(1.003)' cx='500' cy='100' r='40'>
+                  <animate attributeName="r" from="40" to="60" dur="2s" begin="0s" repeatCount="indefinite" values="40;60;40" />
+                  <animateTransform attributeName="transform" type="translate" from="0 0" to="0 20" dur="2s" begin="0s" repeatCount="indefinite" values="0 0;0 20;0 0" />
+                </circle>
+                <path transform='translate(5.4 -18) rotate(18 401 736) scale(1.003)' d='M400.86 735.5h-83.73c0-23.12 18.74-41.87 41.87-41.87S400.86 712.38 400.86 735.5z'>
+                  <animate attributeName="d" dur="3s" repeatCount="indefinite" values="M400.86 735.5h-83.73c0-23.12 18.74-41.87 41.87-41.87S400.86 712.38 400.86 735.5z;M400.86 735.5h-83.73c0-30 18.74-50 41.87-50S400.86 712.38 400.86 735.5z;M400.86 735.5h-83.73c0-23.12 18.74-41.87 41.87-41.87S400.86 712.38 400.86 735.5z" />
+                </path>
+              </g>
+              <g stroke='url(#b)' stroke-width='1.4'>
+                <path transform='translate(36 -2.4) rotate(0.6 150 345) scale(0.994)' d='M149.8 345.2 118.4 389.8 149.8 434.4 181.2 389.8z'>
+                  <animateTransform attributeName="transform" type="rotate" from="0.6 150 345" to="360 150 345" dur="8s" repeatCount="indefinite" />
+                </path>
+                <rect stroke-width='3.08' transform='translate(-24 -15) rotate(21.6 1089 759)' x='1039' y='709' width='100' height='100'>
+                  <animateTransform attributeName="transform" type="translate" from="0 0" to="0 -20" dur="2s" begin="0s" repeatCount="indefinite" values="0 0;0 -20;0 0" />
+                </rect>
+                <path transform='translate(-36 12) rotate(3.6 1400 132)' d='M1426.8 132.4 1405.7 168.8 1363.7 168.8 1342.7 132.4 1363.7 96 1405.7 96z'>
+                  <animateTransform attributeName="transform" type="scale" from="1" to="1.2" dur="1.5s" begin="0s" repeatCount="indefinite" values="1;1.2;1" />
+                </path>
+              </g>
+            </g>
           </svg>
+
         </div>
         <div className="intro_content">
           <div className='signup_and_login'>
-            <Link to="/signup"><button className='intro_sign'>Sign Up</button></Link>
-            <Link to="/login"><button className='intro_login'>Login</button></Link>
+            {/* <Link to="/signup"><button className='intro_sign'>Sign Up</button></Link>
+            <Link to="/login"><button className='intro_login'>Login</button></Link> */}
           </div>
           <div className="intro_heading ">
-            Turn Your Ideas Into Stunning Presentations<br/>
-            Instantly with AI <br/>
+            Instantly Create Presentations <br />
+            <div className="subsub_Heading">
+
+              with<br />
+            </div>
+
+
           </div>
+          <img src={Logo} className='logo' alt='' />
           <div className='intro_subheading'>
-              <TypewriterEffect
-                text={
-                    "Create professional, visually engaging presentations in just a few clicks. No design skills? No problem – let AI do the heavy lifting for you."
-                }
-                speed={40}
-              />
+            <TypewriterEffect
+              text={
+                "Create professional, visually stunning presentations effortlessly with AI. No design skills needed."
+              }
+              speed={50}
+            />
           </div>
           <br />
           <div className='start_button'>
-              <Link to="/signup"><button>Start Now</button></Link>
+            <Link to="/signup"><button>Start Now</button></Link>
           </div>
         </div>
       </div>

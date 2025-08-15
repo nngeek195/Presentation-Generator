@@ -1,10 +1,10 @@
-.signup_back{
-    background: linear-gradient(90deg,#7400b8,#6930c3,#5e60ce,#5390d9,#4ea8de,#48bfe3,#56cfe1,#64dfdf,#72efdd,#80ffdb);
+.signup_back {
+    background: linear-gradient(90deg, #7400b8, #6930c3, #5e60ce, #5390d9, #4ea8de, #48bfe3, #56cfe1, #64dfdf, #72efdd, #80ffdb);
     overflow: hidden;
 }
 
-.signup_first_grid{
-    display: flex; 
+.signup_first_grid {
+    display: flex;
     justify-content: center;
     align-items: center;
     width: 50%;
@@ -14,22 +14,22 @@
     height: 100vh;
 }
 
-.signup_container{
+.signup_container {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-.signup_container_topic{
+.signup_container_topic {
     margin-bottom: 1.6rem;
     margin-top: 1.6rem;
 }
 
-.signup_container_topic span{
+.signup_container_topic span {
     font-size: 2.4rem;
     font-family: "Merriweather", serif;
     font-weight: 700;
 }
 
-.signup_input{
+.signup_input {
     width: 17.6rem;
     height: 2.4rem;
     margin-left: 4rem;
@@ -38,32 +38,38 @@
     border-radius: 6.4px;
 }
 
-.signup{
-    margin-top: 1.6rem; 
+.signup {
+    margin-top: 1.6rem;
 }
 
-.signup button{
+.signup button {
     height: 2rem;
     width: 17.6rem;
     border-radius: 2rem;
-    background: linear-gradient(90deg,#e3f2fd,#bbdefb,#90caf9,#64b5f6,#42a5f5);
-    color: white;
-    font-weight: bold;
+    background: linear-gradient(90deg, #e3f2fd, #bbdefb, #90caf9, #64b4f6c5, #42a4f5c5);
+    color: rgb(255, 255, 255);
+    font-weight: 700;
+
+
+
 }
 
-.signup button:hover{
-    background: linear-gradient(90deg,#e3f2fd,#bbdefb,#90caf9,#64b5f6,#42a5f5,#2196f3);
-    box-shadow: 0 0 5px #6C63FF, 0 0 10px #00C9FF;;
+.signup button:hover {
+    background: linear-gradient(90deg, #e3f2fd, #bbdefb, #90caf9, #64b5f6, #42a5f5, #2196f3);
+    box-shadow: 0 0 3px #6b63ff97, 0 0 10px #00c8ff86;
+    font-weight: 800;
+
+    ;
 }
 
-.signup_or{
+.signup_or {
     margin-top: 1.6rem;
     margin-bottom: 1.6rem;
     align-items: center;
     display: flex;
 }
 
-.hr1{
+.hr1 {
     flex: 1;
     height: 1px;
     margin-left: 4rem;
@@ -71,7 +77,7 @@
     background-color: gray;
 }
 
-.hr2{
+.hr2 {
     flex: 1;
     height: 1px;
     margin-left: 1rem;
@@ -79,31 +85,36 @@
     background-color: gray;
 }
 
-.signup_g button{
+.signup_g button {
     border: none;
     background: white;
     margin-bottom: 1.6rem;
 }
 
-.signup_g img{
+.signup_g img {
     filter: contrast(130%) brightness(105%) saturate(130%);
 }
 
-.havent_account{
+.signup_g img:hover {
+    filter: contrast(100%) brightness(90%) saturate(140%);
+    cursor: pointer;
+}
+
+.havent_account {
     margin-bottom: 1.6rem;
     font-size: 0.8rem;
 }
 
-.signup_second_grid{
+.signup_second_grid {
     color: white;
-    display: flex; 
+    display: flex;
     width: 50%;
     height: 100vh;
     justify-content: center;
-    align-items: center; 
-} 
+    align-items: center;
+}
 
-.slideshow_container{
+.slideshow_container {
     margin-bottom: 0;
     margin-top: 22rem;
     margin-left: 5rem;
@@ -112,33 +123,33 @@
 }
 
 @media screen and (max-width:480px) {
-    .signup_back{
+    .signup_back {
         display: flex;
         flex-direction: column;
         height: auto;
     }
-    
-    .signup_first_grid, .signup_second_grid{
+
+    .signup_first_grid,
+    .signup_second_grid {
         width: 100%;
         border-radius: 0;
         align-items: flex-start;
         height: 100%;
     }
 
-    .signup_container{
-      box-shadow: 0;
-      width: 90%;
-      margin-top: 2rem;
-      margin-bottom: 2rem;
+    .signup_container {
+        box-shadow: 0;
+        width: 90%;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
     }
 
-    .slideshow_container{
-      margin-bottom: 0;
-      margin-top: 2rem;
-      margin-left: 5rem;
-      margin-right: 2.5rem;
-      display: flex;
+    .slideshow_container {
+        margin-bottom: 0;
+        margin-top: 2rem;
+        margin-left: 5rem;
+        margin-right: 2.5rem;
+        display: flex;
     }
 
 }
-
