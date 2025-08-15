@@ -3,6 +3,7 @@ import './Introduction.css'
 import { Link } from 'react-router-dom'
 import TypewriterEffect from './TypewriterEffect';
 import Logo from './Logo.png'
+
 class Introduction extends Component {
   render() {
     return (
