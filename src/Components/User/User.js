@@ -17,23 +17,17 @@ class User extends Component {
                     <img src={Logo} className='logo' alt='' />
                 </Grid>
                 <Grid item xs={6} className='header_two'>
-                    <Link to="/login"><button className='header_logout'>Log Out</button></Link>
-                    <FaUserCircle className='default_icon_1' />
+                  <button className='workspace_button'>User's Workspace</button>
+                  {/* Logout button */}
+                    {/* <Link to="/login"><button className='header_logout'>Log Out</button></Link> */}
+                    {/* profile icon */}
+                    {/* <FaUserCircle className='default_icon_1' /> */}
                 </Grid>
             </Grid>
             <hr />
         </div>
         <div>
-          <Grid container>
-              <Grid item xs={4} className='user_profile'>
-                  <div className='user_profile_deatils'>
-                    <FaUserCircle className='default_icon_2' /><br />
-                    <input type='text' value='Email' readOnly className='user_email'/><br />
-                    <input type='text' value='Username' readOnly className='user_username'/><br />
-                    <button className='recover_pw'>Recover Password</button>
-                  </div>
-              </Grid>
-              <Grid item xs={8} className='presentations'>
+              <div className='presentations'>
                   <div className='presentations_create'>
                     <button><FaPlus className='plusicon'/> Create New</button>
                   </div>
@@ -102,8 +96,7 @@ class User extends Component {
                     <div className='presentation_view'><button>View</button></div>
                   </div>
                   </div>
-              </Grid>
-          </Grid>
+              </div>
         </div>
       </div>
     )
