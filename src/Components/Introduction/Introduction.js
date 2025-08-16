@@ -3,11 +3,13 @@ import './Introduction.css'
 import { Link } from 'react-router-dom'
 import TypewriterEffect from './TypewriterEffect';
 import Logo from './Logo.png'
+import Header from './Header';
 
 class Introduction extends Component {
   render() {
     return (
       <div className='intro_back'>
+        <Header />
         <div id="bg-wrap">
           {/* SVG animation */}
 
@@ -65,7 +67,6 @@ class Introduction extends Component {
 
 
           </div>
-          <img src={Logo} className='logo' alt='' />
           <div className='intro_subheading'>
             <TypewriterEffect
               text={
