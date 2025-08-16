@@ -6,13 +6,20 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@mui/material": "^5.18.0",
+<<<<<<< HEAD
     "@react-oauth/google": "^0.12.2",
     "jwt-decode": "^4.0.0",
+=======
+>>>>>>> 18ffbfcf6714c96d251c7b25139086a8daa7b8bc
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.5.0",
     "react-router-dom": "^6.8.0",
+<<<<<<< HEAD
     "react-scripts": "^5.0.1",
+=======
+    "react-scripts": "5.0.1",
+>>>>>>> 18ffbfcf6714c96d251c7b25139086a8daa7b8bc
     "swiper": "^11.2.10",
     "web-vitals": "^5.1.0",
     "webfontloader": "^1.6.28"
