@@ -2,13 +2,31 @@ import React, { Component } from 'react'
 import './User.css'
 import Grid from '@mui/material/Grid'
 import Logo1 from './Logo1.png'
-import { FaUserCircle, FaPlus } from 'react-icons/fa'
+import { FaUserCircle, FaPlus, FaAngleDown } from 'react-icons/fa'
 import Presentation_1 from './Presentation_1.png'
 import { MdOutlineDelete, MdOutlineDriveFileRenameOutline, MdOutlineDownload } from "react-icons/md";
 import { Link } from 'react-router-dom'
+import Popover from './Popover/Popover'
 
 class User extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      anchorEl: null,
+    };
+  }
+
+  handleOpen = (event) => {
+    this.setState({ anchorEl: event.currentTarget }); 
+  };
+
+  handleClose = () => {
+    this.setState({ anchorEl: null });
+  };
+
   render() {
+    const { anchorEl } = this.state;
+
     return (
       <div className='user_back'>
         <div className='header'>
@@ -17,14 +35,20 @@ class User extends Component {
               <img src={Logo1} className='logo1' alt='' />
             </Grid>
             <Grid item xs={6} className='header_two'>
-              {/* <Link to="/login"><button className='header_logout'>Log Out</button></Link>
-              <FaUserCircle className='default_icon_1' /> */}
+              <div className='workspace'>
+                <button onClick={this.handleOpen}>
+                  <span><FaUserCircle className='default_icon_1' /></span>
+                  <span> User's Workspace</span>
+                  <span><FaAngleDown /></span>
+                </button>
+                <Popover anchorEl={anchorEl} onClose={this.handleClose} />
+              </div>
             </Grid>
           </Grid>
           <hr />
         </div>
         <div>
-            <div item xs={8} className='presentations'>
+            <div className='presentations'>
               <div className='presentations_create'>
                 <button><FaPlus className='plusicon' /> Create New</button>
               </div>
