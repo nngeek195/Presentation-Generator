@@ -7,6 +7,7 @@ import Presentation_1 from './Presentation_1.png'
 import { MdOutlineDelete, MdOutlineDriveFileRenameOutline, MdOutlineDownload } from "react-icons/md";
 import { Link } from 'react-router-dom'
 import Popover from './Popover/Popover'
+import { IoMdNotificationsOutline } from "react-icons/io";
 
 class User extends Component {
   constructor(props) {
@@ -35,6 +36,11 @@ class User extends Component {
               <img src={Logo1} className='logo1' alt='' />
             </Grid>
             <Grid item xs={6} className='header_two'>
+              <div>
+                <button className='notification_icon_button'>
+                  <IoMdNotificationsOutline className='notification_icon' />
+                </button>
+              </div>
               <div className='workspace'>
                 <button onClick={this.handleOpen}>
                   <span><FaUserCircle className='default_icon_1' /></span>
