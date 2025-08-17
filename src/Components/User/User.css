@@ -50,9 +50,9 @@
     width: 14rem;
     align-items: center;
     justify-content: center;
-    gap: 0.8rem;
+    gap: 0.1rem;
     border-radius: 1rem;
-    background-color: white;
+    background-color: #777e8618;
     border: none;
 }
 
@@ -183,7 +183,7 @@
 .profile-picture-wrapper {
     position: relative;
     display: inline-block;
-    border-radius: 25%;
+    border-radius: 50%;
     /* Added 25% border-radius */
     overflow: hidden;
 }
@@ -192,7 +192,7 @@
     width: 40px;
     height: 40px;
     object-fit: cover;
-    border-radius: 25%;
+    border-radius: 50%;
     /* Added 25% border-radius */
 }
 
@@ -208,8 +208,8 @@
     background: rgba(0, 0, 0, 0.5);
     opacity: 0;
     transition: opacity 0.3s;
-    border-radius: 25%;
-    /* Added 25% border-radius */
+    border-radius: 50%;
+
 }
 
 .profile-picture-wrapper:hover .profile-picture-overlay {
