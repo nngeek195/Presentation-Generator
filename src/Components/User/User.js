@@ -295,7 +295,27 @@ class User extends Component {
                   </CustomTabPanel>
 
                   <CustomTabPanel value={this.state.tabValue} index={2}>
-                    <h3>Trending (to implement next)</h3>
+                    <div className="presentations-grid">
+                      {presentations.map(p => (
+                          <div className='presentation' key={p.id}>
+                            <div className='presentation_image'>
+                              <img src={p.image} alt='' />
+                              <FaStar
+                                title='Favorite'
+                                className={`favorite_icon ${favorites.includes(p.id) ? 'active' : ''}`}
+                                onClick={() => this.toggleFavorite(p.id)}
+                              />
+                            </div>
+                            <div className='presentation_topic'><span>{p.title}</span></div>
+                            <div className='presentation_icons'>
+                              <MdOutlineDelete title='Delete' />
+                              <MdOutlineDownload title='Download' />
+                              <MdOutlineDriveFileRenameOutline title='Rename' />
+                            </div>
+                            <div className='presentation_view'><button>View</button></div>
+                          </div>
+                        ))}
+                      </div>
                   </CustomTabPanel>
               </Box>
 
