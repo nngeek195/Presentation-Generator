@@ -221,6 +221,17 @@ class SignUp extends Component {
                     loading: false
                 });
 
+                // Store user data in localStorage including the profile picture
+                if (data.data) {
+                    localStorage.setItem('userData', JSON.stringify({
+                        email: data.data.email,
+                        username: data.data.username,
+                        picture: data.data.picture,
+                        pictureId: data.data.pictureId,
+                        authMethod: data.data.authMethod
+                    }));
+                }
+
                 // Redirect to login after successful signup
                 setTimeout(() => {
                     window.location.href = '/login';
@@ -248,6 +259,7 @@ class SignUp extends Component {
             });
         }
     }
+
 
     handleGoogleSignup = async () => {
         // Implement Google OAuth logic here
