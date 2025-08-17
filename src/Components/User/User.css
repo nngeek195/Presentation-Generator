@@ -87,9 +87,14 @@
     color: white;
 }
 
+.tab_icon{
+    height: 1.2rem;
+    width: 1.2rem;
+}
+
 .presentations_container{
     display: flex;
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
 .presentation{
