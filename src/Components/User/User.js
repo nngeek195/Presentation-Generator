@@ -5,7 +5,6 @@ import Logo1 from './Logo1.png';
 import { FaUserCircle, FaPlus, FaAngleDown, FaCamera } from 'react-icons/fa';
 import Presentation_1 from './Presentation_1.png';
 import { MdOutlineDelete, MdOutlineDriveFileRenameOutline, MdOutlineDownload } from "react-icons/md";
-import { IoMdNotificationsOutline } from "react-icons/io";
 import ProfilePictureModal from './ProfilePictureModal/ProfilePictureModal';
 import { Link } from 'react-router-dom'
 import Popover from './Popover/Popover'
