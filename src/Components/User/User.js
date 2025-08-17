@@ -2,15 +2,13 @@ import React, { Component } from 'react';
 import './User.css';
 import Grid from '@mui/material/Grid';
 import Logo1 from './Logo1.png';
-import { FaUserCircle, FaPlus, FaAngleDown, FaCamera } from 'react-icons/fa';
+import { FaUserCircle, FaPlus, FaAngleDown, FaCamera, FaStar, FaRegStar } from 'react-icons/fa';
 import Presentation_1 from './Presentation_1.png';
 import { MdOutlineDelete, MdOutlineDriveFileRenameOutline, MdOutlineDownload } from "react-icons/md";
 import ProfilePictureModal from './ProfilePictureModal/ProfilePictureModal';
-import { Link } from 'react-router-dom'
 import Popover from './Popover/Popover'
 import Popover2 from './Popover/Popover2'
 import { IoMdNotificationsOutline, IoMdApps, IoIosTrendingUp } from "react-icons/io";
-import { FaRegStar } from "react-icons/fa6";
 import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -27,7 +25,33 @@ class User extends Component {
       username: '',
       anchorE2: null,
       tabValue: 0,
+      favorites: [], 
+      presentations: [ 
+        { id: 1, title: "Presentation 01", image: Presentation_1 },
+        { id: 2, title: "Presentation 02", image: Presentation_1 },
+        { id: 3, title: "Presentation 03", image: Presentation_1 },
+        { id: 4, title: "Presentation 04", image: Presentation_1 },
+        { id: 5, title: "Presentation 05", image: Presentation_1 },
+        { id: 6, title: "Presentation 06", image: Presentation_1 },
+        { id: 7, title: "Presentation 07", image: Presentation_1 },
+        { id: 8, title: "Presentation 08", image: Presentation_1 },
+        { id: 9, title: "Presentation 09", image: Presentation_1 },
+        { id: 10, title: "Presentation 10", image: Presentation_1 },
+        { id: 11, title: "Presentation 11", image: Presentation_1 },
+        { id: 12, title: "Presentation 12", image: Presentation_1 },
+      ]
     };
+  }
+
+  toggleFavorite = (id) => {
+    const { favorites } = this.state;
+    if (favorites.includes(id)) {
+      // Remove from favorites
+      this.setState({ favorites: favorites.filter(favId => favId !== id) });
+    } else {
+      // Add to favorites
+      this.setState({ favorites: [...favorites, id] });
+    }
   }
 
   componentDidMount() {
@@ -133,7 +157,7 @@ class User extends Component {
     const { userProfilePicture, showProfilePictureModal, username } = this.state;
     const { anchorEl } = this.state;
     const { anchorE2 } = this.state;
-    const { value } = this.state;
+    const { presentations, favorites } = this.state;
 
     function a11yProps(index) {
       return {
@@ -220,87 +244,54 @@ class User extends Component {
 
                   {/* Tab Panels */}
                   <CustomTabPanel value={this.state.tabValue} index={0}>
-                      <div className='presentations_container'>
-                            <div className='presentation'>
-                              <div className='presentation_image'><img src={Presentation_1} alt='' /><FaRegStar title='Favorite' className='favorite_icon' /></div>
-                              <div className='presentation_topic'><span>Presentation 01</span></div>
-                              <div className='presentation_icons'><MdOutlineDelete title='Delete' /> <MdOutlineDownload title='Download' /> <MdOutlineDriveFileRenameOutline title='Rename' /></div>
-                              <div className='presentation_view'><button>View</button></div>
+                    <div className="presentations-grid">
+                      {presentations.map(p => (
+                          <div className='presentation' key={p.id}>
+                            <div className='presentation_image'>
+                              <img src={p.image} alt='' />
+                              <FaStar
+                                title='Favorite'
+                                className={`favorite_icon ${favorites.includes(p.id) ? 'active' : ''}`}
+                                onClick={() => this.toggleFavorite(p.id)}
+                              />
                             </div>
-                            <div className='presentation'>
-                              <div className='presentation_image'><img src={Presentation_1} alt='' /><FaRegStar title='Favorite' className='favorite_icon' /></div>
-                              <div className='presentation_topic'><span>Presentation 02</span></div>
-                              <div className='presentation_icons'><MdOutlineDelete title='Delete' /> <MdOutlineDownload title='Download' /> <MdOutlineDriveFileRenameOutline title='Rename' /></div>
-                              <div className='presentation_view'><button>View</button></div>
+                            <div className='presentation_topic'><span>{p.title}</span></div>
+                            <div className='presentation_icons'>
+                              <MdOutlineDelete title='Delete' />
+                              <MdOutlineDownload title='Download' />
+                              <MdOutlineDriveFileRenameOutline title='Rename' />
                             </div>
-                            <div className='presentation'>
-                              <div className='presentation_image'><img src={Presentation_1} alt='' /><FaRegStar title='Favorite' className='favorite_icon' /></div>
-                              <div className='presentation_topic'><span>Presentation 03</span></div>
-                              <div className='presentation_icons'><MdOutlineDelete title='Delete' /> <MdOutlineDownload title='Download' /> <MdOutlineDriveFileRenameOutline title='Rename' /></div>
-                              <div className='presentation_view'><button>View</button></div>
-                            </div>
-                            <div className='presentation'>
-                              <div className='presentation_image'><img src={Presentation_1} alt='' /><FaRegStar title='Favorite' className='favorite_icon' /></div>
-                              <div className='presentation_topic'><span>Presentation 04</span></div>
-                              <div className='presentation_icons'><MdOutlineDelete title='Delete' /> <MdOutlineDownload title='Download' /> <MdOutlineDriveFileRenameOutline title='Rename' /></div>
-                              <div className='presentation_view'><button>View</button></div>
-                            </div>
-                            <div className='presentation'>
-                              <div className='presentation_image'><img src={Presentation_1} alt='' /><FaRegStar title='Favorite' className='favorite_icon' /></div>
-                              <div className='presentation_topic'><span>Presentation 05</span></div>
-                              <div className='presentation_icons'><MdOutlineDelete title='Delete' /> <MdOutlineDownload title='Download' /> <MdOutlineDriveFileRenameOutline title='Rename' /></div>
-                              <div className='presentation_view'><button>View</button></div>
-                            </div>
-                            <div className='presentation'>
-                              <div className='presentation_image'><img src={Presentation_1} alt='' /><FaRegStar title='Favorite' className='favorite_icon' /></div>
-                              <div className='presentation_topic'><span>Presentation 06</span></div>
-                              <div className='presentation_icons'><MdOutlineDelete title='Delete' /> <MdOutlineDownload title='Download' /> <MdOutlineDriveFileRenameOutline title='Rename' /></div>
-                              <div className='presentation_view'><button>View</button></div>
-                            </div>
+                            <div className='presentation_view'><button>View</button></div>
                           </div>
-              
-                          <div className='presentations_container'>
-                            <div className='presentation'>
-                              <div className='presentation_image'><img src={Presentation_1} alt='' /><FaRegStar title='Favorite' className='favorite_icon' /></div>
-                              <div className='presentation_topic'><span>Presentation 07</span></div>
-                              <div className='presentation_icons'><MdOutlineDelete title='Delete' /> <MdOutlineDownload title='Download' /> <MdOutlineDriveFileRenameOutline title='Rename' /></div>
-                              <div className='presentation_view'><button>View</button></div>
-                            </div>
-                            <div className='presentation'>
-                              <div className='presentation_image'><img src={Presentation_1} alt='' /><FaRegStar title='Favorite' className='favorite_icon' /></div>
-                              <div className='presentation_topic'><span>Presentation 08</span></div>
-                              <div className='presentation_icons'><MdOutlineDelete title='Delete' /> <MdOutlineDownload title='Download' /> <MdOutlineDriveFileRenameOutline title='Rename' /></div>
-                              <div className='presentation_view'><button>View</button></div>
-                            </div>
-                            <div className='presentation'>
-                              <div className='presentation_image'><img src={Presentation_1} alt='' /><FaRegStar title='Favorite' className='favorite_icon' /></div>
-                              <div className='presentation_topic'><span>Presentation 09</span></div>
-                              <div className='presentation_icons'><MdOutlineDelete title='Delete' /> <MdOutlineDownload title='Download' /> <MdOutlineDriveFileRenameOutline title='Rename' /></div>
-                              <div className='presentation_view'><button>View</button></div>
-                            </div>
-                            <div className='presentation'>
-                              <div className='presentation_image'><img src={Presentation_1} alt='' /><FaRegStar title='Favorite' className='favorite_icon' /></div>
-                              <div className='presentation_topic'><span>Presentation 10</span></div>
-                              <div className='presentation_icons'><MdOutlineDelete title='Delete' /> <MdOutlineDownload title='Download' /> <MdOutlineDriveFileRenameOutline title='Rename' /></div>
-                              <div className='presentation_view'><button>View</button></div>
-                            </div>
-                            <div className='presentation'>
-                              <div className='presentation_image'><img src={Presentation_1} alt='' /><FaRegStar title='Favorite' className='favorite_icon' /></div>
-                              <div className='presentation_topic'><span>Presentation 11</span></div>
-                              <div className='presentation_icons'><MdOutlineDelete title='Delete' /> <MdOutlineDownload title='Download' /> <MdOutlineDriveFileRenameOutline title='Rename' /></div>
-                              <div className='presentation_view'><button>View</button></div>
-                            </div>
-                            <div className='presentation'>
-                              <div className='presentation_image'><img src={Presentation_1} alt='' /><FaRegStar title='Favorite' className='favorite_icon' /></div>
-                              <div className='presentation_topic'><span>Presentation 12</span></div>
-                              <div className='presentation_icons'><MdOutlineDelete title='Delete' /> <MdOutlineDownload title='Download' /> <MdOutlineDriveFileRenameOutline title='Rename' /></div>
-                              <div className='presentation_view'><button>View</button></div>
-                            </div>
-                       </div>
+                        ))}
+                      </div>
                   </CustomTabPanel>
 
                   <CustomTabPanel value={this.state.tabValue} index={1}>
-                    <h3>Favorites (to implement next)</h3>
+                    <div className='presentations_container'>
+                      {presentations
+                        .filter(p => favorites.includes(p.id))
+                        .map(p => (
+                          <div className='presentation' key={p.id}>
+                            <div className='presentation_image'>
+                              <img src={p.image} alt='' />
+                              <FaStar
+                                title='Favorite'
+                                className='favorite_icon'
+                                style={{ fill: '#ffd700', cursor: 'pointer' }}
+                                onClick={() => this.toggleFavorite(p.id)}
+                              />
+                            </div>
+                            <div className='presentation_topic'><span>{p.title}</span></div>
+                            <div className='presentation_icons'>
+                              <MdOutlineDelete title='Delete' />
+                              <MdOutlineDownload title='Download' />
+                              <MdOutlineDriveFileRenameOutline title='Rename' />
+                            </div>
+                            <div className='presentation_view'><button>View</button></div>
+                          </div>
+                      ))}
+                    </div>
                   </CustomTabPanel>
 
                   <CustomTabPanel value={this.state.tabValue} index={2}>
