@@ -77,6 +77,8 @@ class LogIn extends Component {
         return true;
     }
 
+
+
     handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -116,6 +118,7 @@ class LogIn extends Component {
                 // Store user session
                 sessionStorage.setItem('userEmail', this.state.email);
                 sessionStorage.setItem('username', data.data?.username || this.state.email);
+                sessionStorage.setItem('userPicture', data.data.picture);
                 sessionStorage.setItem('isLoggedIn', 'true');
                 sessionStorage.setItem('loginTime', new Date().toISOString());
 
@@ -199,7 +202,7 @@ class LogIn extends Component {
                                     borderRadius: '4px',
                                     fontSize: '14px'
                                 }}>
-                                    ✅ Login successful! Redirecting...
+                                    Login successful! Redirecting...
                                 </div>
                             )}
 
@@ -265,13 +268,13 @@ class LogIn extends Component {
 
                             {/* Forgot Password Link */}
                             <div style={{ textAlign: 'center', marginTop: '10px' }}>
-                                <Link to="/forgot-password" style={{
+                                {/* <Link to="/forgot-password" style={{
                                     color: '#666',
                                     fontSize: '14px',
                                     textDecoration: 'none'
                                 }}>
                                     Forgot Password?
-                                </Link>
+                                </Link> */}
                             </div>
                         </div>
                     </Grid>
