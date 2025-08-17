@@ -27,7 +27,7 @@ class User extends Component {
       userProfilePicture: null,
       showProfilePictureModal: false,
       userEmail: '',
-      username: ''
+      username: '',
       anchorE2: null,
       tabValue: 0,
     };
@@ -133,7 +133,7 @@ class User extends Component {
   };
 
   render() {
-    const { anchorEl, userProfilePicture, showProfilePictureModal, username } = this.state;
+    const { userProfilePicture, showProfilePictureModal, username } = this.state;
     const { anchorEl } = this.state;
     const { anchorE2 } = this.state;
     const { value } = this.state;
