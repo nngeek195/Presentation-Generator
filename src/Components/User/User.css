@@ -1,49 +1,49 @@
-.user_back{
+.user_back {
     height: 100vh;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
-.header_one{
+.header_one {
     display: flex;
     align-items: center;
 }
 
-.header_two{
+.header_two {
     display: flex;
     align-items: center;
     justify-content: right;
     gap: 0.5rem;
 }
 
-.notification_icon_button{
+.notification_icon_button {
     background-color: white;
     border: none;
 }
 
-.notification_icon{
+.notification_icon {
     height: 1.4rem;
     width: 1.4rem;
 }
 
-.default_icon_1{
+.default_icon_1 {
     height: 2rem;
     width: 2rem;
 }
 
-.logo1{
+.logo1 {
     width: 256px;
     height: 62px;
     margin-right: 80rem;
 }
 
-.workspace{
+.workspace {
     display: flex;
     margin-right: 2rem;
 }
 
-.workspace button{
+.workspace button {
     display: flex;
     height: 3rem;
     font-size: 1rem;
@@ -56,43 +56,43 @@
     border: none;
 }
 
-.workspace button:hover{
+.workspace button:hover {
     background-color: #dcdcdc;
 }
 
-.presentations{
+.presentations {
     justify-content: center;
     width: 50%;
     margin-left: 5rem;
 }
 
-.presentations_create button{
+.presentations_create button {
     margin-left: -41rem;
     height: 2.5rem;
     width: 7rem;
     border-radius: 1rem;
     background-color: white;
-    border-color: #1e90ff ;
-    color: #1e90ff ;
+    border-color: #1e90ff;
+    color: #1e90ff;
     font-weight: bold;
 }
 
-.plusicon{
+.plusicon {
     height: 0.7rem;
     width: 0.7rem;
 }
 
-.presentations_create button:hover{
+.presentations_create button:hover {
     background-color: #1e90ff;
     color: white;
 }
 
-.presentations_container{
+.presentations_container {
     display: flex;
     gap: 2rem;
 }
 
-.presentation{
+.presentation {
     height: 14rem;
     width: 12rem;
     border: 2px solid black;
@@ -102,31 +102,78 @@
     background-color: white;
 }
 
-.presentation_image img{
+.presentation_image img {
     width: 12rem;
     height: 7rem;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
 }
 
-.presentation_icons{
+.presentation_icons {
     margin-top: 2rem;
     justify-self: left;
     margin-left: 0.5rem;
 }
 
-.presentation_view button{
+.presentation_view button {
     /* margin-top: 3.5rem; */
     width: 11rem;
     border-radius: 2rem;
     border-width: 0.1rem;
     background-color: white;
-    border-color: #1e90ff ;
-    color: #1e90ff ;
+    border-color: #1e90ff;
+    color: #1e90ff;
     font-weight: bold;
 }
 
-.presentation_view button:hover{
+.presentation_view button:hover {
     background-color: #1e90ff;
     color: white;
+}
+
+/* Add to User.css */
+.profile-picture-container {
+    position: relative;
+    display: inline-block;
+}
+
+.profile-picture-wrapper {
+    position: relative;
+    display: inline-block;
+    border-radius: 25%;
+    /* Added 25% border-radius */
+    overflow: hidden;
+}
+
+.profile_picture {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 25%;
+    /* Added 25% border-radius */
+}
+
+.profile-picture-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s;
+    border-radius: 25%;
+    /* Added 25% border-radius */
+}
+
+.profile-picture-wrapper:hover .profile-picture-overlay {
+    opacity: 1;
+}
+
+.camera-icon {
+    color: white;
+    font-size: 20px;
 }
