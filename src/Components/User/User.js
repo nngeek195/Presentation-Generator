@@ -203,7 +203,7 @@ class User extends Component {
                       />
                     )}
                   </span>
-                  <span> {username}'s Workspace</span>
+                  <span className='username_text'> {username}'s Workspace</span>
                   <span><FaAngleDown /></span>
                 </button>
                 <Popover anchorEl={anchorEl} onClose={this.handleClose} />
@@ -236,9 +236,9 @@ class User extends Component {
                       onChange={this.handleTabChange}
                       aria-label="basic tabs example"
                     >
-                      <Tab icon={<IoMdApps className='tab_icon' />} iconPosition='start' label="All" {...a11yProps(0)} />
-                      <Tab icon={<FaRegStar className='tab_icon' />} iconPosition='start' label="Favorites" {...a11yProps(1)} />
-                      <Tab icon={<IoIosTrendingUp className='tab_icon' />} iconPosition='start' label="Trending" {...a11yProps(2)} />
+                      <Tab icon={<IoMdApps className='tab_icon' />} iconPosition='start' label="All" sx={{ fontWeight: 'bold' }}  {...a11yProps(0)} />
+                      <Tab icon={<FaRegStar className='tab_icon' />} iconPosition='start' label="Favorites" sx={{ fontWeight: 'bold' }}  {...a11yProps(1)} />
+                      <Tab icon={<IoIosTrendingUp className='tab_icon' />} iconPosition='start' label="Trending" sx={{ fontWeight: 'bold' }}  {...a11yProps(2)} />
                     </Tabs>
                   </Box>
 
