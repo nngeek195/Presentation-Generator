@@ -7,6 +7,7 @@ import Presentation_1 from './Presentation_1.png'
 import { MdOutlineDelete, MdOutlineDriveFileRenameOutline, MdOutlineDownload } from "react-icons/md";
 import { Link } from 'react-router-dom'
 import Popover from './Popover/Popover'
+import Popover2 from './Popover/Popover2'
 import { IoMdNotificationsOutline } from "react-icons/io";
 
 class User extends Component {
@@ -14,6 +15,7 @@ class User extends Component {
     super(props);
     this.state = {
       anchorEl: null,
+      anchorE2: null,
     };
   }
 
@@ -25,8 +27,17 @@ class User extends Component {
     this.setState({ anchorEl: null });
   };
 
+  handleModalOpen = (event) => {
+    this.setState({ anchorE2: event.currentTarget }); 
+  };
+
+  handleModalClose = () => {
+    this.setState({ anchorE2: null });
+  };
+
   render() {
     const { anchorEl } = this.state;
+    const { anchorE2 } = this.state;
 
     return (
       <div className='user_back'>
@@ -37,9 +48,10 @@ class User extends Component {
             </Grid>
             <Grid item xs={6} className='header_two'>
               <div>
-                <button className='notification_icon_button'>
+                <button className='notification_icon_button' onClick={this.handleModalOpen}>
                   <IoMdNotificationsOutline className='notification_icon' />
                 </button>
+                <Popover2 anchorE2={anchorE2} onClose={this.handleModalClose} />
               </div>
               <div className='workspace'>
                 <button onClick={this.handleOpen}>
