@@ -201,12 +201,6 @@ class User extends Component {
 
         <div>
           <div className='presentations'>
-            <div className='presentations_create'>
-              <button><FaPlus className='plusicon' /> Create New</button>
-            </div>
-            <div className='presentations_container'>
-              {/* Your existing presentation components */}
-            </div>
           </div>
             <div className='presentations'>
               <div className='presentations_create'>
