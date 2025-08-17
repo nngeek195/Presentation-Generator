@@ -102,11 +102,27 @@
     background-color: white;
 }
 
+.presentation_image{
+    position: relative;
+    display: inline-block;
+}
+
 .presentation_image img{
     width: 12rem;
     height: 7rem;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
+}
+
+.favorite_icon{
+    position: absolute;
+    right: 0.5rem;
+    top: 0.2rem;
+    
+}
+
+.favorite{
+    color: yellow;
 }
 
 .presentation_icons{

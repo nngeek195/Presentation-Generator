@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom'
 import Popover from './Popover/Popover'
 import Popover2 from './Popover/Popover2'
 import { IoMdNotificationsOutline } from "react-icons/io";
+import { FaRegStar } from "react-icons/fa6";
 
 class User extends Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class User extends Component {
     this.state = {
       anchorEl: null,
       anchorE2: null,
+      tabValue: 0,
     };
   }
 
@@ -33,6 +35,10 @@ class User extends Component {
 
   handleModalClose = () => {
     this.setState({ anchorE2: null });
+  };
+
+  handleTabChange = (event, newValue) => {
+    this.setState({ tabValue: newValue });
   };
 
   render() {
@@ -72,31 +78,31 @@ class User extends Component {
               </div>
               <div className='presentations_container'>
                 <div className='presentation'>
-                  <div className='presentation_image'><img src={Presentation_1} alt='' /></div>
+                  <div className='presentation_image'><img src={Presentation_1} alt='' /><FaRegStar title='Favorite' className='favorite_icon' /></div>
                   <div className='presentation_topic'><span>Presentation 01</span></div>
                   <div className='presentation_icons'><MdOutlineDelete title='Delete' /> <MdOutlineDownload title='Download' /> <MdOutlineDriveFileRenameOutline title='Rename' /></div>
                   <div className='presentation_view'><button>View</button></div>
                 </div>
                 <div className='presentation'>
-                  <div className='presentation_image'><img src={Presentation_1} alt='' /></div>
+                  <div className='presentation_image'><img src={Presentation_1} alt='' /><FaRegStar title='Favorite' className='favorite_icon' /></div>
                   <div className='presentation_topic'><span>Presentation 02</span></div>
                   <div className='presentation_icons'><MdOutlineDelete title='Delete' /> <MdOutlineDownload title='Download' /> <MdOutlineDriveFileRenameOutline title='Rename' /></div>
                   <div className='presentation_view'><button>View</button></div>
                 </div>
                 <div className='presentation'>
-                  <div className='presentation_image'><img src={Presentation_1} alt='' /></div>
+                  <div className='presentation_image'><img src={Presentation_1} alt='' /><FaRegStar title='Favorite' className='favorite_icon' /></div>
                   <div className='presentation_topic'><span>Presentation 03</span></div>
                   <div className='presentation_icons'><MdOutlineDelete title='Delete' /> <MdOutlineDownload title='Download' /> <MdOutlineDriveFileRenameOutline title='Rename' /></div>
                   <div className='presentation_view'><button>View</button></div>
                 </div>
                 <div className='presentation'>
-                  <div className='presentation_image'><img src={Presentation_1} alt='' /></div>
+                  <div className='presentation_image'><img src={Presentation_1} alt='' /><FaRegStar title='Favorite' className='favorite_icon' /></div>
                   <div className='presentation_topic'><span>Presentation 04</span></div>
                   <div className='presentation_icons'><MdOutlineDelete title='Delete' /> <MdOutlineDownload title='Download' /> <MdOutlineDriveFileRenameOutline title='Rename' /></div>
                   <div className='presentation_view'><button>View</button></div>
                 </div>
                 <div className='presentation'>
-                  <div className='presentation_image'><img src={Presentation_1} alt='' /></div>
+                  <div className='presentation_image'><img src={Presentation_1} alt='' /><FaRegStar title='Favorite' className='favorite_icon' /></div>
                   <div className='presentation_topic'><span>Presentation 05</span></div>
                   <div className='presentation_icons'><MdOutlineDelete title='Delete' /> <MdOutlineDownload title='Download' /> <MdOutlineDriveFileRenameOutline title='Rename' /></div>
                   <div className='presentation_view'><button>View</button></div>
@@ -105,31 +111,31 @@ class User extends Component {
   
               <div className='presentations_container'>
                 <div className='presentation'>
-                  <div className='presentation_image'><img src={Presentation_1} alt='' /></div>
+                  <div className='presentation_image'><img src={Presentation_1} alt='' /><FaRegStar title='Favorite' className='favorite_icon' /></div>
                   <div className='presentation_topic'><span>Presentation 06</span></div>
                   <div className='presentation_icons'><MdOutlineDelete title='Delete' /> <MdOutlineDownload title='Download' /> <MdOutlineDriveFileRenameOutline title='Rename' /></div>
                   <div className='presentation_view'><button>View</button></div>
                 </div>
                 <div className='presentation'>
-                  <div className='presentation_image'><img src={Presentation_1} alt='' /></div>
+                  <div className='presentation_image'><img src={Presentation_1} alt='' /><FaRegStar title='Favorite' className='favorite_icon' /></div>
                   <div className='presentation_topic'><span>Presentation 07</span></div>
                   <div className='presentation_icons'><MdOutlineDelete title='Delete' /> <MdOutlineDownload title='Download' /> <MdOutlineDriveFileRenameOutline title='Rename' /></div>
                   <div className='presentation_view'><button>View</button></div>
                 </div>
                 <div className='presentation'>
-                  <div className='presentation_image'><img src={Presentation_1} alt='' /></div>
+                  <div className='presentation_image'><img src={Presentation_1} alt='' /><FaRegStar title='Favorite' className='favorite_icon' /></div>
                   <div className='presentation_topic'><span>Presentation 08</span></div>
                   <div className='presentation_icons'><MdOutlineDelete title='Delete' /> <MdOutlineDownload title='Download' /> <MdOutlineDriveFileRenameOutline title='Rename' /></div>
                   <div className='presentation_view'><button>View</button></div>
                 </div>
                 <div className='presentation'>
-                  <div className='presentation_image'><img src={Presentation_1} alt='' /></div>
+                  <div className='presentation_image'><img src={Presentation_1} alt='' /><FaRegStar title='Favorite' className='favorite_icon' /></div>
                   <div className='presentation_topic'><span>Presentation 09</span></div>
                   <div className='presentation_icons'><MdOutlineDelete title='Delete' /> <MdOutlineDownload title='Download' /> <MdOutlineDriveFileRenameOutline title='Rename' /></div>
                   <div className='presentation_view'><button>View</button></div>
                 </div>
                 <div className='presentation'>
-                  <div className='presentation_image'><img src={Presentation_1} alt='' /></div>
+                  <div className='presentation_image'><img src={Presentation_1} alt='' /><FaRegStar title='Favorite' className='favorite_icon' /></div>
                   <div className='presentation_topic'><span>Presentation 10</span></div>
                   <div className='presentation_icons'><MdOutlineDelete title='Delete' /> <MdOutlineDownload title='Download' /> <MdOutlineDriveFileRenameOutline title='Rename' /></div>
                   <div className='presentation_view'><button>View</button></div>
