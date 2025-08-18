@@ -8,14 +8,13 @@ import { MdOutlineDelete, MdOutlineDriveFileRenameOutline, MdOutlineDownload } f
 import ProfilePictureModal from './ProfilePictureModal/ProfilePictureModal';
 import Popover from './Popover/Popover'
 import Popover2 from './Popover/Popover2'
-import { IoMdNotificationsOutline, IoMdApps, IoIosTrendingUp } from "react-icons/io";
+import { IoMdNotificationsOutline, IoMdApps, IoIosTrendingUp, IoMdMenu } from "react-icons/io";
 import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import CustomTabPanel from './CustomTabPanel'
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import MenuIcon from "@mui/icons-material/Menu";
 
 class User extends Component {
   constructor(props) {
@@ -263,7 +262,7 @@ class User extends Component {
                   <div className='menu_container'>
                     <Box sx={{ display: { xs: "block", sm: "none" }, textAlign: "right" }}>
                       <button onClick={this.handleMenuOpen}>
-                        <MenuIcon />
+                        <IoMdMenu />
                       </button>
                       <Menu
                         anchorEl={menuAnchor}
