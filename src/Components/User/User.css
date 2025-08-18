@@ -3,6 +3,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    overflow-x: hidden;
 }
 
 .header_one {
@@ -235,10 +236,6 @@
     .logo1 {
         width: 153.6px;
         height: 37.2px;
-    }
-
-    .workspace {
-        margin-right: 2rem;
     }
 
     .workspace button {
