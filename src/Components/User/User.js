@@ -203,7 +203,7 @@ class User extends Component {
                       />
                     )}
                   </span>
-                  <span> {username}'s Workspace</span>
+                  <span className='username_text'> {username}'s Workspace</span>
                   <span><FaAngleDown /></span>
                 </button>
                 <Popover anchorEl={anchorEl} onClose={this.handleClose} />
@@ -230,15 +230,15 @@ class User extends Component {
                 <button><FaPlus className='plusicon' /> Create New</button>
               </div>
               <Box sx={{ width: '100%' }}>
-                  <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                  <Box sx={{ borderColor: 'divider' }}>
                     <Tabs
                       value={this.state.tabValue}
                       onChange={this.handleTabChange}
                       aria-label="basic tabs example"
                     >
-                      <Tab icon={<IoMdApps className='tab_icon' />} iconPosition='start' label="All" {...a11yProps(0)} />
-                      <Tab icon={<FaRegStar className='tab_icon' />} iconPosition='start' label="Favorites" {...a11yProps(1)} />
-                      <Tab icon={<IoIosTrendingUp className='tab_icon' />} iconPosition='start' label="Trending" {...a11yProps(2)} />
+                      <Tab icon={<IoMdApps className='tab_icon' />} iconPosition='start' label="All" sx={{ fontWeight: 'bold' }}  {...a11yProps(0)} />
+                      <Tab icon={<FaRegStar className='tab_icon' />} iconPosition='start' label="Favorites" sx={{ fontWeight: 'bold' }}  {...a11yProps(1)} />
+                      <Tab icon={<IoIosTrendingUp className='tab_icon' />} iconPosition='start' label="Trending" sx={{ fontWeight: 'bold' }}  {...a11yProps(2)} />
                     </Tabs>
                   </Box>
 
@@ -295,7 +295,27 @@ class User extends Component {
                   </CustomTabPanel>
 
                   <CustomTabPanel value={this.state.tabValue} index={2}>
-                    <h3>Trending (to implement next)</h3>
+                    <div className="presentations-grid">
+                      {presentations.map(p => (
+                          <div className='presentation' key={p.id}>
+                            <div className='presentation_image'>
+                              <img src={p.image} alt='' />
+                              <FaStar
+                                title='Favorite'
+                                className={`favorite_icon ${favorites.includes(p.id) ? 'active' : ''}`}
+                                onClick={() => this.toggleFavorite(p.id)}
+                              />
+                            </div>
+                            <div className='presentation_topic'><span>{p.title}</span></div>
+                            <div className='presentation_icons'>
+                              <MdOutlineDelete title='Delete' />
+                              <MdOutlineDownload title='Download' />
+                              <MdOutlineDriveFileRenameOutline title='Rename' />
+                            </div>
+                            <div className='presentation_view'><button>View</button></div>
+                          </div>
+                        ))}
+                      </div>
                   </CustomTabPanel>
               </Box>
 

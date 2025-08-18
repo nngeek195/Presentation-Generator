@@ -220,3 +220,18 @@
     color: white;
     font-size: 20px;
 }
+
+@media screen and (max-width:480px) {
+    .username_text{
+        display: none;
+    }
+
+    .workspace button{
+        width: 4rem;
+    }
+
+    .logo1 {
+    width: 204.8px;
+    height: 49.6px;
+    }
+}
