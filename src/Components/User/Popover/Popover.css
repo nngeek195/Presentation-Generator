@@ -14,7 +14,7 @@
 
 .popover_logout {
     height: 1.92rem;
-    width: 4.48rem;
+    width: auto;
     border-radius: 16px;
     font-size: 0.8rem;
     font-weight: bold;
@@ -26,4 +26,42 @@
 .popover_logout:hover {
     background: linear-gradient(90deg, #e3f2fd, #bbdefb, #90caf9, #64b5f6, #42a5f5, #2196f3);
     box-shadow: 0 0 5px #6C63FF, 0 0 10px #00C9FF;
+}
+
+/* Add this to your Popover.css */
+.popover_profile_picture {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.popover_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    min-width: 200px;
+}
+
+.popover_logout {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.popover_logout:hover {
+    background-color: #d32f2f;
+}
+
+.text_member {
+    font-size: 12px;
+    color: #666;
+    margin-top: 2px;
 }

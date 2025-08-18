@@ -339,7 +339,7 @@ label {
     padding: 0.25rem 0.5rem;
     border-radius: var(--radius-md);
     font-size: 0.875rem;
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 .type-info {
@@ -362,7 +362,7 @@ label {
     padding: 0.25rem 0.5rem;
     border-radius: var(--radius-md);
     font-size: 0.875rem;
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 .priority-high {

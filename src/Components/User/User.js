@@ -45,12 +45,38 @@ class User extends Component {
     };
   }
 
-  // SINGLE componentDidMount method
-  componentDidMount() {
-    // Get user data from session storage
-    const userEmail = sessionStorage.getItem('userEmail');
-    const username = sessionStorage.getItem('username');
-    const userPicture = sessionStorage.getItem('userPicture');
+  // 🔧 FIXED: Single componentDidMount method with authentication check
+  async componentDidMount() {
+    // Check authentication first
+    const isAuthenticated = await this.checkAuthentication();
+
+    if (!isAuthenticated) {
+      return; // Will redirect to login
+    }
+
+    // Get user data from localStorage (preferred) or sessionStorage (fallback)
+    const userData = localStorage.getItem('userData');
+    let userEmail, username, userPicture;
+
+    if (userData) {
+      try {
+        const parsedData = JSON.parse(userData);
+        userEmail = parsedData.email;
+        username = parsedData.username;
+        userPicture = parsedData.picture;
+      } catch (error) {
+        console.error('Error parsing user data:', error);
+        // Fallback to sessionStorage
+        userEmail = sessionStorage.getItem('userEmail');
+        username = sessionStorage.getItem('username');
+        userPicture = sessionStorage.getItem('userPicture');
+      }
+    } else {
+      // Fallback to sessionStorage
+      userEmail = sessionStorage.getItem('userEmail');
+      username = sessionStorage.getItem('username');
+      userPicture = sessionStorage.getItem('userPicture');
+    }
 
     this.setState({
       userEmail: userEmail || '',
@@ -69,6 +95,101 @@ class User extends Component {
       this.assignRandomProfilePicture();
     }
   }
+
+  // 🔑 Simple authentication check
+  checkAuthentication = async () => {
+    const authData = localStorage.getItem('authData');
+
+    if (!authData) {
+      console.log('No auth data found, redirecting to login');
+      window.location.href = '/login';
+      return false;
+    }
+
+    try {
+      const parsedAuthData = JSON.parse(authData);
+
+      if (!parsedAuthData.isAuthenticated || !parsedAuthData.email || !parsedAuthData.password) {
+        console.log('Invalid auth data, redirecting to login');
+        this.clearAuthData();
+        window.location.href = '/login';
+        return false;
+      }
+
+      // Validate stored credentials with backend
+      const response = await fetch('http://localhost:9090/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: parsedAuthData.email,
+          password: parsedAuthData.password
+        })
+      });
+
+      const result = await response.json();
+
+      if (!result.success) {
+        console.log('Stored credentials invalid, redirecting to login');
+        this.clearAuthData();
+        window.location.href = '/login';
+        return false;
+      }
+
+      return true;
+    } catch (error) {
+      console.error('Auth validation error:', error);
+      this.clearAuthData();
+      window.location.href = '/login';
+      return false;
+    }
+  }
+
+  // 🔑 Clear authentication data
+  clearAuthData = () => {
+    localStorage.removeItem('authData');
+    localStorage.removeItem('userData');
+    sessionStorage.clear();
+  }
+
+  // 🔑 Logout method
+  handleLogout = () => {
+    this.clearAuthData();
+    window.location.href = '/login';
+  }
+
+  storePresentation = async (presentationData) => {
+    try {
+      const response = await fetch('http://localhost:9090/storePresentation', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userEmail: this.state.userEmail,
+          presentation: presentationData
+        })
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        console.log('Presentation stored successfully:', data);
+        // Optionally, update the state to reflect the new presentation
+        this.setState(prevState => ({
+          presentations: [...prevState.presentations, {
+            id: data.id,
+            title: presentationData.topic,
+            image: presentationData.slides[0].elements[0].src
+          }]
+        }));
+      } else {
+        console.error('Failed to store presentation:', data.message);
+      }
+    } catch (error) {
+      console.error('Error storing presentation:', error);
+    }
+  };
 
   toggleFavorite = (id) => {
     const { favorites } = this.state;
@@ -112,6 +233,14 @@ class User extends Component {
 
       if (data.success) {
         console.log('Profile picture updated successfully');
+
+        // 🔧 UPDATE: Also update localStorage userData
+        const userData = localStorage.getItem('userData');
+        if (userData) {
+          const parsedData = JSON.parse(userData);
+          parsedData.picture = pictureUrl;
+          localStorage.setItem('userData', JSON.stringify(parsedData));
+        }
       } else {
         console.error('Failed to update profile picture:', data.message);
       }
@@ -243,7 +372,36 @@ class User extends Component {
     }
   };
 
-  // SINGLE markMessageAsRead method
+  // 🔧 UPDATED: Generate presentation with authentication data
+  generateFinalPresentation = async () => {
+    const topic = prompt("Enter the presentation topic:");
+    if (!topic) return; // Exit if no topic is provided
+
+    const subtopics = this.state.presentations.map(p => p.title);
+
+    // 🔧 FIX: Get user email from authData instead of userToken
+    const authData = localStorage.getItem('authData');
+    let userEmail = '';
+
+    if (authData) {
+      try {
+        const parsedAuthData = JSON.parse(authData);
+        userEmail = parsedAuthData.email;
+      } catch (error) {
+        console.error('Error parsing auth data:', error);
+        userEmail = this.state.userEmail; // Fallback
+      }
+    } else {
+      userEmail = this.state.userEmail; // Fallback
+    }
+
+    // Construct the URL with user email instead of token
+    const url = `http://127.0.0.1:5001/generate_final_presentation?userEmail=${encodeURIComponent(userEmail)}`;
+
+    // Redirect the user to the Flask backend with the topic and subtopics
+    window.location.href = url + `&topic=${encodeURIComponent(topic)}&subtopics=${encodeURIComponent(JSON.stringify(subtopics))}`;
+  };
+
   markMessageAsRead = async (messageId) => {
     try {
       const userEmail = this.state.userEmail;
@@ -330,7 +488,16 @@ class User extends Component {
                   <span> {username}'s Workspace</span>
                   <span><FaAngleDown /></span>
                 </button>
-                <Popover anchorEl={anchorEl} onClose={this.handleClose} />
+                {/* 🔧 UPDATED: Pass logout handler to Popover */}
+                {/* 🔧 UPDATED: Pass username, profile picture, and logout handler to Popover */}
+                <Popover
+                  anchorEl={anchorEl}
+                  onClose={this.handleClose}
+                  onLogout={this.handleLogout}
+                  username={username}
+                  userProfilePicture={userProfilePicture}
+                />
+
               </div>
             </Grid>
           </Grid>
@@ -350,7 +517,9 @@ class User extends Component {
         <div>
           <div className='presentations'>
             <div className='presentations_create'>
-              <button><FaPlus className='plusicon' /> Create New</button>
+              <button onClick={this.generateFinalPresentation}>
+                <FaPlus className='plusicon' /> Create New
+              </button>
             </div>
             <Box sx={{ width: '100%' }}>
               <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -412,7 +581,6 @@ class User extends Component {
                           <MdOutlineDriveFileRenameOutline title='Rename' />
                         </div>
                         <div className='presentation_view'><button>View</button></div>
-                        Login to continue using Login to continue using
                       </div>
                     ))}
                 </div>
