@@ -49,9 +49,7 @@
     background: linear-gradient(90deg, #e3f2fd, #bbdefb, #90caf9, #64b4f6c5, #42a4f5c5);
     color: rgb(255, 255, 255);
     font-weight: 700;
-
-
-
+    cursor: pointer;
 }
 
 .signup button:hover {

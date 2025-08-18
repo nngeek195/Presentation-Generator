@@ -21,6 +21,7 @@
 .notification_icon_button {
     background-color: white;
     border: none;
+    cursor: pointer;
 }
 
 .notification_icon {
@@ -55,6 +56,7 @@
     border-radius: 1rem;
     background-color: #777e8618;
     border: none;
+    cursor: pointer;
 }
 
 .workspace button:hover {
@@ -76,6 +78,7 @@
     border-color: #1e90ff;
     color: #1e90ff;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .plusicon {
@@ -151,6 +154,7 @@
     margin-top: 2rem;
     justify-self: left;
     margin-left: 0.5rem;
+    cursor: pointer;
 }
 
 .presentation_view button {
@@ -161,6 +165,7 @@
     border-color: #1e90ff;
     color: #1e90ff;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .presentation_view button:hover {
