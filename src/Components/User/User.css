@@ -3,7 +3,6 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    overflow-x: hidden;
 }
 
 .header_one {
@@ -221,6 +220,10 @@
 }
 
 @media screen and (max-width:480px) {
+    .user_back{
+        overflow-x: hidden;
+    }
+    
     .notification_icon {
         height: 0.7rem;
         width: 0.7rem;
