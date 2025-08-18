@@ -13,12 +13,16 @@ import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import CustomTabPanel from './CustomTabPanel'
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import MenuIcon from "@mui/icons-material/Menu";
 
 class User extends Component {
   constructor(props) {
     super(props);
     this.state = {
       anchorEl: null,
+      menuAnchor: null,
       userProfilePicture: null,
       showProfilePictureModal: false,
       userEmail: '',
@@ -53,6 +57,17 @@ class User extends Component {
       this.setState({ favorites: [...favorites, id] });
     }
   }
+
+  handleMenuOpen = (event) => {
+    this.setState({ menuAnchor: event.currentTarget });
+  };
+
+  handleMenuClose = (tabIndex) => {
+    if (typeof tabIndex === "number") {
+      this.setState({ tabValue: tabIndex });
+    }
+    this.setState({ menuAnchor: null });
+  };
 
   componentDidMount() {
     // Get user data from session storage
@@ -157,7 +172,7 @@ class User extends Component {
     const { userProfilePicture, showProfilePictureModal, username } = this.state;
     const { anchorEl } = this.state;
     const { anchorE2 } = this.state;
-    const { presentations, favorites } = this.state;
+    const { presentations, favorites, menuAnchor } = this.state;
 
     function a11yProps(index) {
       return {
@@ -229,18 +244,38 @@ class User extends Component {
               <div className='presentations_create'>
                 <button><FaPlus className='plusicon' /> Create New</button>
               </div>
+
               <Box sx={{ width: '100%' }}>
-                  <Box sx={{ borderColor: 'divider' }}>
-                    <Tabs
-                      value={this.state.tabValue}
-                      onChange={this.handleTabChange}
-                      aria-label="basic tabs example"
-                    >
-                      <Tab icon={<IoMdApps className='tab_icon' />} iconPosition='start' label="All" sx={{ fontWeight: 'bold' }}  {...a11yProps(0)} />
-                      <Tab icon={<FaRegStar className='tab_icon' />} iconPosition='start' label="Favorites" sx={{ fontWeight: 'bold' }}  {...a11yProps(1)} />
-                      <Tab icon={<IoIosTrendingUp className='tab_icon' />} iconPosition='start' label="Trending" sx={{ fontWeight: 'bold' }}  {...a11yProps(2)} />
-                    </Tabs>
-                  </Box>
+                  <div className='tabs_container'>
+                    <Box sx={{ borderColor: 'divider' }}>
+                      <Tabs
+                        value={this.state.tabValue}
+                        onChange={this.handleTabChange}
+                        aria-label="basic tabs example"
+                      >
+                        <Tab icon={<IoMdApps className='tab_icon' />} iconPosition='start' label="All" sx={{ fontWeight: 'bold' }}  {...a11yProps(0)} />
+                        <Tab icon={<FaRegStar className='tab_icon' />} iconPosition='start' label="Favorites" sx={{ fontWeight: 'bold' }}  {...a11yProps(1)} />
+                        <Tab icon={<IoIosTrendingUp className='tab_icon' />} iconPosition='start' label="Trending" sx={{ fontWeight: 'bold' }}  {...a11yProps(2)} />
+                      </Tabs>
+                    </Box>
+                  </div>
+                
+                  <div className='menu_container'>
+                    <Box sx={{ display: { xs: "block", sm: "none" }, textAlign: "right" }}>
+                      <button onClick={this.handleMenuOpen}>
+                        <MenuIcon />
+                      </button>
+                      <Menu
+                        anchorEl={menuAnchor}
+                        open={Boolean(menuAnchor)}
+                        onClose={() => this.handleMenuClose()}
+                      >
+                        <MenuItem onClick={() => this.handleMenuClose(0)}>All</MenuItem>
+                        <MenuItem onClick={() => this.handleMenuClose(1)}>Favorites</MenuItem>
+                        <MenuItem onClick={() => this.handleMenuClose(2)}>Trending</MenuItem>
+                      </Menu>
+                    </Box>
+                  </div>
 
                   {/* Tab Panels */}
                   <CustomTabPanel value={this.state.tabValue} index={0}>
