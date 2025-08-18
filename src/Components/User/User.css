@@ -87,7 +87,7 @@
     color: white;
 }
 
-.tab_icon{
+.tab_icon {
     height: 1.2rem;
     width: 1.2rem;
 }
@@ -107,7 +107,7 @@
     background-color: white;
 }
 
-.presentation_image{
+.presentation_image {
     position: relative;
     display: inline-block;
 }
@@ -119,35 +119,35 @@
     border-top-right-radius: 1rem;
 }
 
-.favorite_icon{
+.favorite_icon {
     position: absolute;
     right: 0.5rem;
     top: 0.2rem;
-    
+
 }
 
 .favorite_icon {
-  cursor: pointer;
-  fill: transparent;
-  stroke: gray;
-  stroke-width: 40;
-  transition: color 0.3s;
+    cursor: pointer;
+    fill: transparent;
+    stroke: gray;
+    stroke-width: 40;
+    transition: color 0.3s;
 }
 
 .favorite_icon.active {
-  fill: #ffd700; 
+    fill: #ffd700;
 }
 
 .presentations-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr); 
-  gap: 1.25rem; 
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1.25rem;
 }
 
 .presentation {
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -219,4 +219,64 @@
 .camera-icon {
     color: white;
     font-size: 20px;
+}
+
+/* Add this to your existing User.css */
+
+/* Notification container and badge */
+.notification_container {
+    position: relative;
+    display: inline-block;
+}
+
+.notification_icon_button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+    position: relative;
+}
+
+.notification_icon_button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.notification_icon {
+    font-size: 24px;
+    color: #333;
+}
+
+.notification_badge {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background: #ff4444;
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 11px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }

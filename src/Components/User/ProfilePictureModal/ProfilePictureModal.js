@@ -1,5 +1,6 @@
 // src/Components/User/ProfilePictureModal/ProfilePictureModal.js
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import './ProfilePictureModal.css';
 import { FaTimes, FaCheck } from 'react-icons/fa';
 
@@ -54,7 +55,7 @@ class ProfilePictureModal extends Component {
 
         if (!isOpen) return null;
 
-        return (
+        return ReactDOM.createPortal(
             <div className='modal-overlay'>
                 <div className='modal-content'>
                     <div className='modal-header'>
@@ -112,7 +113,8 @@ class ProfilePictureModal extends Component {
                         </button>
                     </div>
                 </div>
-            </div>
+            </div>,
+            document.body
         );
     }
 }

@@ -1,28 +1,29 @@
-.popover_content{
+.popover_content {
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1rem;
     gap: 0.8rem;
+    z-index: 2000;
 }
 
-.text_member{
+.text_member {
     font-size: 0.8rem;
     color: #808080;
 }
 
-.popover_logout{
+.popover_logout {
     height: 1.92rem;
     width: 4.48rem;
     border-radius: 16px;
     font-size: 0.8rem;
     font-weight: bold;
-    background: linear-gradient(90deg,#e3f2fd,#bbdefb,#90caf9,#64b5f6,#42a5f5);
+    background: linear-gradient(90deg, #e3f2fd, #bbdefb, #90caf9, #64b5f6, #42a5f5);
     color: white;
     margin-left: 1.3rem;
 }
 
-.popover_logout:hover{
-    background: linear-gradient(90deg,#e3f2fd,#bbdefb,#90caf9,#64b5f6,#42a5f5,#2196f3);
+.popover_logout:hover {
+    background: linear-gradient(90deg, #e3f2fd, #bbdefb, #90caf9, #64b5f6, #42a5f5, #2196f3);
     box-shadow: 0 0 5px #6C63FF, 0 0 10px #00C9FF;
 }
