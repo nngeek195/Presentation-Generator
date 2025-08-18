@@ -154,7 +154,6 @@
 }
 
 .presentation_view button {
-    /* margin-top: 3.5rem; */
     width: 11rem;
     border-radius: 2rem;
     border-width: 0.1rem;
@@ -274,14 +273,12 @@
     }
 
     .presentation_view button {
-    width: 14.3rem;
-    border-radius: 2rem;
-    border-width: 0.1rem;
-    background-color: white;
-    border-color: #1e90ff;
-    color: #1e90ff;
-    font-weight: bold;
-}
+        width: 14.3rem;
+    }
+
+    .presentation_icons {
+        margin-top: 4rem;
+    }
 
     .tabs_container{
         display: none;
