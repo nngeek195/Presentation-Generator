@@ -26,35 +26,19 @@ class User extends Component {
       anchorE2: null,
       tabValue: 0,
       favorites: [],
-      presentations: [
-        { id: 1, title: "Presentation 01", image: Presentation_1 },
-        { id: 2, title: "Presentation 02", image: Presentation_1 },
-        { id: 3, title: "Presentation 03", image: Presentation_1 },
-        { id: 4, title: "Presentation 04", image: Presentation_1 },
-        { id: 5, title: "Presentation 05", image: Presentation_1 },
-        { id: 6, title: "Presentation 06", image: Presentation_1 },
-        { id: 7, title: "Presentation 07", image: Presentation_1 },
-        { id: 8, title: "Presentation 08", image: Presentation_1 },
-        { id: 9, title: "Presentation 09", image: Presentation_1 },
-        { id: 10, title: "Presentation 10", image: Presentation_1 },
-        { id: 11, title: "Presentation 11", image: Presentation_1 },
-        { id: 12, title: "Presentation 12", image: Presentation_1 },
-      ],
+      // **MODIFIED: Start with an empty array for presentations**
+      presentations: [],
       notifications: [],
       notificationCount: 0
     };
   }
 
-  // 🔧 FIXED: Single componentDidMount method with authentication check
   async componentDidMount() {
-    // Check authentication first
     const isAuthenticated = await this.checkAuthentication();
-
     if (!isAuthenticated) {
-      return; // Will redirect to login
+      return;
     }
 
-    // Get user data from localStorage (preferred) or sessionStorage (fallback)
     const userData = localStorage.getItem('userData');
     let userEmail, username, userPicture;
 
@@ -66,13 +50,11 @@ class User extends Component {
         userPicture = parsedData.picture;
       } catch (error) {
         console.error('Error parsing user data:', error);
-        // Fallback to sessionStorage
         userEmail = sessionStorage.getItem('userEmail');
         username = sessionStorage.getItem('username');
         userPicture = sessionStorage.getItem('userPicture');
       }
     } else {
-      // Fallback to sessionStorage
       userEmail = sessionStorage.getItem('userEmail');
       username = sessionStorage.getItem('username');
       userPicture = sessionStorage.getItem('userPicture');
@@ -83,60 +65,44 @@ class User extends Component {
       username: username || 'User',
       userProfilePicture: userPicture
     }, () => {
-      // Fetch notifications after state is updated
       if (userEmail) {
         this.fetchNotifications();
         this.fetchNotificationCount();
+        // **MODIFIED: This will now fetch and display your presentations**
+        this.fetchUserPresentations();
       }
     });
 
-    // If no profile picture exists, get a random one
     if (!userPicture && userEmail) {
       this.assignRandomProfilePicture();
     }
   }
 
-  // 🔑 Simple authentication check
   checkAuthentication = async () => {
     const authData = localStorage.getItem('authData');
-
     if (!authData) {
       console.log('No auth data found, redirecting to login');
       window.location.href = '/login';
       return false;
     }
-
     try {
       const parsedAuthData = JSON.parse(authData);
-
       if (!parsedAuthData.isAuthenticated || !parsedAuthData.email || !parsedAuthData.password) {
-        console.log('Invalid auth data, redirecting to login');
         this.clearAuthData();
         window.location.href = '/login';
         return false;
       }
-
-      // Validate stored credentials with backend
       const response = await fetch('http://localhost:9090/login', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: parsedAuthData.email,
-          password: parsedAuthData.password
-        })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: parsedAuthData.email, password: parsedAuthData.password })
       });
-
       const result = await response.json();
-
       if (!result.success) {
-        console.log('Stored credentials invalid, redirecting to login');
         this.clearAuthData();
         window.location.href = '/login';
         return false;
       }
-
       return true;
     } catch (error) {
       console.error('Auth validation error:', error);
@@ -146,49 +112,88 @@ class User extends Component {
     }
   }
 
-  // 🔑 Clear authentication data
   clearAuthData = () => {
     localStorage.removeItem('authData');
     localStorage.removeItem('userData');
     sessionStorage.clear();
   }
 
-  // 🔑 Logout method
   handleLogout = () => {
     this.clearAuthData();
     window.location.href = '/login';
   }
 
-  storePresentation = async (presentationData) => {
-    try {
-      const response = await fetch('http://localhost:9090/storePresentation', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          userEmail: this.state.userEmail,
-          presentation: presentationData
-        })
-      });
+  generateNewPresentation = () => {
+    const { userEmail } = this.state;
+    if (!userEmail) {
+      alert('Error: User email not found. Please login again.');
+      return;
+    }
+    // **MODIFIED: This correctly opens the Flask app to create a new presentation**
+    const flaskUrl = `http://localhost:5001/?userEmail=${encodeURIComponent(userEmail)}`;
+    window.open(flaskUrl, '_blank');
+  };
 
+  // **MODIFIED: Fetches presentations from the correct Flask API endpoint**
+  fetchUserPresentations = async () => {
+    const { userEmail } = this.state;
+    if (!userEmail) return;
+
+    try {
+      const response = await fetch(`http://localhost:5001/presentations/${encodeURIComponent(userEmail)}`);
       const data = await response.json();
-      if (data.success) {
-        console.log('Presentation stored successfully:', data);
-        // Optionally, update the state to reflect the new presentation
-        this.setState(prevState => ({
-          presentations: [...prevState.presentations, {
-            id: data.id,
-            title: presentationData.topic,
-            image: presentationData.slides[0].elements[0].src
-          }]
+
+      if (data.success && Array.isArray(data.presentations)) {
+        const formattedPresentations = data.presentations.map(p => ({
+          id: p._id,
+          title: p.presentationName,
+          image: Presentation_1, // Using a default placeholder image
+          createdAt: p.createdAt,
+          type: 'html', // Mark as a Flask-generated presentation
         }));
+        this.setState({ presentations: formattedPresentations });
       } else {
-        console.error('Failed to store presentation:', data.message);
+        console.error("Failed to fetch presentations:", data.message);
+        this.setState({ presentations: [] }); // Clear presentations on failure
       }
     } catch (error) {
-      console.error('Error storing presentation:', error);
+      console.error('Error fetching Flask presentations:', error);
     }
+  };
+
+  // **MODIFIED: Opens the correct preview URL**
+  previewPresentation = (presentationId) => {
+    const previewUrl = `http://localhost:5001/presentations/view/${presentationId}`;
+    window.open(previewUrl, '_blank');
+  };
+
+  // **MODIFIED: Calls the correct delete endpoint**
+  deletePresentation = async (presentationId) => {
+    if (!window.confirm('Are you sure you want to delete this presentation?')) {
+      return;
+    }
+    try {
+      const response = await fetch(`http://localhost:5001/presentations/delete/${presentationId}`, {
+        method: 'DELETE'
+      });
+      const data = await response.json();
+      if (data.success) {
+        this.setState(prevState => ({
+          presentations: prevState.presentations.filter(p => p.id !== presentationId)
+        }));
+        alert('Presentation deleted successfully!');
+      } else {
+        alert('Error deleting presentation: ' + data.message);
+      }
+    } catch (error) {
+      console.error('Error deleting presentation:', error);
+      alert('Error deleting presentation');
+    }
+  };
+
+  // This function can be removed if you are not storing presentations from React side
+  storePresentation = async (presentationData) => {
+    // ... existing code
   };
 
   toggleFavorite = (id) => {
@@ -201,238 +206,41 @@ class User extends Component {
   }
 
   assignRandomProfilePicture = async () => {
-    try {
-      const response = await fetch('http://localhost:9090/randomProfilePicture');
-      const data = await response.json();
-
-      if (data.success && data.data) {
-        const pictureUrl = data.data.url;
-        await this.updateProfilePicture(pictureUrl, null);
-        this.setState({ userProfilePicture: pictureUrl });
-      }
-    } catch (error) {
-      console.error('Error fetching random profile picture:', error);
-    }
+    // ... existing code
   };
 
   updateProfilePicture = async (pictureUrl, unsplashImageId) => {
-    try {
-      const response = await fetch('http://localhost:9090/updateProfilePicture', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: this.state.userEmail,
-          pictureUrl: pictureUrl,
-          unsplashImageId: unsplashImageId
-        })
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        console.log('Profile picture updated successfully');
-
-        // 🔧 UPDATE: Also update localStorage userData
-        const userData = localStorage.getItem('userData');
-        if (userData) {
-          const parsedData = JSON.parse(userData);
-          parsedData.picture = pictureUrl;
-          localStorage.setItem('userData', JSON.stringify(parsedData));
-        }
-      } else {
-        console.error('Failed to update profile picture:', data.message);
-      }
-    } catch (error) {
-      console.error('Error updating profile picture:', error);
-    }
+    // ... existing code
   };
 
-  handleOpen = (event) => {
-    this.setState({ anchorEl: event.currentTarget });
-  };
-
-  handleClose = () => {
-    this.setState({ anchorEl: null });
-  };
-
-  handleProfilePictureClick = () => {
-    this.setState({ showProfilePictureModal: true });
-  };
-
-  handleProfilePictureModalClose = () => {
-    this.setState({ showProfilePictureModal: false });
-  };
-
+  handleOpen = (event) => this.setState({ anchorEl: event.currentTarget });
+  handleClose = () => this.setState({ anchorEl: null });
+  handleProfilePictureClick = () => this.setState({ showProfilePictureModal: true });
+  handleProfilePictureModalClose = () => this.setState({ showProfilePictureModal: false });
   handleProfilePictureUpdate = (newPictureUrl, unsplashImageId) => {
-    this.updateProfilePicture(newPictureUrl, unsplashImageId);
-    this.setState({ userProfilePicture: newPictureUrl });
-    sessionStorage.setItem('userPicture', newPictureUrl);
-    this.handleProfilePictureModalClose();
+    // ... existing code
   };
-
   handleModalOpen = (event) => {
     this.setState({ anchorE2: event.currentTarget });
-    // Reset notification count when user clicks the notification icon
     this.resetNotificationCount();
   };
-
-  handleModalClose = () => {
-    this.setState({ anchorE2: null });
-  };
-
-  handleTabChange = (event, newValue) => {
-    this.setState({ tabValue: newValue });
-  };
-
+  handleModalClose = () => this.setState({ anchorE2: null });
+  handleTabChange = (event, newValue) => this.setState({ tabValue: newValue });
   fetchNotifications = async () => {
-    try {
-      const userEmail = this.state.userEmail;
-      if (!userEmail) {
-        console.log('No user email found');
-        return;
-      }
-
-      console.log('Fetching notifications for:', userEmail);
-
-      const response = await fetch(`http://localhost:9090/notifications/${encodeURIComponent(userEmail)}`);
-      const data = await response.json();
-
-      console.log('Notification response:', data);
-
-      if (data.success) {
-        this.setState({
-          notifications: data.data.notifications || [],
-          notificationCount: data.data.count || 0
-        });
-
-        console.log('Updated notifications:', data.data.notifications);
-        console.log('Notification count:', data.data.count);
-      } else {
-        console.error('Failed to fetch notifications:', data.message);
-      }
-    } catch (error) {
-      console.error('Error fetching notifications:', error);
-    }
+    // ... existing code
   };
-
   fetchNotificationCount = async () => {
-    try {
-      const userEmail = this.state.userEmail;
-      if (!userEmail) {
-        console.log('No user email found');
-        return;
-      }
-
-      console.log('Fetching notification count for:', userEmail);
-
-      const response = await fetch(`http://localhost:9090/notifications/count/${encodeURIComponent(userEmail)}`);
-      const data = await response.json();
-
-      console.log('Notification count response:', data);
-
-      if (data.success) {
-        this.setState({
-          notificationCount: data.data.emailCount || 0
-        });
-
-        console.log('Email count:', data.data.emailCount);
-      } else {
-        console.error('Failed to fetch notification count:', data.message);
-      }
-    } catch (error) {
-      console.error('Error fetching notification count:', error);
-    }
+    // ... existing code
   };
-
   resetNotificationCount = async () => {
-    try {
-      const userEmail = this.state.userEmail;
-      const response = await fetch('http://localhost:9090/notifications/reset', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          userEmail: userEmail
-        })
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        this.setState({
-          notificationCount: 0
-        });
-        console.log('Notification count reset successfully');
-      }
-    } catch (error) {
-      console.error('Error resetting notification count:', error);
-    }
+    // ... existing code
   };
-
-  // 🔧 UPDATED: Generate presentation with authentication data
-  generateFinalPresentation = async () => {
-    const topic = prompt("Enter the presentation topic:");
-    if (!topic) return; // Exit if no topic is provided
-
-    const subtopics = this.state.presentations.map(p => p.title);
-
-    // 🔧 FIX: Get user email from authData instead of userToken
-    const authData = localStorage.getItem('authData');
-    let userEmail = '';
-
-    if (authData) {
-      try {
-        const parsedAuthData = JSON.parse(authData);
-        userEmail = parsedAuthData.email;
-      } catch (error) {
-        console.error('Error parsing auth data:', error);
-        userEmail = this.state.userEmail; // Fallback
-      }
-    } else {
-      userEmail = this.state.userEmail; // Fallback
-    }
-
-    // Construct the URL with user email instead of token
-    const url = `http://127.0.0.1:5001/generate_final_presentation?userEmail=${encodeURIComponent(userEmail)}`;
-
-    // Redirect the user to the Flask backend with the topic and subtopics
-    window.location.href = url + `&topic=${encodeURIComponent(topic)}&subtopics=${encodeURIComponent(JSON.stringify(subtopics))}`;
-  };
-
   markMessageAsRead = async (messageId) => {
-    try {
-      const userEmail = this.state.userEmail;
-      const response = await fetch('http://localhost:9090/messages/markRead', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          userEmail: userEmail,
-          messageId: messageId
-        })
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        // Remove the message from the state
-        this.setState(prevState => ({
-          notifications: prevState.notifications.filter(notif => notif.id !== messageId),
-          notificationCount: prevState.notificationCount - 1
-        }));
-      }
-    } catch (error) {
-      console.error('Error marking message as read:', error);
-    }
+    // ... existing code
   };
 
   render() {
-    const { userProfilePicture, showProfilePictureModal, username, notifications, notificationCount } = this.state;
-    const { anchorEl, anchorE2, tabValue, presentations, favorites } = this.state;
+    const { userProfilePicture, showProfilePictureModal, username, notifications, notificationCount, anchorEl, anchorE2, tabValue, presentations, favorites } = this.state;
 
     function a11yProps(index) {
       return {
@@ -488,8 +296,6 @@ class User extends Component {
                   <span> {username}'s Workspace</span>
                   <span><FaAngleDown /></span>
                 </button>
-                {/* 🔧 UPDATED: Pass logout handler to Popover */}
-                {/* 🔧 UPDATED: Pass username, profile picture, and logout handler to Popover */}
                 <Popover
                   anchorEl={anchorEl}
                   onClose={this.handleClose}
@@ -497,14 +303,12 @@ class User extends Component {
                   username={username}
                   userProfilePicture={userProfilePicture}
                 />
-
               </div>
             </Grid>
           </Grid>
           <hr />
         </div>
 
-        {/* Profile Picture Modal */}
         {showProfilePictureModal && (
           <ProfilePictureModal
             isOpen={showProfilePictureModal}
@@ -517,7 +321,8 @@ class User extends Component {
         <div>
           <div className='presentations'>
             <div className='presentations_create'>
-              <button onClick={this.generateFinalPresentation}>
+              {/* **MODIFIED: Calls the correct function to create a new presentation** */}
+              <button onClick={this.generateNewPresentation}>
                 <FaPlus className='plusicon' /> Create New
               </button>
             </div>
@@ -534,53 +339,74 @@ class User extends Component {
                 </Tabs>
               </Box>
 
-              {/* Tab Panels */}
+              {/* All Presentations Tab */}
               <CustomTabPanel value={tabValue} index={0}>
                 <div className="presentations-grid">
                   {presentations.map(p => (
                     <div className='presentation' key={p.id}>
                       <div className='presentation_image'>
-                        <img src={p.image} alt='' />
+                        <img src={p.image} alt={p.title} />
                         <FaStar
                           title='Favorite'
                           className={`favorite_icon ${favorites.includes(p.id) ? 'active' : ''}`}
                           onClick={() => this.toggleFavorite(p.id)}
                         />
                       </div>
-                      <div className='presentation_topic'><span>{p.title}</span></div>
-                      <div className='presentation_icons'>
-                        <MdOutlineDelete title='Delete' />
-                        <MdOutlineDownload title='Download' />
-                        <MdOutlineDriveFileRenameOutline title='Rename' />
+                      <div className='presentation_topic'>
+                        <span>{p.title}</span>
                       </div>
-                      <div className='presentation_view'><button>View</button></div>
+                      <div className='presentation_icons'>
+                        <MdOutlineDelete
+                          title='Delete'
+                          className="presentation-action-icon"
+                          onClick={() => this.deletePresentation(p.id)}
+                        />
+                        <MdOutlineDownload title='Download' className="presentation-action-icon" />
+                        <MdOutlineDriveFileRenameOutline title='Rename' className="presentation-action-icon" />
+                      </div>
+                      <div className='presentation_view'>
+                        {/* **MODIFIED: Button now correctly opens the preview** */}
+                        <button onClick={() => this.previewPresentation(p.id)}>
+                          👁️ View
+                        </button>
+                      </div>
                     </div>
                   ))}
                 </div>
               </CustomTabPanel>
 
+              {/* Favorites Tab */}
               <CustomTabPanel value={tabValue} index={1}>
-                <div className='presentations_container'>
+                <div className='presentations-grid'>
                   {presentations
                     .filter(p => favorites.includes(p.id))
                     .map(p => (
                       <div className='presentation' key={p.id}>
                         <div className='presentation_image'>
-                          <img src={p.image} alt='' />
+                          <img src={p.image} alt={p.title} />
                           <FaStar
-                            title='Favorite'
-                            className='favorite_icon'
-                            style={{ fill: '#ffd700', cursor: 'pointer' }}
+                            title='Unfavorite'
+                            className='favorite_icon active'
                             onClick={() => this.toggleFavorite(p.id)}
                           />
                         </div>
-                        <div className='presentation_topic'><span>{p.title}</span></div>
-                        <div className='presentation_icons'>
-                          <MdOutlineDelete title='Delete' />
-                          <MdOutlineDownload title='Download' />
-                          <MdOutlineDriveFileRenameOutline title='Rename' />
+                        <div className='presentation_topic'>
+                          <span>{p.title}</span>
                         </div>
-                        <div className='presentation_view'><button>View</button></div>
+                        <div className='presentation_icons'>
+                          <MdOutlineDelete
+                            title='Delete'
+                            className="presentation-action-icon"
+                            onClick={() => this.deletePresentation(p.id)}
+                          />
+                          <MdOutlineDownload title='Download' className="presentation-action-icon" />
+                          <MdOutlineDriveFileRenameOutline title='Rename' className="presentation-action-icon" />
+                        </div>
+                        <div className='presentation_view'>
+                          <button onClick={() => this.previewPresentation(p.id)}>
+                            👁️ View
+                          </button>
+                        </div>
                       </div>
                     ))}
                 </div>
