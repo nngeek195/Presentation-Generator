@@ -29,21 +29,3 @@
   align-items: center;
   gap: 1.5rem;
 }
-
-.intro-header-btn {
-  background: linear-gradient(135deg, var(--primary-blue), var(--light-blue));
-  color: #fff;
-  border: none;
-  border-radius: 24px;
-  padding: 0.7rem 2rem;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(59,130,246,0.08);
-  transition: background 0.2s, transform 0.2s;
-}
-
-.intro-header-btn:hover {
-   background: linear-gradient(135deg, var(--accent-blue), var(--primary-blue));
-  transform: translateY(-2px) scale(1.03);
-}
