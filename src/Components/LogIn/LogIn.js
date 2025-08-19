@@ -113,11 +113,29 @@ class LogIn extends Component {
                     localStorage.removeItem('rememberedEmail');
                 }
 
-                // Store user session
-                sessionStorage.setItem('userEmail', this.state.email);
-                sessionStorage.setItem('username', data.data?.username || this.state.email);
+                // Store comprehensive user data in localStorage (persistent)
+                const userData = {
+                    email: data.data.email,
+                    username: data.data.username,
+                    picture: data.data.profile?.picture || null,
+                    bio: data.data.profile?.bio || null,
+                    location: data.data.profile?.location || null,
+                    phoneNumber: data.data.profile?.phoneNumber || null,
+                    loginTime: data.data.loginTime || new Date().toISOString(),
+                    authMethod: 'local'
+                };
+
+                // Store in localStorage for persistence across sessions
+                localStorage.setItem('userData', JSON.stringify(userData));
+
+                // Also store in sessionStorage for backward compatibility
+                sessionStorage.setItem('userEmail', data.data.email);
+                sessionStorage.setItem('username', data.data.username);
+                sessionStorage.setItem('userPicture', data.data.profile?.picture || '');
                 sessionStorage.setItem('isLoggedIn', 'true');
-                sessionStorage.setItem('loginTime', new Date().toISOString());
+                sessionStorage.setItem('loginTime', userData.loginTime);
+
+                console.log('✅ User data stored:', userData);
 
                 this.setState({
                     loginSuccess: true,
@@ -149,6 +167,38 @@ class LogIn extends Component {
         console.log('Google login clicked');
         // Implement Google OAuth logic here
         this.setState({ error: 'Google login coming soon!' });
+    }
+
+    // Add logout utility method (can be called from other components)
+    static logout = () => {
+        // Clear all user data
+        localStorage.removeItem('userData');
+        localStorage.removeItem('rememberedEmail');
+        sessionStorage.clear();
+
+        // Redirect to login
+        window.location.href = '/login';
+    }
+
+    // Add method to check if user is logged in
+    static isUserLoggedIn = () => {
+        const userData = localStorage.getItem('userData');
+        const sessionData = sessionStorage.getItem('isLoggedIn');
+        return userData !== null || sessionData === 'true';
+    }
+
+    // Add method to get current user data
+    static getCurrentUser = () => {
+        const userData = localStorage.getItem('userData');
+        if (userData) {
+            try {
+                return JSON.parse(userData);
+            } catch (error) {
+                console.error('Error parsing user data:', error);
+                return null;
+            }
+        }
+        return null;
     }
 
     render() {
@@ -199,7 +249,7 @@ class LogIn extends Component {
                                     borderRadius: '4px',
                                     fontSize: '14px'
                                 }}>
-                                    ✅ Login successful! Redirecting...
+                                    Login successful! Redirecting...
                                 </div>
                             )}
 
@@ -265,13 +315,13 @@ class LogIn extends Component {
 
                             {/* Forgot Password Link */}
                             <div style={{ textAlign: 'center', marginTop: '10px' }}>
-                                <Link to="/forgot-password" style={{
+                                {/* <Link to="/forgot-password" style={{
                                     color: '#666',
                                     fontSize: '14px',
                                     textDecoration: 'none'
                                 }}>
                                     Forgot Password?
-                                </Link>
+                                </Link> */}
                             </div>
                         </div>
                     </Grid>

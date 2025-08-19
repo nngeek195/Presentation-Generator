@@ -13,20 +13,143 @@ class SignUp extends Component {
             username: '',
             password: '',
             error: '',
+            emailError: '',
+            usernameError: '',
             success: false,
-            loading: false
+            loading: false,
+            checkingEmail: false,
+            checkingUsername: false
         };
+
+        // Debounce timers
+        this.emailCheckTimer = null;
+        this.usernameCheckTimer = null;
+    }
+
+    // Check if email exists in database
+    checkEmailExists = async (email) => {
+        if (!email || !email.includes('@')) return;
+
+        this.setState({ checkingEmail: true, emailError: '' });
+
+        try {
+            const response = await fetch(`http://localhost:9090/checkEmail/${encodeURIComponent(email)}`);
+            const data = await response.json();
+
+            if (data.success && data.data?.exists) {
+                this.setState({
+                    emailError: 'This email is already registered',
+                    checkingEmail: false
+                });
+                return true;
+            } else {
+                this.setState({
+                    emailError: '',
+                    checkingEmail: false
+                });
+                return false;
+            }
+        } catch (error) {
+            console.error('Error checking email:', error);
+            this.setState({ checkingEmail: false });
+            return false;
+        }
+    }
+
+    // Check if username exists in database
+    checkUsernameExists = async (username) => {
+        if (!username || username.length < 3) return;
+
+        this.setState({ checkingUsername: true, usernameError: '' });
+
+        try {
+            const response = await fetch(`http://localhost:9090/checkUsername/${encodeURIComponent(username)}`);
+            const data = await response.json();
+
+            if (data.success && data.data?.exists) {
+                this.setState({
+                    usernameError: 'This username is already taken',
+                    checkingUsername: false
+                });
+                return true;
+            } else {
+                this.setState({
+                    usernameError: '',
+                    checkingUsername: false
+                });
+                return false;
+            }
+        } catch (error) {
+            console.error('Error checking username:', error);
+            this.setState({ checkingUsername: false });
+            return false;
+        }
     }
 
     handleInputChange = (e) => {
+        const { name, value } = e.target;
+
         this.setState({
-            [e.target.name]: e.target.value,
+            [name]: value,
             error: ''
         });
+
+        // Debounced email check
+        if (name === 'email') {
+            this.setState({ emailError: '' });
+
+            // Clear previous timer
+            if (this.emailCheckTimer) {
+                clearTimeout(this.emailCheckTimer);
+            }
+
+            // Validate email format first
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (value && !emailRegex.test(value)) {
+                this.setState({ emailError: 'Please enter a valid email address' });
+                return;
+            }
+
+            // Set new timer for email check
+            this.emailCheckTimer = setTimeout(() => {
+                if (value && emailRegex.test(value)) {
+                    this.checkEmailExists(value);
+                }
+            }, 500); // Wait 500ms after user stops typing
+        }
+
+        // Debounced username check
+        if (name === 'username') {
+            this.setState({ usernameError: '' });
+
+            // Clear previous timer
+            if (this.usernameCheckTimer) {
+                clearTimeout(this.usernameCheckTimer);
+            }
+
+            // Basic username validation
+            if (value && value.length < 3) {
+                this.setState({ usernameError: 'Username must be at least 3 characters' });
+                return;
+            }
+
+            // Set new timer for username check
+            this.usernameCheckTimer = setTimeout(() => {
+                if (value && value.length >= 3) {
+                    this.checkUsernameExists(value);
+                }
+            }, 500); // Wait 500ms after user stops typing
+        }
     }
 
-    validateForm = () => {
-        const { email, username, password } = this.state;
+    validateForm = async () => {
+        const { email, username, password, emailError, usernameError } = this.state;
+
+        // Check if there are existing errors
+        if (emailError || usernameError) {
+            this.setState({ error: 'Please fix the errors before submitting' });
+            return false;
+        }
 
         if (!email || !username || !password) {
             this.setState({ error: 'All fields are required' });
@@ -36,7 +159,13 @@ class SignUp extends Component {
         // Email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
-            this.setState({ error: 'Please enter a valid email' });
+            this.setState({ error: 'Please enter a valid email address' });
+            return false;
+        }
+
+        // Username validation
+        if (username.length < 3) {
+            this.setState({ error: 'Username must be at least 3 characters' });
             return false;
         }
 
@@ -46,13 +175,23 @@ class SignUp extends Component {
             return false;
         }
 
+        // Final check for email and username availability
+        const emailExists = await this.checkEmailExists(email);
+        const usernameExists = await this.checkUsernameExists(username);
+
+        if (emailExists || usernameExists) {
+            this.setState({ error: 'Please choose a different email or username' });
+            return false;
+        }
+
         return true;
     }
 
     handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!this.validateForm()) {
+        const isValid = await this.validateForm();
+        if (!isValid) {
             return;
         }
 
@@ -75,12 +214,23 @@ class SignUp extends Component {
 
             const data = await response.json();
 
-            if (response.ok) {
+            if (data.success) {
                 this.setState({
                     success: true,
                     error: '',
                     loading: false
                 });
+
+                // Store user data in localStorage including the profile picture
+                if (data.data) {
+                    localStorage.setItem('userData', JSON.stringify({
+                        email: data.data.email,
+                        username: data.data.username,
+                        picture: data.data.picture,
+                        pictureId: data.data.pictureId,
+                        authMethod: data.data.authMethod
+                    }));
+                }
 
                 // Redirect to login after successful signup
                 setTimeout(() => {
@@ -91,6 +241,15 @@ class SignUp extends Component {
                     error: data.message || 'Signup failed',
                     loading: false
                 });
+
+                // If email exists error from backend, update emailError
+                if (data.message?.toLowerCase().includes('email')) {
+                    this.setState({ emailError: data.message });
+                }
+                // If username exists error from backend, update usernameError
+                if (data.message?.toLowerCase().includes('username')) {
+                    this.setState({ usernameError: data.message });
+                }
             }
         } catch (error) {
             console.error('Error:', error);
@@ -101,13 +260,35 @@ class SignUp extends Component {
         }
     }
 
+
     handleGoogleSignup = async () => {
         // Implement Google OAuth logic here
         console.log('Google signup clicked');
     }
 
+    componentWillUnmount() {
+        // Clear timers when component unmounts
+        if (this.emailCheckTimer) {
+            clearTimeout(this.emailCheckTimer);
+        }
+        if (this.usernameCheckTimer) {
+            clearTimeout(this.usernameCheckTimer);
+        }
+    }
+
     render() {
-        const { email, username, password, error, success, loading } = this.state;
+        const {
+            email,
+            username,
+            password,
+            error,
+            emailError,
+            usernameError,
+            success,
+            loading,
+            checkingEmail,
+            checkingUsername
+        } = this.state;
 
         return (
             <div className='signup_back'>
@@ -120,10 +301,13 @@ class SignUp extends Component {
 
                             {error && (
                                 <div style={{
-                                    color: 'red',
+                                    color: '#d32f2f',
                                     textAlign: 'center',
                                     marginBottom: '10px',
-                                    fontSize: '14px'
+                                    fontSize: '14px',
+                                    padding: '10px',
+                                    backgroundColor: '#ffebee',
+                                    borderRadius: '4px'
                                 }}>
                                     {error}
                                 </div>
@@ -131,10 +315,13 @@ class SignUp extends Component {
 
                             {success && (
                                 <div style={{
-                                    color: 'green',
+                                    color: '#2e7d32',
                                     textAlign: 'center',
                                     marginBottom: '10px',
-                                    fontSize: '14px'
+                                    fontSize: '14px',
+                                    padding: '10px',
+                                    backgroundColor: '#e8f5e9',
+                                    borderRadius: '4px'
                                 }}>
                                     Signup successful! Redirecting to login...
                                 </div>
@@ -142,28 +329,86 @@ class SignUp extends Component {
 
                             <form onSubmit={this.handleSubmit}>
                                 <div>
-                                    <input
-                                        className='signup_input'
-                                        type='email'
-                                        placeholder='Email'
-                                        name='email'
-                                        value={email}
-                                        onChange={this.handleInputChange}
-                                        required
-                                    /><br />
-                                    <input
-                                        className='signup_input'
-                                        type='text'
-                                        placeholder='Username'
-                                        name='username'
-                                        value={username}
-                                        onChange={this.handleInputChange}
-                                        required
-                                    /><br />
+                                    <div style={{ position: 'relative' }}>
+                                        <input
+                                            className={`signup_input ${emailError ? 'error' : ''}`}
+                                            type='email'
+                                            placeholder='Email'
+                                            name='email'
+                                            value={email}
+                                            onChange={this.handleInputChange}
+                                            required
+                                            style={{
+                                                borderColor: emailError ? '#d32f2f' : '',
+                                                paddingRight: checkingEmail ? '35px' : ''
+                                            }}
+                                        />
+                                        {checkingEmail && (
+                                            <span style={{
+                                                position: 'absolute',
+                                                right: '10px',
+                                                top: '50%',
+                                                transform: 'translateY(-50%)',
+                                                fontSize: '12px',
+                                                color: '#666'
+                                            }}>
+                                                Checking...
+                                            </span>
+                                        )}
+                                        {emailError && (
+                                            <div style={{
+                                                color: '#d32f2f',
+                                                fontSize: '12px',
+                                                marginTop: '5px',
+                                                marginBottom: '10px'
+                                            }}>
+                                                {emailError}
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    <div style={{ position: 'relative' }}>
+                                        <input
+                                            className={`signup_input ${usernameError ? 'error' : ''}`}
+                                            type='text'
+                                            placeholder='Username'
+                                            name='username'
+                                            value={username}
+                                            onChange={this.handleInputChange}
+                                            required
+                                            style={{
+                                                borderColor: usernameError ? '#d32f2f' : '',
+                                                paddingRight: checkingUsername ? '35px' : ''
+                                            }}
+                                        />
+                                        {checkingUsername && (
+                                            <span style={{
+                                                position: 'absolute',
+                                                right: '10px',
+                                                top: '50%',
+                                                transform: 'translateY(-50%)',
+                                                fontSize: '12px',
+                                                color: '#666'
+                                            }}>
+                                                Checking...
+                                            </span>
+                                        )}
+                                        {usernameError && (
+                                            <div style={{
+                                                color: '#d32f2f',
+                                                fontSize: '12px',
+                                                marginTop: '5px',
+                                                marginBottom: '10px'
+                                            }}>
+                                                {usernameError}
+                                            </div>
+                                        )}
+                                    </div>
+
                                     <input
                                         className='signup_input'
                                         type='password'
-                                        placeholder='Password'
+                                        placeholder='Password (min. 6 characters)'
                                         name='password'
                                         value={password}
                                         onChange={this.handleInputChange}
@@ -173,7 +418,7 @@ class SignUp extends Component {
                                 <div className='signup'>
                                     <button
                                         type='submit'
-                                        disabled={loading}
+                                        disabled={loading || emailError || usernameError || checkingEmail || checkingUsername}
                                     >
                                         {loading ? 'SIGNING UP...' : 'SIGN UP'}
                                     </button>
@@ -184,7 +429,7 @@ class SignUp extends Component {
                                 <hr className='hr1' />
                                 <span>OR</span>
                                 <hr className='hr2' />
-                            </div >
+                            </div>
                             <div className='signup_g'>
                                 <button onClick={this.handleGoogleSignup}>
                                     <img src={signup_g} alt="Google Signup" />

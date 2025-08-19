@@ -55,8 +55,7 @@
     background: linear-gradient(90deg, #e3f2fd, #bbdefb, #90caf9, #64b4f6c5, #42a4f5c5);
     color: white;
     font-weight: 700;
-
-
+    cursor: pointer;
 }
 
 .login button:hover {
