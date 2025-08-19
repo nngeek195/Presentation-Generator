@@ -158,6 +158,10 @@
     margin-left: 0.5rem;
 }
 
+.presentation_icons:hover {
+    color: #ff4444;
+}
+
 .presentation_view button {
     /* margin-top: 3.5rem; */
     width: 11rem;
@@ -279,4 +283,49 @@
     100% {
         transform: scale(1);
     }
+}
+
+/* 🔥 NEW: Section separators */
+.presentations-section {
+    margin-bottom: 40px;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #e2e8f0;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #334155;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-title.my-presentations {
+    color: #3b82f6;
+}
+
+.section-title.trending-section {
+    color: #f59e0b;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #64748b;
+    background: rgba(51, 65, 85, 0.3);
+    border-radius: 12px;
+    margin: 20px 0;
+}
+
+.trending-view-only {
+    background-color: #059669 !important;
+    width: 100%;
+}
+
+.trending-author {
+    font-size: 11px;
+    color: #64748b;
+    margin-top: 2px;
 }
