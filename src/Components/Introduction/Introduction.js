@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import './Introduction.css';
 import { Link } from 'react-router-dom';
-import TypewriterEffect from './TypewriterEffect;
+import TypewriterEffect from './TypewriterEffect';
 import Header from './Header';
 import Slideshow_3 from '../SlideShow/Slideshow_3';
 
