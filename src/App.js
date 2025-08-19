@@ -5,6 +5,7 @@ import Home from './Components/Home/Home'
 import SignUp from './Components/Signup/SignUp';
 import Introduction from './Components/Introduction/Introduction';
 import User from './Components/User/User'
+import AdminPanel from './Components/AdminPanel/AdminPanel';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/user" element={<User />} />
+          <Route path="/admin" element={<AdminPanel />} />
         </Routes>
       </Router>
     </div>

@@ -1,3 +1,358 @@
-.popover2_content_topic{
+.popover2_content {
+    width: 100%;
+    max-width: 380px;
+}
+
+.popover2_header {
+    padding: 16px 20px 12px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.popover2_content_topic {
     font-weight: bold;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.notification_count {
+    background: rgba(255, 255, 255, 0.3);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    margin-left: auto;
+}
+
+.popover2_divider {
+    margin: 0;
+    border: none;
+    height: 1px;
+    background: #e0e0e0;
+}
+
+.popover2_body {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.loading_state {
+    padding: 40px 20px;
+    text-align: center;
+    color: #666;
+}
+
+.empty_state {
+    padding: 40px 20px;
+    text-align: center;
+    color: #666;
+}
+
+.empty_icon {
+    font-size: 48px;
+    display: block;
+    margin-bottom: 16px;
+    opacity: 0.5;
+}
+
+.empty_state p {
+    margin: 8px 0 4px 0;
+    font-weight: 500;
+    color: #333;
+}
+
+.empty_state small {
+    color: #999;
+}
+
+.notifications_list {
+    padding: 8px 0;
+}
+
+.notification_item {
+    padding: 16px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.notification_item:hover {
+    background-color: #f8f9fa;
+}
+
+.notification_item:last-child {
+    border-bottom: none;
+}
+
+.notification_header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.notification_icon {
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.notification_title {
+    font-weight: 600;
+    color: #333;
+    flex: 1;
+    font-size: 14px;
+}
+
+.priority_indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.notification_message {
+    margin: 0 0 12px 0;
+    color: #555;
+    font-size: 13px;
+    line-height: 1.4;
+    padding-left: 26px;
+}
+
+.notification_footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 26px;
+}
+
+.notification_time {
+    color: #999;
+    font-size: 11px;
+}
+
+.click_to_dismiss {
+    color: #667eea;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+/* Scrollbar styling */
+.popover2_body::-webkit-scrollbar {
+    width: 4px;
+}
+
+.popover2_body::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.popover2_body::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 2px;
+}
+
+.popover2_body::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Animation for new notifications */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.notification_item {
+    animation: slideIn 0.3s ease-out;
+}
+
+/* Existing styles... */
+.popover2_content {
+    width: 100%;
+    max-width: 380px;
+}
+
+.popover2_header {
+    padding: 16px 20px 12px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.popover2_content_topic {
+    font-weight: bold;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.popover2_divider {
+    margin: 0;
+    border: none;
+    height: 1px;
+    background: #e0e0e0;
+}
+
+.popover2_body {
+    padding: 0;
+}
+
+/* New Email Notification Styles */
+.email_notification_container {
+    padding: 30px 25px;
+    text-align: center;
+}
+
+.email_icon_large {
+    font-size: 48px;
+    margin-bottom: 16px;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-10px);
+    }
+
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+.email_title {
+    color: #2c3e50;
+    margin: 0 0 16px 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.email_description {
+    color: #555;
+    line-height: 1.5;
+    margin: 0 0 24px 0;
+    font-size: 14px;
+}
+
+.email_action_buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
+    justify-content: center;
+}
+
+.open_email_button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.open_email_button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.open_email_button.outlook {
+    background: linear-gradient(135deg, #0078d4 0%, #106ebe 100%);
+}
+
+.open_email_button.outlook:hover {
+    box-shadow: 0 4px 12px rgba(0, 120, 212, 0.3);
+}
+
+.email_tips {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.tip_item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+.tip_item:last-child {
+    margin-bottom: 0;
+}
+
+.tip_icon {
+    font-size: 14px;
+    margin-top: 1px;
+}
+
+.tip_item small {
+    color: #666;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.email_footer {
+    padding-top: 16px;
+    border-top: 1px solid #eee;
+}
+
+.email_footer small {
+    color: #999;
+    font-size: 11px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .email_notification_container {
+        padding: 20px 15px;
+    }
+
+    .email_action_buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .open_email_button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .email_title {
+        font-size: 18px;
+    }
+}
+
+/* Loading and empty states (keep existing styles) */
+.loading_state {
+    padding: 40px 20px;
+    text-align: center;
+    color: #666;
+}
+
+.empty_state {
+    padding: 40px 20px;
+    text-align: center;
+    color: #666;
 }

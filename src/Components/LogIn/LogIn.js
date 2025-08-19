@@ -19,7 +19,11 @@ class LogIn extends Component {
         };
     }
 
+    // 🔧 SINGLE componentDidMount method
     componentDidMount() {
+        // Check if user is already logged in
+        this.checkExistingAuth();
+
         // Check if user credentials are saved (Remember Me feature)
         const savedEmail = localStorage.getItem('rememberedEmail');
         if (savedEmail) {
@@ -31,6 +35,54 @@ class LogIn extends Component {
 
         // Test backend connection
         this.testBackendConnection();
+    }
+
+    // 🔧 FIXED: Check if user is already authenticated (simple version)
+    checkExistingAuth = async () => {
+        const authData = localStorage.getItem('authData');
+
+        if (authData) {
+            try {
+                const parsedAuthData = JSON.parse(authData);
+
+                if (parsedAuthData.isAuthenticated && parsedAuthData.email && parsedAuthData.password) {
+                    console.log('✅ User already authenticated, validating credentials...');
+
+                    // Validate stored credentials with backend
+                    const response = await fetch('http://localhost:9090/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            email: parsedAuthData.email,
+                            password: parsedAuthData.password
+                        })
+                    });
+
+                    const result = await response.json();
+
+                    if (result.success) {
+                        console.log('✅ Stored credentials valid, redirecting...');
+                        this.setState({ loginSuccess: true });
+                        return;
+                    }
+                }
+            } catch (error) {
+                console.log('Stored auth validation failed, user needs to login');
+            }
+
+            // If validation fails, clear invalid auth data
+            this.clearAuthData();
+        }
+    }
+
+    // 🔧 SINGLE clearAuthData method
+    clearAuthData = () => {
+        localStorage.removeItem('authData');
+        localStorage.removeItem('userData');
+        localStorage.removeItem('authToken'); // Remove any leftover JWT tokens
+        sessionStorage.clear();
     }
 
     testBackendConnection = async () => {
@@ -77,6 +129,7 @@ class LogIn extends Component {
         return true;
     }
 
+    // 🔧 CLEANED UP: Simple localStorage-based authentication
     handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -106,14 +159,14 @@ class LogIn extends Component {
             console.log('📥 Login response:', data);
 
             if (data.success) {
-                // Handle Remember Me
-                if (this.state.rememberMe) {
-                    localStorage.setItem('rememberedEmail', this.state.email);
-                } else {
-                    localStorage.removeItem('rememberedEmail');
-                }
+                // 🔑 SIMPLE AUTH: Store credentials and user data in localStorage
+                const authData = {
+                    email: this.state.email,
+                    password: this.state.password, // Store for auto-login
+                    isAuthenticated: true,
+                    loginTime: new Date().toISOString()
+                };
 
-                // Store comprehensive user data in localStorage (persistent)
                 const userData = {
                     email: data.data.email,
                     username: data.data.username,
@@ -125,8 +178,16 @@ class LogIn extends Component {
                     authMethod: 'local'
                 };
 
-                // Store in localStorage for persistence across sessions
+                // Store authentication data
+                localStorage.setItem('authData', JSON.stringify(authData));
                 localStorage.setItem('userData', JSON.stringify(userData));
+
+                // Handle Remember Me
+                if (this.state.rememberMe) {
+                    localStorage.setItem('rememberedEmail', this.state.email);
+                } else {
+                    localStorage.removeItem('rememberedEmail');
+                }
 
                 // Also store in sessionStorage for backward compatibility
                 sessionStorage.setItem('userEmail', data.data.email);
@@ -135,7 +196,7 @@ class LogIn extends Component {
                 sessionStorage.setItem('isLoggedIn', 'true');
                 sessionStorage.setItem('loginTime', userData.loginTime);
 
-                console.log('✅ User data stored:', userData);
+                console.log('✅ User data and auth stored:', { userData, authData });
 
                 this.setState({
                     loginSuccess: true,
@@ -169,25 +230,32 @@ class LogIn extends Component {
         this.setState({ error: 'Google login coming soon!' });
     }
 
-    // Add logout utility method (can be called from other components)
+    // 🔧 SINGLE SET of static methods
     static logout = () => {
         // Clear all user data
+        localStorage.removeItem('authData');
         localStorage.removeItem('userData');
         localStorage.removeItem('rememberedEmail');
+        localStorage.removeItem('authToken'); // Remove any leftover JWT tokens
         sessionStorage.clear();
 
         // Redirect to login
         window.location.href = '/login';
     }
 
-    // Add method to check if user is logged in
     static isUserLoggedIn = () => {
-        const userData = localStorage.getItem('userData');
-        const sessionData = sessionStorage.getItem('isLoggedIn');
-        return userData !== null || sessionData === 'true';
+        const authData = localStorage.getItem('authData');
+        if (authData) {
+            try {
+                const parsedAuthData = JSON.parse(authData);
+                return parsedAuthData.isAuthenticated === true;
+            } catch (error) {
+                return false;
+            }
+        }
+        return false;
     }
 
-    // Add method to get current user data
     static getCurrentUser = () => {
         const userData = localStorage.getItem('userData');
         if (userData) {
@@ -311,17 +379,6 @@ class LogIn extends Component {
                             </div>
                             <div className='have_account'>
                                 <span>Don't have an account? <Link to="/signup">Sign Up</Link></span>
-                            </div>
-
-                            {/* Forgot Password Link */}
-                            <div style={{ textAlign: 'center', marginTop: '10px' }}>
-                                {/* <Link to="/forgot-password" style={{
-                                    color: '#666',
-                                    fontSize: '14px',
-                                    textDecoration: 'none'
-                                }}>
-                                    Forgot Password?
-                                </Link> */}
                             </div>
                         </div>
                     </Grid>
