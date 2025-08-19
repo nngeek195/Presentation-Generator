@@ -129,19 +129,16 @@
 
 /* Content container - centered */
 .intro_content {
-    position: relative;
-    z-index: 2;
-    flex: 1;
+    position: absolute;
+    padding: 80px 60px;
+    max-width: 520px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    text-align: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    width: 100%;
-    box-sizing: border-box;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: left;
+    z-index: 2;
+    background: none
 }
 
 /* Heading text */
@@ -151,8 +148,7 @@
     font-weight: 600;
     color: rgb(2, 25, 71);
     line-height: 1.15;
-    text-align: center;
-    margin: 0 auto 1rem;
+    text-align: left;
     animation: soft-glow 2s ease-in-out infinite alternate;
 }
 
@@ -160,56 +156,10 @@
     font-weight: 800;
 } */
 
-/* Make logo large and centered under the heading */
-.logo {
-    grid-row: 3;
-    display: block;
-    width: clamp(720px, 80vw, 1400px);
-    height: auto;
-    object-fit: contain;
 
-    /* Perfect horizontal centering */
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
 
-    filter: drop-shadow(0 4px 8px rgba(59, 130, 246, 0.2));
-    transition: transform 0.25s ease, filter 0.25s ease;
-    animation: logo-float 3s ease-in-out infinite;
-}
 
-.logo:hover {
-    transform: translateX(-50%) scale(1.04);
-    filter: drop-shadow(0 6px 12px rgba(59, 130, 246, 0.3));
-}
 
-@keyframes logo-float {
-
-    0%,
-    100% {
-        transform: translateX(-50%) translateY(0);
-    }
-
-    50% {
-        transform: translateX(-50%) translateY(-5px);
-    }
-}
-
-@keyframes soft-glow {
-    from {
-        text-shadow:
-            0 0 5px rgba(0, 255, 255, 0.685),
-            0 0 10px rgba(204, 255, 102, 0.605),
-            0 0 15px rgba(9, 54, 180, 0.619);
-    }
-
-    to {
-        text-shadow:
-            0 0 8px rgba(255, 0, 0, 0.548),
-            0 0 15px rgba(89, 255, 0, 0.281),
-            0 0 20px rgba(0, 174, 255, 0.516);
-    }
-}
 
 /* Subheading (typewriter lives here) */
 .intro_subheading {
@@ -219,21 +169,18 @@
     max-width: 800px;
     line-height: 1.6;
     font-weight: 400;
-    text-align: center;
-    margin: 1.5rem auto 2rem;
-    padding: 0 1rem;
-    min-height: 60px;
+    text-align: left;
+    justify-self: start;
+    min-height: 10px;
     /* prevents layout jump while typing */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
 }
 
 /* Start button */
 .start_button {
     margin-top: 0.5rem;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     width: 100%;
 }
 
@@ -283,7 +230,7 @@
 /* Typewriter CSS — only blink the separate cursor span */
 .typewriter-text {
     display: inline-block;
-    white-space: nowrap;
+    white-space: pre-wrap;
     overflow: hidden;
     /* no border-right or blink here to avoid double cursor */
     font-size: 1.15rem;
@@ -348,12 +295,6 @@
         margin-bottom: 0.8rem;
     }
 
-    .logo {
-        width: clamp(520px, 90vw, 800px);
-        max-height: 320px;
-    }
-
-
     .start_button button {
         height: 4rem;
         width: 10rem;
@@ -373,11 +314,6 @@
     .intro_heading {
         font-size: clamp(1.8rem, 6vw, 2.4rem);
         margin-bottom: 0.6rem;
-    }
-
-    .logo {
-        width: clamp(400px, 95vw, 640px);
-        max-height: 260px;
     }
 
     .intro_subheading {
@@ -460,7 +396,7 @@
     padding: 2rem;
     text-align: center;
     max-width: 1200px;
-    margin: 0 auto;
+    margin-left: 2cm;
     width: 100%;
     box-sizing: border-box;
 }

@@ -9,6 +9,7 @@ class Introduction extends Component {
   render() {
     return (
       <div className='intro_back'>
+        <Header />
         <div id="bg-wrap">
           {/* SVG animation */}
 
@@ -66,14 +67,16 @@ class Introduction extends Component {
 
 
           </div>
-          <img src={Logo} className='logo' alt='' />
           <div className='intro_subheading'>
             <TypewriterEffect
-              text={
-                "Create professional, visually stunning presentations effortlessly with AI. No design skills needed."
-              }
-              speed={50}
-            />
+  text={[
+    "webify.me makes presentation creation simple and fast.",
+    "Just share your ideas, and AI will design clean,",
+    "ready-to-use slides for you."
+  ]}
+  speed={50}
+/>
+
           </div>
           <br />
           <div className='start_button'>
