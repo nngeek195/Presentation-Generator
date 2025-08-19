@@ -77,6 +77,7 @@
   flex-direction: column;
   justify-content: center;
   padding-right: 2rem;
+
 }
 
 .intro_heading {
@@ -93,13 +94,47 @@
   font-weight: 600;
 }
 
+    font-size: larger;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    color: rgb(2, 25, 71);
+    line-height: 1.15;
+    text-align: left;
+    margin: 0 0 1rem 0;
+    animation: soft-glow 2s ease-in-out infinite alternate;
+}
+
+/* .subsub_Heading {
+    font-weight: 800;
+} */
+
+
+
+
+
+
+/* Subheading (typewriter lives here) */
 .intro_subheading {
-  font-size: clamp(1rem, 2vw, 1.2rem);
-  color: #4b5563;
-  line-height: 1.6;
-  margin-bottom: 2rem;
-  max-width: 600px;
-  text-align: left;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    font-family: "Inter", sans-serif;
+    color: var(--text-light);
+    max-width: 800px;
+    line-height: 1.6;
+    font-weight: 400;
+    text-align: left;
+    margin: 1.5rem 0 2rem 0;
+    padding: 0;
+    min-height: 10px;
+    /* prevents layout jump while typing */
+
+}
+
+/* Start button */
+.start_button {
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%
 }
 
 .start_button button {

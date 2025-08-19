@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import './Introduction.css';
 import { Link } from 'react-router-dom';
-import TypewriterEffect from './TypewriterEffect';
+import TypewriterEffect from './TypewriterEffect;
 import Header from './Header';
 import Slideshow_3 from '../SlideShow/Slideshow_3';
 
@@ -11,6 +11,8 @@ class Introduction extends Component {
     return (
       <div className='intro_back'>
         <Header />
+        <div id="bg-wrap">
+          {/* SVG animation */}
 
         {/* SVG Background */}
         <div id="bg-wrap">
@@ -92,6 +94,16 @@ class Introduction extends Component {
             <div className="right-section">
               <Slideshow_3 />
             </div>
+          </div>
+          <div className='intro_subheading'>
+            <TypewriterEffect
+              text={
+                "Create professional, visually stunning presentations effortlessly with AI. No design skills needed."
+              }
+              speed={50}
+            />
+          </div>
+          <br />
           </div>
         </div>
       </div>
