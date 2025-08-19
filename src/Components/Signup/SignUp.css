@@ -49,17 +49,13 @@
     background: linear-gradient(90deg, #e3f2fd, #bbdefb, #90caf9, #64b4f6c5, #42a4f5c5);
     color: rgb(255, 255, 255);
     font-weight: 700;
-
-
-
+    cursor: pointer;
 }
 
 .signup button:hover {
     background: linear-gradient(90deg, #e3f2fd, #bbdefb, #90caf9, #64b5f6, #42a5f5, #2196f3);
     box-shadow: 0 0 3px #6b63ff97, 0 0 10px #00c8ff86;
     font-weight: 800;
-
-    ;
 }
 
 .signup_or {
@@ -127,17 +123,19 @@
         display: flex;
         flex-direction: column;
         height: auto;
+        align-items: center;
     }
 
     .signup_first_grid,
     .signup_second_grid {
         width: 100%;
         border-radius: 0;
-        align-items: flex-start;
-        height: 100%;
+        align-items: center;
+        height: auto;
     }
 
     .signup_container {
+        order: 1;
         box-shadow: 0;
         width: 90%;
         margin-top: 2rem;
@@ -145,10 +143,9 @@
     }
 
     .slideshow_container {
-        margin-bottom: 0;
-        margin-top: 2rem;
-        margin-left: 5rem;
-        margin-right: 2.5rem;
+        order: 2;
+        width: 100%;
+        margin: 0 auto 2rem auto;
         display: flex;
     }
 

@@ -21,6 +21,7 @@
     background: linear-gradient(90deg, #e3f2fd, #bbdefb, #90caf9, #64b5f6, #42a5f5);
     color: white;
     margin-left: 1.3rem;
+    cursor: pointer;
 }
 
 .popover_logout:hover {
