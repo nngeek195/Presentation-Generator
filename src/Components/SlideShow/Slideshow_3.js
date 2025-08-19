@@ -37,7 +37,7 @@ const Slideshow_3 = () => {
         </div>
       ),
       className: 'slide-time',
-      gradient: 'linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%)'
+      gradient: 'linear-gradient(135deg, #54d3a9ff 0%, #051a17ff 100%)'
     },
     {
       title: "Your Ideas, Beautifully Designed",
@@ -98,14 +98,16 @@ const Slideshow_3 = () => {
     }
   ];
 
+  // ✅ Smooth Auto-play with Loop
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 4000);
+      setCurrentSlide((prev) => (prev + 1) % slides.length); // Loops back to 0
+    }, 4000); // Change slide every 4 seconds
 
-    return () => clearInterval(interval);
-  }, []);
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, [slides.length]); // Dependency: only re-run if slide count changes
 
+  // ✅ Update transform when currentSlide changes
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
@@ -114,6 +116,7 @@ const Slideshow_3 = () => {
     container.style.transform = `translateY(-${offset}px)`;
   }, [currentSlide]);
 
+  // ✅ Go to specific slide (on dot click)
   const goToSlide = (index) => {
     setCurrentSlide(index);
   };
@@ -151,6 +154,7 @@ const Slideshow_3 = () => {
             key={index}
             className={`nav-dot ${index === currentSlide ? 'active' : ''}`}
             onClick={() => goToSlide(index)}
+            aria-label={`Go to slide ${index + 1}`}
           />
         ))}
       </div>

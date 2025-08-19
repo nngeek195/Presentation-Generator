@@ -7,6 +7,7 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
+
 }
 
 /* Subtle background pattern */
@@ -38,34 +39,34 @@
     inset: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 1;
     pointer-events: none;
     overflow: hidden;
     opacity: 0.7;
+    z-index: 1;
 }
 .intro_content {
   position: relative;
-  z-index: 2; /* ✅ Above background */
+  z-index: 2; 
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  padding: 80px 60px;
+  padding: 40px 50px;
   max-width: 1200px;
-  margin: 0 auto;
+  margin-right: 2cm;
   width: 100%;
   box-sizing: border-box;
+  background: none;
 }
 /* src/Components/Introduction/Introduction.css */
 
-/* Add this at the top of your CSS */
 .hero-container {
   display: grid;
   grid-template-columns: 1fr 1fr; /* Equal width columns */
   gap: 4rem;
   max-width: 1200px;
-  margin: 0 auto;
+  margin-right: 5cm;
   padding: 2rem;
   box-sizing: border-box;
   align-items: center;
@@ -75,8 +76,7 @@
 .left-section {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding-right: 2rem;
+  padding-top: 2rem;
 
 }
 
@@ -94,7 +94,7 @@
     font-size: larger;
     font-family: 'Raleway', sans-serif;
     font-weight: 600;
-    color: rgb(2, 25, 71);
+    color: rgb(79, 133, 241);
     line-height: 1.15;
     text-align: left;
     margin: 0 0 1rem 0;
@@ -131,7 +131,8 @@
     margin-top: 0.5rem;
     display: flex;
     justify-content: flex-start;
-    width: 100%
+    width: 100%;
+    z-index: 10;
 }
 
 .start_button button {
@@ -144,6 +145,7 @@
   font-weight: 600;
   cursor: pointer;
   transition: transform 0.2s ease;
+  z-index: 10;
 }
 
 .start_button button:hover {
