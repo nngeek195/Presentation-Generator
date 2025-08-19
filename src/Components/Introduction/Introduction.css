@@ -1,19 +1,3 @@
-/* Root variables for light blue theme */
-:root {
-    --primary-blue: #3b82f6;
-    --light-blue: #60a5fa;
-    --lighter-blue: #93c5fd;
-    --lightest-blue: #dbeafe;
-    --accent-blue: #1d4ed8;
-    --white: #ffffff;
-    --light-gray: #f8fafc;
-    --text-dark: #1e293b;
-    --text-light: #64748b;
-    --shadow-light: 0 1px 3px rgba(0, 0, 0, 0.1);
-    --shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --shadow-large: 0 10px 25px rgba(59, 130, 246, 0.15);
-    --transition: all 0.3s ease;
-}
 
 /* Main background with light gradient */
 .intro_back {
@@ -59,93 +43,54 @@
     overflow: hidden;
     opacity: 0.7;
 }
-
-/* Top-right actions */
-.signup_and_login {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 1.5rem 2rem;
-    gap: 1rem;
-    position: relative;
-    z-index: 10;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-/* Sign up button */
-.intro_sign {
-    height: 2.4rem;
-    width: 5.6rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    border: 2px solid var(--lighter-blue);
-    font-weight: 600;
-    background-color: var(--white);
-    color: var(--primary-blue);
-    cursor: pointer;
-    transition: var(--transition);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    box-shadow: var(--shadow-light);
-}
-
-.intro_sign:hover {
-    color: var(--white);
-    background: linear-gradient(135deg, var(--primary-blue), var(--light-blue));
-    border-color: var(--primary-blue);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-large);
-}
-
-/* Login button */
-.intro_login {
-    height: 2.4rem;
-    width: 5.6rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    border: 2px solid var(--lighter-blue);
-    font-weight: 600;
-    background-color: var(--lightest-blue);
-    color: var(--primary-blue);
-    cursor: pointer;
-    transition: var(--transition);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    box-shadow: var(--shadow-light);
-}
-
-.intro_login:hover {
-    color: var(--white);
-    background: linear-gradient(135deg, var(--light-blue), var(--lighter-blue));
-    border-color: var(--light-blue);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-large);
-}
-
-/* Content container - centered */
 .intro_content {
-    position: absolute;
-    top: 120px;
-    left: 60px;
-    max-width: 520px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    text-align: left;
-    z-index: 2;
-    background: none;
-    padding: 0;
-    margin: 0;
+  position: relative;
+  z-index: 2; /* ✅ Above background */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 80px 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+/* src/Components/Introduction/Introduction.css */
+
+/* Add this at the top of your CSS */
+.hero-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Equal width columns */
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  box-sizing: border-box;
+  align-items: center;
 }
 
-/* Heading text */
+/* Left Section Styles */
+.left-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 2rem;
+
+}
+
 .intro_heading {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  color: #0a1b48;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.subsub_Heading {
+  font-weight: 600;
     font-size: larger;
     font-family: 'Raleway', sans-serif;
     font-weight: 600;
@@ -186,290 +131,64 @@
     margin-top: 0.5rem;
     display: flex;
     justify-content: flex-start;
-    width: 100%;
+    width: 100%
 }
 
 .start_button button {
-    height: 4.8rem;
-    width: 12rem;
-    border-radius: 30px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--white);
-    background: linear-gradient(135deg, var(--primary-blue), var(--light-blue));
-    box-shadow: var(--shadow-medium);
-    border: none;
-    cursor: pointer;
-    transition: var(--transition);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    position: relative;
-    overflow: hidden;
-}
-
-.start_button button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.6s;
+  background: linear-gradient(135deg, #3b82f6, #60a5fa);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
 .start_button button:hover {
-    background: linear-gradient(135deg, var(--accent-blue), var(--primary-blue));
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: var(--shadow-large);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
 }
 
-.start_button button:hover::before {
-    left: 100%;
+/* Right Section - Slideshow */
+.right-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 2rem;
 }
 
-.start_button button:active {
-    transform: translateY(-1px) scale(1.01);
-}
-
-/* Typewriter CSS — only blink the separate cursor span */
-.typewriter-text {
-    display: inline-block;
-    white-space: nowrap;
-    overflow: hidden;
-    /* no border-right or blink here to avoid double cursor */
-    font-size: 1.15rem;
-    font-family: "Inter", sans-serif;
-    color: var(--text-light);
-    font-weight: 500;
-    letter-spacing: 0.2px;
-}
-
-.typewriter-cursor {
-    display: inline-block;
-    width: 2px;
-    height: 1em;
-    background: var(--primary-blue);
-    margin-left: 3px;
-    vertical-align: baseline;
-    animation: cursor-blink 1s step-end infinite;
-    border-radius: 1px;
-}
-
-@keyframes cursor-blink {
-
-    0%,
-    50% {
-        opacity: 1;
-    }
-
-    51%,
-    100% {
-        opacity: 0;
-    }
-}
-
-@media (max-width: 1024px) {
-    .logo {
-        width: clamp(600px, 85vw, 1000px);
-        max-height: 360px;
-    }
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .signup_and_login {
-        justify-content: center;
-        padding: 1rem;
-        gap: 0.5rem;
-    }
-
-    .intro_sign,
-    .intro_login {
-        height: 2.2rem;
-        width: 5rem;
-        font-size: 0.8rem;
-    }
-
-    .intro_content {
-        padding: 1rem;
-    }
-
-    .intro_heading {
-        font-size: clamp(2.2rem, 6vw, 3.4rem);
-        margin-bottom: 0.8rem;
-    }
-
-    .logo {
-        width: clamp(520px, 90vw, 800px);
-        max-height: 320px;
-    }
-
-
-    .start_button button {
-        height: 4rem;
-        width: 10rem;
-        font-size: 1rem;
-    }
-
-    .typewriter-text {
-        font-size: 1.05rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .intro_content {
-        padding: 0.75rem;
-    }
-
-    .intro_heading {
-        font-size: clamp(1.8rem, 6vw, 2.4rem);
-        margin-bottom: 0.6rem;
-    }
-
-    .logo {
-        width: clamp(400px, 95vw, 640px);
-        max-height: 260px;
-    }
-
-    .intro_subheading {
-        font-size: 0.95rem;
-        margin: 1rem auto;
-        min-height: 44px;
-    }
-
-    .start_button button {
-        height: 3.5rem;
-        width: 9rem;
-        font-size: 0.95rem;
-    }
-}
-
-/* Large screen optimization */
-@media (min-width: 1200px) {
-    .intro_content {
-        max-width: 100%;
-        /* Allow full width for larger logo */
-    }
-
-    .intro_heading {
-        font-size: 5.2rem;
-    }
-
-    .logo {
-        width: clamp(840px, 60vw, 1440px);
-        /* 2x of previous 420px */
-        max-height: 440px;
-        /* 2x of previous 220px */
-    }
-
-    .intro_subheading {
-        font-size: 1.25rem;
-        max-width: 880px;
-    }
-}
-
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-}
-
-/* Focus states */
-.intro_sign:focus,
-.intro_login:focus,
-.start_button button:focus {
-    outline: 2px solid var(--primary-blue);
-    outline-offset: 2px;
-}
-
-/* Loading state for typewriter */
-.typewriter-loading {
-    opacity: 0;
-    animation: fade-in 0.5s ease-in-out 0.5s forwards;
-}
-
-@keyframes fade-in {
-    to {
-        opacity: 1;
-    }
-}
-
-/* Make the main content a grid so we can center the logo vertically */
-.intro_content {
-    position: relative;
-    z-index: 2;
-    display: grid;
-    grid-template-rows: 1fr auto auto auto 1fr;
-    /* top spacer, heading, logo, subheading, bottom spacer */
-    align-items: center;
-    justify-items: center;
-    min-height: 100vh;
-    /* full viewport height */
-    padding: 2rem;
+/* Responsive Design */
+@media (max-width: 992px) {
+  .hero-container {
+    grid-template-columns: 1fr; /* Stack on mobile */
+    gap: 2rem;
     text-align: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    width: 100%;
-    box-sizing: border-box;
-}
+  }
 
-/* Keep the top-right actions floating above the grid */
-.signup_and_login {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    padding: 1.5rem 2rem;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 1rem;
-    z-index: 10;
-}
+  .left-section {
+    order: 1;
+    padding-right: 0;
+  }
 
-/* Place items on the grid so the logo is in the center row */
-.intro_heading {
-    grid-row: 2;
-    margin: 0 0 0.5rem;
-}
+  .right-section {
+    order: 2;
+    padding-left: 0;
+  }
 
-.logo {
-    grid-row: 3;
-    margin: 0;
-    /* let grid handle spacing */
-    display: block;
-    width: clamp(360px, 55vw, 720px);
-    /* larger, responsive */
-    max-height: 220px;
-    height: auto;
-    object-fit: contain;
-}
-
-.intro_subheading {
-    grid-row: 4;
-    margin: 1rem 0 0;
-}
-
-.start_button {
-    grid-row: 5;
-    margin-top: 1.25rem;
-}
-
-/* Optional: tighter sizes on smaller screens */
-@media (max-width: 768px) {
-    .logo {
-        width: clamp(260px, 65vw, 500px);
-        max-height: 160px;
-    }
+  .intro_heading {
+    font-size: clamp(2rem, 5vw, 3rem);
+  }
 }
 
 @media (max-width: 480px) {
-    .logo {
-        width: clamp(200px, 75vw, 360px);
-        max-height: 130px;
-    }
+  .hero-container {
+    padding: 1rem;
+  }
+
+  .start_button button {
+    width: 100%;
+    padding: 1rem;
+  }
 }
