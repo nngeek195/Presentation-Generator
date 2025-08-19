@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { FaTrash, FaEdit, FaEye, FaUsers, FaBell, FaChartBar, FaSearch, FaFilter } from 'react-icons/fa';
 import { MdSend, MdNotifications, MdPeople, MdDashboard, MdEmail, MdWarning, MdInfo, MdCheckCircle } from 'react-icons/md';
 import './AdminPanel.css';
+import Logo2 from '../User/Logo1.png'
 
 class AdminPanel extends Component {
     constructor(props) {
@@ -225,7 +226,7 @@ class AdminPanel extends Component {
             <div className="admin-panel">
                 <div className="admin-sidebar">
                     <div className="admin-logo">
-                        <MdDashboard className="logo-icon" />
+                        <img className='admin_logo_img' src={Logo2} />
                         <h1>Admin</h1>
                     </div>
 

@@ -32,6 +32,13 @@
     font-family: var(--font-sans);
 }
 
+.admin_logo_img{
+    width: 204.8px;
+    height: 49.6px;
+    margin-left: -2.5rem;
+    margin-top: -1rem;
+}
+
 /* Sidebar */
 .admin-sidebar {
     width: 250px;
