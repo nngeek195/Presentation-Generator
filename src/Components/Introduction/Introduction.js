@@ -1,19 +1,21 @@
-import React, { Component } from 'react'
-import './Introduction.css'
-import { Link } from 'react-router-dom'
+// src/Components/Introduction/Introduction.js
+import React, { Component } from 'react';
+import './Introduction.css';
+import { Link } from 'react-router-dom';
 import TypewriterEffect from './TypewriterEffect';
-import Logo from './Logo.png'
 import Header from './Header';
+import Slideshow_3 from '../SlideShow/Slideshow_3';
 
 class Introduction extends Component {
   render() {
     return (
       <div className='intro_back'>
         <Header />
-        <div id="bg-wrap">
-          {/* SVG animation */}
 
+        {/* SVG Background */}
+        <div id="bg-wrap">
           <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'>
+            {/* Your SVG animation code here */}
             <rect fill='#ffffff' width='1600' height='900' />
             <defs>
               <linearGradient id='a' x1='0' x2='0' y1='1' y2='0' gradientTransform='rotate(0,0.5,0.5)'>
@@ -50,42 +52,51 @@ class Introduction extends Component {
                 </path>
               </g>
             </g>
+          
           </svg>
-
         </div>
+
+        {/* Main Content - Grid Layout */}
         <div className="intro_content">
           <div className='signup_and_login'>
-            {/* <Link to="/signup"><button className='intro_sign'>Sign Up</button></Link>
-            <Link to="/login"><button className='intro_login'>Login</button></Link> */}
+            {/* Sign up / Login buttons */}
           </div>
-          <div className="intro_heading ">
-            Instantly Create Presentations <br />
-            <div className="subsub_Heading">
 
-              with<br />
+          <div className="hero-container">
+            {/* Left Section - Text & Buttons */}
+            <div className="left-section">
+              <div className="intro_heading">
+                Instantly Create Presentations <br />
+                <div className="subsub_Heading">with AI<br /></div>
+              </div>
+
+              <div className='intro_subheading'>
+                <TypewriterEffect
+                  text={[
+                    "webify.me makes presentation creation simple and fast.",
+                    "Just share your ideas, and AI will design clean,",
+                    "ready-to-use slides for you."
+                  ]}
+                  speed={50}
+                />
+              </div>
+
+              <div className='start_button'>
+                <Link to="/signup">
+                  <button>Start Now</button>
+                </Link>
+              </div>
             </div>
 
-
-          </div>
-          <div className='intro_subheading'>
-            <TypewriterEffect
-  text={[
-    "webify.me makes presentation creation simple and fast.",
-    "Just share your ideas, and AI will design clean,",
-    "ready-to-use slides for you."
-  ]}
-  speed={50}
-/>
-
-          </div>
-          <br />
-          <div className='start_button'>
-            <Link to="/signup"><button>Start Now</button></Link>
+            {/* Right Section - Slideshow */}
+            <div className="right-section">
+              <Slideshow_3 />
+            </div>
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default Introduction
+export default Introduction;
