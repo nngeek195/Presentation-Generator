@@ -4,8 +4,8 @@ import 'swiper/css/effect-cards';
 import {Swiper, SwiperSlide} from 'swiper/react';
 import {EffectCards, Autoplay} from 'swiper/modules';
 import './SlideShow.css'
-import image_1 from './Images/image_1.jpg'
-import image_2 from './Images/image_2.jpg'
+import image_1 from './Images/image_1.png'
+import image_2 from './Images/image_2.png'
 import image_3 from './Images/image_3.jpg'
 
 
