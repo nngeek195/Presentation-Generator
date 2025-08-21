@@ -4,11 +4,11 @@ import 'swiper/css/effect-coverflow';
 import {Swiper, SwiperSlide} from 'swiper/react';
 import {EffectCoverflow, Autoplay} from 'swiper/modules';
 import './SlideShow_2.css'
-import image_4 from './Images/image_4.jpg'
-import image_5 from './Images/image_5.jpg'
-import image_6 from './Images/image_6.jpg'
-import image_7 from './Images/image_7.jpg'
-import image_8 from './Images/image_8.jpg'
+import image_4 from './Images/image_4.png'
+import image_5 from './Images/image_5.png'
+import image_6 from './Images/image_6.png'
+import image_7 from './Images/image_7.png'
+import image_8 from './Images/image_8.png'
 
 
 function SlideShow() {
