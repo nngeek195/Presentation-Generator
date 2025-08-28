@@ -29,6 +29,26 @@
     font-weight: 700;
 }
 
+.signup_error{
+    color: #d32f2f;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 14px;
+    padding: 10px;
+    background-color: #ffebee;
+    border-radius: 4px;
+}
+
+.signup_success{
+    color: #2e7d32;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 14px;
+    padding: 10px;
+    background-color: #e8f5e9;
+    border-radius: 4px;
+}
+
 .signup_input {
     width: 17.6rem;
     height: 2.4rem;
@@ -36,6 +56,46 @@
     margin-right: 4rem;
     margin-top: 1.2rem;
     border-radius: 6.4px;
+}
+
+.signup_input_email{
+    position: relative;
+}
+
+.signup_emailchecking{
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    color: #666;
+}
+
+.signup_emailerror{
+    color: #d32f2f;
+    font-size: 12px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.signup_input_username{
+    position: relative;
+}
+
+.signup_usernamechecking{
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    color: #666;
+}
+
+.signup_usernameerror{
+    color: #d32f2f;
+    font-size: 12px;
+    margin-top: 5px;
+    margin-bottom: 10px;
 }
 
 .signup {
