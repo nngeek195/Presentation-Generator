@@ -292,7 +292,7 @@ class SignUp extends Component {
 
         return (
             <div className='signup_back'>
-                <Grid container>
+                <Grid container className='grid_container'>
                     <Grid className='signup_first_grid' item xs={6}>
                         <div className='signup_container'>
                             <div className='signup_container_topic'>
@@ -300,36 +300,20 @@ class SignUp extends Component {
                             </div>
 
                             {error && (
-                                <div style={{
-                                    color: '#d32f2f',
-                                    textAlign: 'center',
-                                    marginBottom: '10px',
-                                    fontSize: '14px',
-                                    padding: '10px',
-                                    backgroundColor: '#ffebee',
-                                    borderRadius: '4px'
-                                }}>
+                                <div className='signup_error'>
                                     {error}
                                 </div>
                             )}
 
                             {success && (
-                                <div style={{
-                                    color: '#2e7d32',
-                                    textAlign: 'center',
-                                    marginBottom: '10px',
-                                    fontSize: '14px',
-                                    padding: '10px',
-                                    backgroundColor: '#e8f5e9',
-                                    borderRadius: '4px'
-                                }}>
+                                <div className='signup_success'>
                                     Signup successful! Redirecting to login...
                                 </div>
                             )}
 
                             <form onSubmit={this.handleSubmit}>
                                 <div>
-                                    <div style={{ position: 'relative' }}>
+                                    <div className='signup_input_email'>
                                         <input
                                             className={`signup_input ${emailError ? 'error' : ''}`}
                                             type='email'
@@ -344,30 +328,18 @@ class SignUp extends Component {
                                             }}
                                         />
                                         {checkingEmail && (
-                                            <span style={{
-                                                position: 'absolute',
-                                                right: '10px',
-                                                top: '50%',
-                                                transform: 'translateY(-50%)',
-                                                fontSize: '12px',
-                                                color: '#666'
-                                            }}>
+                                            <span className='signup_emailchecking'>
                                                 Checking...
                                             </span>
                                         )}
                                         {emailError && (
-                                            <div style={{
-                                                color: '#d32f2f',
-                                                fontSize: '12px',
-                                                marginTop: '5px',
-                                                marginBottom: '10px'
-                                            }}>
+                                            <div className='signup_emailerror'>
                                                 {emailError}
                                             </div>
                                         )}
                                     </div>
 
-                                    <div style={{ position: 'relative' }}>
+                                    <div className='signup_input_username'>
                                         <input
                                             className={`signup_input ${usernameError ? 'error' : ''}`}
                                             type='text'
@@ -382,24 +354,12 @@ class SignUp extends Component {
                                             }}
                                         />
                                         {checkingUsername && (
-                                            <span style={{
-                                                position: 'absolute',
-                                                right: '10px',
-                                                top: '50%',
-                                                transform: 'translateY(-50%)',
-                                                fontSize: '12px',
-                                                color: '#666'
-                                            }}>
+                                            <span className='signup_usernamechecking'>
                                                 Checking...
                                             </span>
                                         )}
                                         {usernameError && (
-                                            <div style={{
-                                                color: '#d32f2f',
-                                                fontSize: '12px',
-                                                marginTop: '5px',
-                                                marginBottom: '10px'
-                                            }}>
+                                            <div className='signup_usernameerror'>
                                                 {usernameError}
                                             </div>
                                         )}
