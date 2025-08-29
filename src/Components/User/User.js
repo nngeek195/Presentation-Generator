@@ -6,130 +6,578 @@ import { FaUserCircle, FaPlus, FaAngleDown, FaCamera, FaStar, FaRegStar } from '
 import Presentation_1 from './Presentation_1.png';
 import { MdOutlineDelete, MdOutlineEdit, MdOutlineRemoveRedEye } from "react-icons/md";
 import ProfilePictureModal from './ProfilePictureModal/ProfilePictureModal';
-import Popover from './Popover/Popover';
-import Popover2 from './Popover/Popover2';
-import { IoMdNotificationsOutline, IoMdApps, IoIosTrendingUp } from "react-icons/io";
+import Popover from './Popover/Popover'
+import Popover2 from './Popover/Popover2'
+import { IoMdNotificationsOutline, IoMdApps, IoIosTrendingUp, IoMdMenu } from "react-icons/io";
 import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import CustomTabPanel from './CustomTabPanel';
 
-// **ADDED: Styles for the new presentation card actions to match the dashboard look.**
+// **UPDATED: Enhanced responsive styles for presentation cards and actions**
 const ActionButtonStyles = () => (
   <style>{`
+    :root {
+      /* Color Palette */
+      --primary-blue: #2563eb;
+      --primary-blue-dark: #1d4ed8;
+      --primary-purple: #7c3aed;
+      --primary-purple-dark: #6d28d9;
+      --primary-red: #dc2626;
+      --primary-red-dark: #b91c1c;
+      --primary-amber: #f59e0b;
+      --primary-amber-dark: #d97706;
+      --primary-green: #059669;
+      --primary-green-dark: #047857;
+
+      /* Background & Text */
+      --bg-dark-start: #1e293b;
+      --bg-dark-end: #334155;
+      --bg-dark-accent: #475569;
+      --bg-actions: rgba(15, 23, 42, 0.8);
+      --text-light: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-dark-muted: #64748b;
+
+      /* Borders & Shadows */
+      --border-light: rgba(255, 255, 255, 0.1);
+      --shadow-color-light: rgba(0, 0, 0, 0.3);
+      --shadow-color-heavy: rgba(0, 0, 0, 0.4);
+
+      /* Sizing & Radius */
+      --card-radius: 16px;
+      --button-radius: 8px;
+    }
+    .user_back {
+      background-color: var(--bg-dark-start);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0' x2='0' y1='1' y2='0'%3E%3Cstop offset='0' stop-color='%230FF'/%3E%3Cstop offset='1' stop-color='%23CF6'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' x1='0' x2='0' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%23F00'/%3E%3Cstop offset='1' stop-color='%23FC0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='%23FFF' fill-opacity='0' stroke-miterlimit='10'%3E%3Cg stroke='url(%23a)' stroke-width='3.3'%3E%3Cpath transform='translate(-35 8) rotate(5 1409 581) scale(1.02)' d='M1409 581 1450.35 511 1490 581z'/%3E%3Ccircle stroke-width='1.1' transform='translate(-20 20) rotate(6 800 450) scale(1.01)' cx='500' cy='100' r='40'/%3E%3Cpath transform='translate(18 -60) rotate(60 401 736) scale(1.01)' d='M400.86 735.5h-83.73c0-23.12 18.74-41.87 41.87-41.87S400.86 712.38 400.86 735.5z'/%3E%3C/g%3E%3Cg stroke='url(%23b)' stroke-width='1'%3E%3Cpath transform='translate(120 -8) rotate(2 150 345) scale(0.98)' d='M149.8 345.2 118.4 389.8 149.8 434.4 181.2 389.8z'/%3E%3Crect stroke-width='2.2' transform='translate(-80 -50) rotate(72 1089 759)' x='1039' y='709' width='100' height='100'/%3E%3Cpath transform='translate(-120 40) rotate(12 1400 132)' d='M1426.8 132.4 1405.7 168.8 1363.7 168.8 1342.7 132.4 1363.7 96 1405.7 96z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      background-attachment: fixed;
+      background-size: cover;
+      animation: animateSvgBackground 60s linear infinite;
+    }
+
+    @keyframes animateSvgBackground {
+      0% {
+        background-position: 0% 0%;
+      }
+      50% {
+        background-position: 100% 100%;
+      }
+      100% {
+        background-position: 0% 0%;
+      }
+    }
+    /* Tabs Navigation */
+    .tabs-container {
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .tabs-list {
+      display: flex;
+      gap: 8px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      overflow-x: auto;
+      scrollbar-width: none; /* For Firefox */
+    }
+
+    .tabs-list::-webkit-scrollbar {
+      display: none; /* For Chrome, Safari, Opera */
+    }
+
+    .tab-item {
+      padding: 12px 20px;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: color 0.3s ease, border-color 0.3s ease;
+      border-bottom: 3px solid transparent;
+      white-space: nowrap;
+      position: relative;
+      top: 1px;
+    }
+
+    .tab-item:hover {
+      color: var(--text-light);
+    }
+
+    .tab-item.active {
+      color: var(--primary-blue);
+      border-bottom-color: var(--primary-blue);
+    }
+
+    .tab-item:focus-visible {
+      outline: 2px solid var(--primary-blue);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    /* Responsive Presentation Grid */
+    .presentations-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+      padding: 20px 0;
+    }
+
+    /* Enhanced Presentation Card */
+    .presentation {
+      background: linear-gradient(145deg, var(--bg-dark-start), var(--bg-dark-end));
+      border-radius: var(--card-radius);
+      overflow: hidden;
+      box-shadow: 0 8px 32px var(--shadow-color-light);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid var(--border-light);
+      position: relative;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .presentation:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px var(--shadow-color-heavy);
+      border-color: rgba(59, 130, 246, 0.5);
+    }
+
+    /* Presentation Image Container */
+    .presentation_image {
+      position: relative;
+      height: 180px;
+      overflow: hidden;
+      background: linear-gradient(45deg, var(--bg-dark-start), var(--bg-dark-accent));
+    }
+
+    .presentation_image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .presentation:hover .presentation_image img {
+      transform: scale(1.1);
+    }
+
+    /* Favorite Icon */
+    .favorite_icon {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      font-size: 24px;
+      color: var(--text-dark-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      z-index: 10;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 8px;
+      border-radius: 50%;
+      backdrop-filter: blur(4px);
+    }
+
+    .favorite_icon:hover {
+      color: var(--primary-amber);
+      transform: scale(1.2);
+    }
+
+    .favorite_icon.active {
+      color: var(--primary-amber);
+    }
+
+    /* Presentation Topic/Title */
+    .presentation_topic {
+      padding: 16px 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .presentation_topic span {
+      font-size: 18px;
+      font-weight: 600;
+      color: black;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 8px;
+    }
+
+    /* Enhanced Action Buttons */
     .presentation-actions {
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
       align-items: center;
-      padding: 8px 4px;
-      background-color: #1e293b; /* slate-800 */
+      padding: 12px 16px;
+      background: var(--bg-actions);
+      backdrop-filter: blur(8px);
+      border-top: 1px solid var(--border-light);
+      border-radius:2%;
+      gap: 8px;
     }
-    .action-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      padding: 8px 12px;
-      border: none;
-      border-radius: 6px;
-      color: white;
-      font-weight: 600;
-      font-size: 14px;
-      cursor: pointer;
-      transition: all 0.2s ease-in-out;
-      text-decoration: none; /* For <a> tags styled as buttons */
+
+    /* Add this to your ActionButtonStyles component */
+.action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: var(--button-radius);
+  color: white;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  flex: 1;
+  min-height: 40px;
+  position: relative;
+  overflow: hidden;
+  /* ADD THESE LINES TO ENSURE CLICKABILITY */
+  pointer-events: auto;
+  z-index: 10;
+  background: none; /* Reset any inherited background */
+}
+
+/* Ensure the presentation card doesn't interfere with button clicks */
+.presentation {
+  background: linear-gradient(145deg, var(--bg-dark-start), var(--bg-dark-end));
+  border-radius: var(--card-radius);
+  overflow: visible; /* CHANGE FROM hidden TO visible */
+  box-shadow: 0 8px 32px var(--shadow-color-light);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid var(--border-light);
+  position: relative;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure presentation-actions container doesn't block clicks */
+.presentation-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background: var(--bg-actions);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid var(--border-light);
+  gap: 8px;
+  /* ADD THESE LINES */
+  position: relative;
+  z-index: 5;
+  pointer-events: auto;
+}
+
+/* Fix button text visibility */
+.button-text {
+  display: inline;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Ensure hover effects don't interfere */
+.action-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+  /* ADD THIS LINE */
+  pointer-events: none;
+}
+
+
+    .action-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
     }
+
+    .action-button:hover::before {
+      left: 100%;
+    }
+
     .action-button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 8px 25px var(--shadow-color-light);
     }
+
+    .action-button:active {
+      transform: translateY(0);
+    }
+
+    /* Button Colors */
     .action-button.view {
-      background-color: #2563eb; /* blue-600 */
+      background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+      border: 1px solid rgba(37, 99, 235, 0.3);
     }
     .action-button.view:hover {
-      background-color: #1d4ed8; /* blue-700 */
+      background: linear-gradient(135deg, var(--primary-blue-dark), #1e40af);
+      box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
     }
+
     .action-button.edit {
-      background-color: #7c3aed; /* purple-600 */
+      background: linear-gradient(135deg, var(--primary-purple), var(--primary-purple-dark));
+      border: 1px solid rgba(124, 58, 237, 0.3);
     }
     .action-button.edit:hover {
-      background-color: #6d28d9; /* purple-700 */
+      background: linear-gradient(135deg, var(--primary-purple-dark), #5b21b6);
+      box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
     }
+
     .action-button.delete {
-      background-color: #dc2626; /* red-600 */
+      background: linear-gradient(135deg, var(--primary-red), var(--primary-red-dark));
+      border: 1px solid rgba(220, 38, 38, 0.3);
     }
     .action-button.delete:hover {
-      background-color: #b91c1c; /* red-700 */
+      background: linear-gradient(135deg, var(--primary-red-dark), #991b1b);
+      box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4);
     }
-    
-    /* 🔥 TRENDING STYLES */
+
+    /* 🔥 TRENDING STYLES - Enhanced */
     .trending-presentation {
       position: relative;
-      border: 2px solid #f59e0b;
-      background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(251, 191, 36, 0.05));
+      border: 2px solid var(--primary-amber);
+      background: linear-gradient(145deg, rgba(245, 158, 11, 0.1), rgba(251, 191, 36, 0.05));
+      box-shadow: 0 8px 32px rgba(245, 158, 11, 0.2);
     }
-    
+
+    .trending-presentation:hover {
+      box-shadow: 0 20px 40px rgba(245, 158, 11, 0.3);
+      border-color: var(--primary-amber);
+    }
+
     .trending-badge {
       position: absolute;
-      top: 10px;
-      left: 10px;
-      background: linear-gradient(135deg, #f59e0b, #d97706);
+      top: 12px;
+      left: 12px;
+      background: linear-gradient(135deg, var(--primary-amber), var(--primary-amber-dark));
       color: white;
-      padding: 4px 8px;
-      border-radius: 12px;
-      font-size: 10px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 11px;
       font-weight: bold;
       z-index: 15;
-      box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+      backdrop-filter: blur(4px);
     }
-    
+
     .presentation_stats {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 8px 16px;
-      background-color: #0f172a;
-      border-top: 1px solid #334155;
+      padding: 12px 20px;
+      background: rgba(15, 23, 42, 0.9);
+      border-top: 1px solid rgba(245, 158, 11, 0.2);
     }
-    
+
     .stat-item {
       display: flex;
       align-items: center;
-      gap: 4px;
-      font-size: 12px;
-      color: #94a3b8;
+      gap: 6px;
+      font-size: 13px;
+      color: #cbd5e1;
       font-weight: 500;
+      padding: 4px 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
     }
-    
+
     .trending-author {
-      font-size: 11px;
-      color: #64748b;
-      margin-top: 2px;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      font-style: italic;
     }
-    
-    .no-trending {
+
+    .trending-view-only {
+      background: linear-gradient(135deg, var(--primary-green), var(--primary-green-dark)) !important;
+      border: 1px solid rgba(5, 150, 105, 0.3) !important;
+    }
+
+    .trending-view-only:hover {
+      background: linear-gradient(135deg, var(--primary-green-dark), #065f46) !important;
+      box-shadow: 0 8px 25px rgba(5, 150, 105, 0.4) !important;
+    }
+
+    /* Section Titles */
+    .section-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-light);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid rgba(59, 130, 246, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title.my-presentations {
+      color: #60a5fa;
+    }
+
+    .section-title.trending-section {
+      color: var(--primary-amber);
+      border-bottom-color: rgba(245, 158, 11, 0.3);
+    }
+
+    /* 🔥 NEW STYLES FOR ADDITIONAL SECTIONS */
+    .section-title.favorites-section {
+      color: var(--primary-purple);
+      border-bottom-color: rgba(124, 58, 237, 0.3);
+    }
+
+    .section-title.archived-section {
+      color: var(--text-muted);
+      border-bottom-color: rgba(148, 163, 184, 0.3);
+    }
+
+    .presentations-section {
+      margin-bottom: 40px;
+    }
+
+    .presentations-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Empty State */
+    .empty-state {
       text-align: center;
       padding: 60px 20px;
-      color: #64748b;
+      color: var(--text-muted); /* --- CORRECTED --- Text color now uses a theme variable */
+      background: rgba(28, 48, 81, 1); /* --- CORRECTED --- Was light blue, now fits dark theme */
+      border-radius: var(--card-radius);
+      border: 1px dashed var(--border-light); /* --- CORRECTED --- Now uses theme variable */
     }
-    
-    .no-trending h3 {
-      font-size: 24px;
+
+    .empty-state h4 {
+      font-size: 20px;
       margin-bottom: 12px;
-      color: #f59e0b;
+      color: var(--text-light); /* --- CORRECTED --- Brighter color for better visibility */
     }
-    
-    .no-trending p {
-      font-size: 16px;
-      line-height: 1.5;
+
+    .no-trending {
+      text-align: center;
+      padding: 80px 20px;
+      color: var(--text-dark-muted);
+      background: linear-gradient(145deg, rgba(30, 41, 59, 0.5), rgba(51, 65, 85, 0.3));
+      border-radius: 20px;
+      border: 2px dashed rgba(245, 158, 11, 0.3);
     }
-    
-    .trending-view-only {
-      background-color: #059669 !important;
+
+    .no-trending h3 {
+      font-size: 28px;
+      margin-bottom: 16px;
+      color: var(--primary-amber);
+      font-weight: 700;
     }
-    
-    .trending-view-only:hover {
-      background-color: #047857 !important;
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .presentations-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 16px;
+        padding: 16px 0;
+      }
+      .presentation-actions {
+        flex-direction: column;
+        gap: 8px;
+        padding: 12px 16px;
+      }
+      .action-button {
+        width: 100%;
+        padding: 12px 16px;
+        font-size: 14px;
+        min-height: 44px;
+      }
+      .presentation_topic {
+        padding: 12px 16px;
+      }
+      .presentation_topic span {
+        font-size: 16px;
+      }
+      .presentations-container {
+        padding: 0 16px;
+      }
+      .section-title {
+        font-size: 20px;
+        margin-bottom: 16px;
+      }
+      .presentations-section {
+        margin-bottom: 32px;
+      }
+      .empty-state, .no-trending {
+        padding: 40px 16px;
+      }
+      .no-trending h3 {
+        font-size: 24px;
+      }
+      .empty-state h4 {
+        font-size: 18px;
+      }
+      .tab-item {
+        padding: 10px 16px;
+        font-size: 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .presentations-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 12px 0;
+      }
+      .action-button {
+        padding: 14px 16px;
+        font-size: 15px;
+        min-height: 48px;
+        gap: 8px;
+      }
+      .action-button svg {
+        font-size: 16px;
+      }
+      .presentations-container {
+        padding: 0 12px;
+      }
+      .section-title {
+        font-size: 18px;
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+      }
+      .trending-badge {
+        font-size: 10px;
+        padding: 4px 8px;
+      }
+      .stat-item {
+        font-size: 11px;
+        padding: 3px 6px;
+      }
+      .presentation_stats {
+        padding: 8px 16px;
+      }
     }
   `}</style>
 );
@@ -139,6 +587,7 @@ class User extends Component {
     super(props);
     this.state = {
       anchorEl: null,
+      menuAnchor: null,
       userProfilePicture: null,
       showProfilePictureModal: false,
       userEmail: '',
@@ -147,7 +596,7 @@ class User extends Component {
       tabValue: 0,
       favorites: [],
       presentations: [],
-      trendingPresentations: [], // 🔥 ADD: Trending presentations state
+      trendingPresentations: [], // 🔥 ADD:.empty-state Trending presentations  
       notifications: [],
       notificationCount: 0
     };
@@ -189,7 +638,7 @@ class User extends Component {
         this.fetchNotifications();
         this.fetchNotificationCount();
         this.fetchUserPresentations();
-        this.fetchTrendingPresentations(); // 🔥 ADD: Fetch trending presentations
+        this.fetchTrendingPresentations(); // 🔥 ADD: Fetch trending presentations preview
       }
     });
 
@@ -197,8 +646,6 @@ class User extends Component {
       this.assignRandomProfilePicture();
     }
   }
-  // Update the fetchTrendingPresentations method in User.js
-
 
   // 🔥 NEW: Method to render trending presentation card (view-only)
   renderTrendingPresentation = (p, showStats = true) => (
@@ -253,7 +700,6 @@ class User extends Component {
       console.error('Error fetching trending presentations:', error);
     }
   };
-
 
   viewTrendingPresentation = (presentationId) => {
     // Use Python Flask endpoint
@@ -347,17 +793,22 @@ class User extends Component {
     }
   };
 
+  // Add these methods to your User component if they're missing or update them:
+
   previewPresentation = (presentationId) => {
+    console.log('Preview clicked for:', presentationId); // Debug log
     const previewUrl = `http://localhost:5001/presentations/view/${presentationId}`;
     window.open(previewUrl, '_blank');
   };
 
   editPresentation = (presentationId) => {
+    console.log('Edit clicked for:', presentationId); // Debug log
     const editUrl = `http://localhost:5001/present/${presentationId}`;
     window.open(editUrl, '_blank');
   };
 
   deletePresentation = async (presentationId) => {
+    console.log('Delete clicked for:', presentationId); // Debug log
     if (!window.confirm('Are you sure you want to delete this presentation?')) {
       return;
     }
@@ -380,6 +831,7 @@ class User extends Component {
     }
   };
 
+
   toggleFavorite = (id) => {
     this.setState(prevState => ({
       favorites: prevState.favorites.includes(id)
@@ -388,7 +840,7 @@ class User extends Component {
     }));
   }
 
-  // **ADDED: Function to assign a random profile picture on first signup**
+  // **ADDED: Function to assign a random profile picture on first signup** presentation-actions
   assignRandomProfilePicture = async () => {
     try {
       const response = await fetch('http://localhost:9090/randomProfilePicture');
@@ -539,7 +991,7 @@ class User extends Component {
       tabValue,
       presentations,
       favorites,
-      trendingPresentations // 🔥 ADD: Include trending presentations in render
+      trendingPresentations // 🔥 ADD: Include trending presentation_topic in render 
     } = this.state;
 
     function a11yProps(index) {
@@ -551,6 +1003,7 @@ class User extends Component {
 
     return (
       <div className='user_back'>
+
         <ActionButtonStyles />
         <div className='header'>
           <Grid container>
@@ -577,8 +1030,7 @@ class User extends Component {
                   <span className='profile-picture-container'>
                     {userProfilePicture ? (
                       <div className='profile-picture-wrapper'>
-                        <img
-                          src={userProfilePicture}
+                        <img src={userProfilePicture}
                           alt='Profile'
                           className='profile_picture'
                           onClick={this.handleProfilePictureClick}
@@ -594,7 +1046,7 @@ class User extends Component {
                       />
                     )}
                   </span>
-                  <span> {username}'s Workspace</span>
+                  <span className='username_text'> {username}'s Workspace</span>
                   <span><FaAngleDown /></span>
                 </button>
                 <Popover
@@ -632,6 +1084,8 @@ class User extends Component {
                   value={tabValue}
                   onChange={this.handleTabChange}
                   aria-label="basic tabs example"
+                  variant="scrollable"
+                  scrollButtons="auto"
                 >
                   <Tab icon={<IoMdApps className='tab_icon' />} iconPosition='start' label="All" {...a11yProps(0)} />
                   <Tab icon={<FaRegStar className='tab_icon' />} iconPosition='start' label="Favorites" {...a11yProps(1)} />
@@ -661,17 +1115,46 @@ class User extends Component {
                             <div className='presentation_topic'>
                               <span>{p.title}</span>
                             </div>
+
                             <div className='presentation-actions'>
-                              <button className="action-button view" onClick={() => this.previewPresentation(p.id)}>
-                                <MdOutlineRemoveRedEye /> View
+                              <button
+                                className="action-button view"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  this.previewPresentation(p.id);
+                                }}
+                                type="button"
+                              >
+                                <MdOutlineRemoveRedEye />
+                                <span className="button-text">View</span>
                               </button>
-                              <button className="action-button edit" onClick={() => this.editPresentation(p.id)}>
-                                <MdOutlineEdit /> Edit
+                              <button
+                                className="action-button edit"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  this.editPresentation(p.id);
+                                }}
+                                type="button"
+                              >
+                                <MdOutlineEdit />
+                                <span className="button-text">Edit</span>
                               </button>
-                              <button className="action-button delete" onClick={() => this.deletePresentation(p.id)}>
-                                <MdOutlineDelete /> Delete
+                              <button
+                                className="action-button delete"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  this.deletePresentation(p.id);
+                                }}
+                                type="button"
+                              >
+                                <MdOutlineDelete />
+                                <span className="button-text">Delete</span>
                               </button>
                             </div>
+
                           </div>
                         ))}
                       </div>
@@ -694,87 +1177,116 @@ class User extends Component {
                       </div>
                     )}
                   </div>
+
+                  {/* Show message when user has no presentations */}
+                  {presentations.length === 0 && (
+                    <div className="presentations-section">
+                      <h3 className="section-title my-presentations">
+                        📁 My Presentations
+                      </h3>
+                      <div className="empty-state">
+                        <h4>No presentations yet</h4>
+                        <p>Create your first presentation to get started!</p>
+                        <p>Click the "Create New" button above to begin.</p>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </CustomTabPanel>
+
               <CustomTabPanel value={tabValue} index={1}>
-                <div className='presentations-grid'>
-                  {presentations
-                    .filter(p => favorites.includes(p.id))
-                    .map(p => (
-                      <div className='presentation' key={p.id}>
-                        <div className='presentation_image'>
-                          <img src={p.image} alt={p.title} />
-                          <FaStar
-                            title='Unfavorite'
-                            className='favorite_icon active'
-                            onClick={() => this.toggleFavorite(p.id)}
-                          />
+                <div className="presentations-container">
+                  <div className='presentations-grid'>
+                    {presentations
+                      .filter(p => favorites.includes(p.id))
+                      .map(p => (
+                        <div className='presentation' key={p.id}>
+                          <div className='presentation_image'>
+                            <img src={p.image} alt={p.title} />
+                            <FaStar
+                              title='Unfavorite'
+                              className='favorite_icon active'
+                              onClick={() => this.toggleFavorite(p.id)}
+                            />
+                          </div>
+                          <div className='presentation_topic'>
+                            <span>{p.title}</span>
+                          </div>
+                          <div className='presentation-actions'>
+                            <button className="action-button view" onClick={() => this.previewPresentation(p.id)}>
+                              <MdOutlineRemoveRedEye />
+                              <span className="button-text">View</span>
+                            </button>
+                            <button className="action-button edit" onClick={() => this.editPresentation(p.id)}>
+                              <MdOutlineEdit />
+                              <span className="button-text">Edit</span>
+                            </button>
+                            <button className="action-button delete" onClick={() => this.deletePresentation(p.id)}>
+                              <MdOutlineDelete />
+                              <span className="button-text">Delete</span>
+                            </button>
+                          </div>
                         </div>
-                        <div className='presentation_topic'>
-                          <span>{p.title}</span>
-                        </div>
-                        <div className='presentation-actions'>
-                          <button className="action-button view" onClick={() => this.previewPresentation(p.id)}>
-                            <MdOutlineRemoveRedEye /> View
-                          </button>
-                          <button className="action-button edit" onClick={() => this.editPresentation(p.id)}>
-                            <MdOutlineEdit /> Edit
-                          </button>
-                          <button className="action-button delete" onClick={() => this.deletePresentation(p.id)}>
-                            <MdOutlineDelete /> Delete
-                          </button>
-                        </div>
-                      </div>
-                    ))}
+                      ))}
+                  </div>
+                  {presentations.filter(p => favorites.includes(p.id)).length === 0 && (
+                    <div className="empty-state">
+                      <h4>No favorite presentations</h4>
+                      <p>Mark presentations as favorites by clicking the star icon!</p>
+                    </div>
+                  )}
                 </div>
               </CustomTabPanel>
 
               {/* 🔥 UPDATED: Trending Tab Implementation */}
               <CustomTabPanel value={tabValue} index={2}>
-                <div className="presentations-grid">
-                  {trendingPresentations.length > 0 ? (
-                    trendingPresentations.map(p => (
-                      <div className='presentation trending-presentation' key={p.id}>
-                        <div className='presentation_image'>
-                          <img src={p.image} alt={p.title} />
-                          {/* 🔥 ADD: Trending badge */}
-                          <div className="trending-badge">
-                            🔥 Trending
+                <div className="presentations-container">
+                  <div className="presentations-grid">
+                    {trendingPresentations.length > 0 ? (
+                      trendingPresentations.map(p => (
+                        <div className='presentation trending-presentation' key={p.id}>
+                          <div className='presentation_image'>
+                            <img src={p.image} alt={p.title} />
+                            {/* 🔥 ADD: Trending badge */}
+                            <div className="trending-badge">
+                              🔥 Trending
+                            </div>
+                          </div>
+                          <div className='presentation_topic'>
+                            <span>{p.title}</span>
+                            <div className="trending-author">
+                              By {p.username} • {p.category}
+                            </div>
+                          </div>
+                          {/* 🔥 ADD: Trending stats */}
+                          <div className='presentation_stats'>
+                            <span className="stat-item">
+                              👁️ {p.views}
+                            </span>
+                            <span className="stat-item">
+                              ❤️ {p.likes}
+                            </span>
+                          </div>
+                          {/* 🔥 ADD: View-only action for trending empty*/}
+                          <div className='presentation-actions'>
+                            <button
+                              className="action-button view trending-view-only"
+                              onClick={() => this.viewTrendingPresentation(p.id)}
+                            >
+                              <MdOutlineRemoveRedEye />
+                              <span className="button-text">View Presentation</span>
+                            </button>
                           </div>
                         </div>
-                        <div className='presentation_topic'>
-                          <span>{p.title}</span>
-                          <div className="trending-author">
-                            By {p.username} • {p.category}
-                          </div>
-                        </div>
-                        {/* 🔥 ADD: Trending stats */}
-                        <div className='presentation_stats'>
-                          <span className="stat-item">
-                            👁️ {p.views}
-                          </span>
-                          <span className="stat-item">
-                            ❤️ {p.likes}
-                          </span>
-                        </div>
-                        {/* 🔥 ADD: View-only action for trending */}
-                        <div className='presentation-actions'>
-                          <button
-                            className="action-button view trending-view-only"
-                            onClick={() => this.viewTrendingPresentation(p.id)}
-                          >
-                            <MdOutlineRemoveRedEye /> View Presentation
-                          </button>
-                        </div>
+                      ))
+                    ) : (
+                      <div className="no-trending">
+                        <h3>🔥 No Trending Presentations Yet</h3>
+                        <p>Check back later for popular presentations from the community!</p>
+                        <p>Be the first to create amazing content that trends!</p>
                       </div>
-                    ))
-                  ) : (
-                    <div className="no-trending">
-                      <h3>🔥 No Trending Presentations Yet</h3>
-                      <p>Check back later for popular presentations from the community!</p>
-                      <p>Be the first to create amazing content that trends!</p>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
               </CustomTabPanel>
             </Box>
@@ -786,3 +1298,5 @@ class User extends Component {
 }
 
 export default User;
+
+
