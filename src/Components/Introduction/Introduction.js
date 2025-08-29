@@ -3,6 +3,7 @@ import image1 from '../SlideShow/Images/image_1.png';
 import image2 from '../SlideShow/Images/image_2.png';
 import image3 from '../SlideShow/Images/image_3.jpg';
 import image4 from '../SlideShow/Images/image_5.png';
+import logo from './Logo.png';
 
 // --- CSS Styles ---
 // All styles are included here to keep the component self-contained.
@@ -54,18 +55,19 @@ const GlobalStyles = () => (
         border: 1px solid rgba(255, 255, 255, 0.3);
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     }
-    
-    .logo {
-        font-family: 'Raleway', sans-serif;
-        font-size: 1.75rem;
-        font-weight: 700;
-        color: var(--text-dark);
-    }
-    
-    .logo span {
-        color: var(--primary-blue);
-    }
-    
+        
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* Style for the actual logo image */
+.logo img {
+  height: 50px; /* You can change this value! Try 25px or 35px to see what you like. */
+  margin-right: 0.5rem;
+}
     .nav-links {
         display: flex;
         gap: 2rem;
@@ -284,10 +286,10 @@ const Header = () => (
   <header className="header">
     <div className="header-container">
       <div className="logo">
-        <span>webify</span>.me
+        <img src={logo} ></img>
       </div>
       <button className="mobile-menu-btn">
-         <svg xmlns="http://www.w.3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        <svg xmlns="http://www.w.3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
       </button>
     </div>
   </header>
@@ -302,7 +304,7 @@ const TypewriterEffect = ({ lines, speed = 50 }) => {
   useEffect(() => {
     const handleTyping = () => {
       const fullText = lines[currentLineIndex];
-      
+
       setDisplayedText(
         isDeleting
           ? fullText.substring(0, displayedText.length - 1)
@@ -320,41 +322,41 @@ const TypewriterEffect = ({ lines, speed = 50 }) => {
     const timer = setTimeout(handleTyping, isDeleting ? speed / 2 : speed);
     return () => clearTimeout(timer);
   }, [displayedText, isDeleting, lines, speed, currentLineIndex]);
-  
+
   return <span>{displayedText}</span>;
 };
 
 
 // Helper Component: Slideshow
 const Slideshow = () => {
-    const images = [
-        image1,
-        image2,
-        image3,
-        image4,
-    ];
-    const [currentIndex, setCurrentIndex] = useState(0);
+  const images = [
+    image1,
+    image2,
+    image3,
+    image4,
+  ];
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-        }, 3000);
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 3000);
 
-        return () => clearInterval(intervalId);
-    }, [images.length]);
+    return () => clearInterval(intervalId);
+  }, [images.length]);
 
-    return (
-        <div className="slideshow-container">
-            {images.map((src, index) => (
-                <img
-                    key={src}
-                    src={src}
-                    alt={`Slide ${index + 1}`}
-                    className={index === currentIndex ? 'active' : 'inactive'}
-                />
-            ))}
-        </div>
-    );
+  return (
+    <div className="slideshow-container">
+      {images.map((src, index) => (
+        <img
+          key={src}
+          src={src}
+          alt={`Slide ${index + 1}`}
+          className={index === currentIndex ? 'active' : 'inactive'}
+        />
+      ))}
+    </div>
+  );
 };
 
 
@@ -431,7 +433,7 @@ const App = () => {
                 Instantly Create Presentations
               </h1>
               <div className="subsub_Heading">with AI</div>
-              
+
               <div className='intro_subheading'>
                 <TypewriterEffect
                   lines={[
@@ -444,12 +446,12 @@ const App = () => {
               </div>
 
               <div className='start_button'>
-                 <a href="./SignUp" style={{textDecoration: 'none'}}>
-                   <button>Start Now</button>
-                 </a>
+                <a href="./SignUp" style={{ textDecoration: 'none' }}>
+                  <button>Start Now</button>
+                </a>
               </div>
             </div>
-            
+
             <div className="right-section">
               <Slideshow />
             </div>
