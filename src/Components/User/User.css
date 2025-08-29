@@ -30,6 +30,7 @@
 .notification_icon_button {
     background-color: white;
     border: none;
+    cursor: pointer;
 }
 
 .notification_icon {
@@ -64,6 +65,7 @@
     border-radius: 1rem;
     background-color: #777e8618;
     border: none;
+    cursor: pointer;
 }
 
 .workspace button:hover {
@@ -85,6 +87,7 @@
     border-color: #1e90ff;
     color: #1e90ff;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .plusicon {
@@ -115,6 +118,8 @@
     border-radius: 1rem;
     margin-right: 1rem;
     background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .presentation_image {
@@ -154,21 +159,14 @@
     gap: 1.25rem;
 }
 
-
-.presentation {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
 .presentation_icons {
     margin-top: 2rem;
     justify-self: left;
     margin-left: 0.5rem;
+    cursor: pointer;
 }
 
 .presentation_view button {
-    /* margin-top: 3.5rem; */
     width: 11rem;
     border-radius: 2rem;
     border-width: 0.1rem;
@@ -176,6 +174,7 @@
     border-color: #1e90ff;
     color: #1e90ff;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .presentation_view button:hover {
@@ -228,111 +227,6 @@
 .camera-icon {
     color: white;
     font-size: 20px;
-}
-
-/* Add this to your existing User.css */
-
-/* Notification container and badge */
-.notification_container {
-    position: relative;
-    display: inline-block;
-}
-
-.notification_icon_button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 8px;
-    border-radius: 50%;
-    transition: background-color 0.2s ease;
-    position: relative;
-}
-
-.notification_icon_button:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-}
-
-.notification_icon {
-    font-size: 24px;
-    color: #333;
-}
-
-.notification_badge {
-    position: absolute;
-    top: 2px;
-    right: 2px;
-    background: #ff4444;
-    color: white;
-    border-radius: 50%;
-    width: 18px;
-    height: 18px;
-    font-size: 11px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.1);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
-
-/* 🔥 NEW: Section separators */
-.presentations-section {
-    margin-bottom: 40px;
-}
-
-.section-title {
-    font-size: 20px;
-    font-weight: 600;
-    color: #e2e8f0;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #334155;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.section-title.my-presentations {
-    color: #3b82f6;
-}
-
-.section-title.trending-section {
-    color: #f59e0b;
-}
-
-.empty-state {
-    text-align: center;
-    padding: 40px 20px;
-    color: #64748b;
-    background: rgba(51, 65, 85, 0.3);
-    border-radius: 12px;
-    margin: 20px 0;
-}
-
-.trending-view-only {
-    background-color: #059669 !important;
-    width: 100%;
-}
-
-.trending-author {
-    font-size: 11px;
-    color: #64748b;
-    margin-top: 2px;
 }
 
 @media screen and (max-width:480px) {
@@ -414,4 +308,6 @@
         margin-top: 0.7rem;
         margin-left: 0.3rem;
     }
+
+
 }

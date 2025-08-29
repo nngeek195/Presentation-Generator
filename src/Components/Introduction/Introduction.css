@@ -1,51 +1,69 @@
-
 /* Main background with light gradient */
 .intro_back {
-    min-height: 100vh;
-    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%);
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
 }
+
+/* Make logo circular  */
+.logo {
+  border-radius: 50%;
+}
+
+/* Add border */
+.logo {
+  border: rgba(255, 255, 255, 0);
+}
+
+/* Add background */
+.logo {
+  background: rgba(255, 255, 255, 0);
+  padding: 0.5rem;
+}
+
 
 /* Subtle background pattern */
 .intro_back::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-        radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 75% 75%, rgba(147, 197, 253, 0.05) 0%, transparent 50%);
-    animation: gentle-float 20s ease-in-out infinite;
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(147, 197, 253, 0.05) 0%, transparent 50%);
+  animation: gentle-float 20s ease-in-out infinite;
 }
 
 @keyframes gentle-float {
 
-    0%,
-    100% {
-        transform: translateY(0) rotate(0deg);
-    }
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
 
-    50% {
-        transform: translateY(-10px) rotate(1deg);
-    }
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
 }
 
 /* SVG background container */
 #bg-wrap {
-    position: absolute;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 1;
-    pointer-events: none;
-    overflow: hidden;
-    opacity: 0.7;
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0.7;
+  z-index: 1;
 }
+
 .intro_content {
   position: relative;
-  z-index: 2; /* ✅ Above background */
+  z-index: 2;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -57,12 +75,14 @@
   width: 100%;
   box-sizing: border-box;
 }
+
 /* src/Components/Introduction/Introduction.css */
 
 /* Add this at the top of your CSS */
 .hero-container {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Equal width columns */
+  grid-template-columns: 1fr 1fr;
+  /* Equal width columns */
   gap: 4rem;
   max-width: 1200px;
   margin: 0 auto;
@@ -91,14 +111,14 @@
 
 .subsub_Heading {
   font-weight: 600;
-    font-size: larger;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 600;
-    color: rgb(2, 25, 71);
-    line-height: 1.15;
-    text-align: left;
-    margin: 0 0 1rem 0;
-    animation: soft-glow 2s ease-in-out infinite alternate;
+  font-size: larger;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  color: rgb(79, 133, 241);
+  line-height: 1.15;
+  text-align: left;
+  margin: 0 0 1rem 0;
+  animation: soft-glow 2s ease-in-out infinite alternate;
 }
 
 /* .subsub_Heading {
@@ -112,26 +132,27 @@
 
 /* Subheading (typewriter lives here) */
 .intro_subheading {
-    font-size: clamp(1rem, 2vw, 1.2rem);
-    font-family: "Inter", sans-serif;
-    color: var(--text-light);
-    max-width: 800px;
-    line-height: 1.6;
-    font-weight: 400;
-    text-align: left;
-    margin: 1.5rem 0 2rem 0;
-    padding: 0;
-    min-height: 10px;
-    /* prevents layout jump while typing */
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-family: "Inter", sans-serif;
+  color: var(--text-light);
+  max-width: 800px;
+  line-height: 1.6;
+  font-weight: 400;
+  text-align: left;
+  margin: 1.5rem 0 2rem 0;
+  padding: 0;
+  min-height: 10px;
+  /* prevents layout jump while typing */
 
 }
 
 /* Start button */
 .start_button {
-    margin-top: 0.5rem;
-    display: flex;
-    justify-content: flex-start;
-    width: 100%
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  z-index: 10;
 }
 
 .start_button button {
@@ -162,7 +183,8 @@
 /* Responsive Design */
 @media (max-width: 992px) {
   .hero-container {
-    grid-template-columns: 1fr; /* Stack on mobile */
+    grid-template-columns: 1fr;
+    /* Stack on mobile */
     gap: 2rem;
     text-align: center;
   }
