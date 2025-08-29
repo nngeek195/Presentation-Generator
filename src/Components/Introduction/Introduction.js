@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Logo from './Logo.png'
 
 // --- CSS Styles ---
 // All styles are included here to keep the component self-contained.
@@ -281,10 +280,10 @@ const Header = () => (
   <header className="header">
     <div className="header-container">
       <div className="logo">
-        <img style={{width: '256px', height: '62px', marginLeft: '-2.5rem'}} src={Logo} />
+        <span>webify</span>.me
       </div>
       <button className="mobile-menu-btn">
-         <svg xmlns="http://www.w.3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        <svg xmlns="http://www.w.3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
       </button>
     </div>
   </header>
@@ -299,7 +298,7 @@ const TypewriterEffect = ({ lines, speed = 50 }) => {
   useEffect(() => {
     const handleTyping = () => {
       const fullText = lines[currentLineIndex];
-      
+
       setDisplayedText(
         isDeleting
           ? fullText.substring(0, displayedText.length - 1)
@@ -317,41 +316,41 @@ const TypewriterEffect = ({ lines, speed = 50 }) => {
     const timer = setTimeout(handleTyping, isDeleting ? speed / 2 : speed);
     return () => clearTimeout(timer);
   }, [displayedText, isDeleting, lines, speed, currentLineIndex]);
-  
+
   return <span>{displayedText}</span>;
 };
 
 
 // Helper Component: Slideshow
 const Slideshow = () => {
-    const images = [
-        'https://placehold.co/800x600/6366f1/ffffff?text=Slide+1',
-        'https://placehold.co/800x600/ec4899/ffffff?text=Slide+2',
-        'https://placehold.co/800x600/10b981/ffffff?text=Slide+3',
-        'https://placehold.co/800x600/f59e0b/ffffff?text=Slide+4',
-    ];
-    const [currentIndex, setCurrentIndex] = useState(0);
+  const images = [
+    'https://placehold.co/800x600/6366f1/ffffff?text=Slide+1',
+    'https://placehold.co/800x600/ec4899/ffffff?text=Slide+2',
+    'https://placehold.co/800x600/10b981/ffffff?text=Slide+3',
+    'https://placehold.co/800x600/f59e0b/ffffff?text=Slide+4',
+  ];
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-        }, 3000);
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 3000);
 
-        return () => clearInterval(intervalId);
-    }, [images.length]);
+    return () => clearInterval(intervalId);
+  }, [images.length]);
 
-    return (
-        <div className="slideshow-container">
-            {images.map((src, index) => (
-                <img
-                    key={src}
-                    src={src}
-                    alt={`Slide ${index + 1}`}
-                    className={index === currentIndex ? 'active' : 'inactive'}
-                />
-            ))}
-        </div>
-    );
+  return (
+    <div className="slideshow-container">
+      {images.map((src, index) => (
+        <img
+          key={src}
+          src={src}
+          alt={`Slide ${index + 1}`}
+          className={index === currentIndex ? 'active' : 'inactive'}
+        />
+      ))}
+    </div>
+  );
 };
 
 
@@ -428,7 +427,7 @@ const App = () => {
                 Instantly Create Presentations
               </h1>
               <div className="subsub_Heading">with AI</div>
-              
+
               <div className='intro_subheading'>
                 <TypewriterEffect
                   lines={[
@@ -441,12 +440,12 @@ const App = () => {
               </div>
 
               <div className='start_button'>
-                 <a href="./SignUp" style={{textDecoration: 'none'}}>
-                   <button>Start Now</button>
-                 </a>
+                <a href="./SignUp" style={{ textDecoration: 'none' }}>
+                  <button>Start Now</button>
+                </a>
               </div>
             </div>
-            
+
             <div className="right-section">
               <Slideshow />
             </div>
