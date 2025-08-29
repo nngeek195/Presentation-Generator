@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import image1 from '../SlideShow/Images/image_1.png';
+import image2 from '../SlideShow/Images/image_2.png';
+import image3 from '../SlideShow/Images/image_3.jpg';
+import image4 from '../SlideShow/Images/image_5.png';
 
 // --- CSS Styles ---
 // All styles are included here to keep the component self-contained.
@@ -324,10 +328,10 @@ const TypewriterEffect = ({ lines, speed = 50 }) => {
 // Helper Component: Slideshow
 const Slideshow = () => {
     const images = [
-        'https://placehold.co/800x600/6366f1/ffffff?text=Slide+1',
-        'https://placehold.co/800x600/ec4899/ffffff?text=Slide+2',
-        'https://placehold.co/800x600/10b981/ffffff?text=Slide+3',
-        'https://placehold.co/800x600/f59e0b/ffffff?text=Slide+4',
+        image1,
+        image2,
+        image3,
+        image4,
     ];
     const [currentIndex, setCurrentIndex] = useState(0);
 
