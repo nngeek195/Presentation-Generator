@@ -1,4 +1,10 @@
 import React, { useState, useEffect } from 'react';
+
+import image1 from '../SlideShow/Images/image_1.png';
+import image2 from '../SlideShow/Images/image_2.png';
+import image3 from '../SlideShow/Images/image_3.jpg';
+import image4 from '../SlideShow/Images/image_5.png';
+import logo from './Logo.png';
 import Logo from './Logo.png'
 
 // --- CSS Styles ---
@@ -51,18 +57,19 @@ const GlobalStyles = () => (
         border: 1px solid rgba(255, 255, 255, 0.3);
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     }
-    
-    .logo {
-        font-family: 'Raleway', sans-serif;
-        font-size: 1.75rem;
-        font-weight: 700;
-        color: var(--text-dark);
-    }
-    
-    .logo span {
-        color: var(--primary-blue);
-    }
-    
+        
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* Style for the actual logo image */
+.logo img {
+  height: 50px; /* You can change this value! Try 25px or 35px to see what you like. */
+  margin-right: 0.5rem;
+}
     .nav-links {
         display: flex;
         gap: 2rem;
@@ -281,6 +288,9 @@ const Header = () => (
   <header className="header">
     <div className="header-container">
       <div className="logo">
+
+        <img src={logo} ></img>
+
          <img style={{width: '256px', height: '62px', marginLeft: '-3rem'}} src={Logo} />
       </div>
       <button className="mobile-menu-btn">
@@ -325,6 +335,12 @@ const TypewriterEffect = ({ lines, speed = 50 }) => {
 // Helper Component: Slideshow
 const Slideshow = () => {
   const images = [
+
+    image1,
+    image2,
+    image3,
+    image4,
+
     'https://placehold.co/800x600/6366f1/ffffff?text=Slide+1',
     'https://placehold.co/800x600/ec4899/ffffff?text=Slide+2',
     'https://placehold.co/800x600/10b981/ffffff?text=Slide+3',

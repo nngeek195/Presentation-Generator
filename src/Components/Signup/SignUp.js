@@ -291,6 +291,7 @@ class SignUp extends Component {
         } = this.state;
 
         return (
+            
             <div className='signup_back'>
                 <Grid container className='grid_container'>
                     <Grid className='signup_first_grid' item xs={6}>
@@ -389,11 +390,6 @@ class SignUp extends Component {
                                 <hr className='hr1' />
                                 <span>OR</span>
                                 <hr className='hr2' />
-                            </div>
-                            <div className='signup_g'>
-                                <button onClick={this.handleGoogleSignup}>
-                                    <img src={signup_g} alt="Google Signup" />
-                                </button>
                             </div>
                             <div className='havent_account'>
                                 <span>Have an account? <Link to="/login">Log in</Link></span>

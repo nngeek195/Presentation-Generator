@@ -369,14 +369,6 @@ class LogIn extends Component {
                                 <span>OR</span>
                                 <hr className='hr2_login' />
                             </div>
-                            <div className='login_g'>
-                                <button
-                                    onClick={this.handleGoogleLogin}
-                                    disabled={loading}
-                                >
-                                    <img src={login_g} alt="Google Login" />
-                                </button>
-                            </div>
                             <div className='have_account'>
                                 <span>Don't have an account? <Link to="/signup">Sign Up</Link></span>
                             </div>
