@@ -647,7 +647,7 @@ class User extends Component {
     }
   }
 
-  // 🔥 NEW: Method to render trending presentation card (view-only)
+  // 🔥 NEW: Method to render trending presentation card (view-only) 127.0.0.1:5001
   renderTrendingPresentation = (p, showStats = true) => (
     <div className='presentation trending-presentation' key={p.id}>
       <div className='presentation_image'>
