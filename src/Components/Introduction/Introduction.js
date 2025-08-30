@@ -288,9 +288,6 @@ const Header = () => (
   <header className="header">
     <div className="header-container">
       <div className="logo">
-
-        <img src={logo} ></img>
-
          <img style={{width: '256px', height: '62px', marginLeft: '-3rem'}} src={Logo} />
       </div>
       <button className="mobile-menu-btn">
