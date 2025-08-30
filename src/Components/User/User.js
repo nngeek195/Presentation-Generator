@@ -720,7 +720,7 @@ class User extends Component {
         window.location.href = '/login';
         return false;
       }
-      const response = await fetch('https://6faa62dbfa67e352ff5d3659f4f83df1.serveo.net/login', {
+      const response = await fetch('https://361346ae81af903e19fb1ee67bc3bb45.serveo.net/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: parsedAuthData.email, password: parsedAuthData.password })

@@ -21,7 +21,7 @@ class ProfilePictureModal extends Component {
 
     fetchPictureOptions = async () => {
         try {
-            const response = await fetch('https://6faa62dbfa67e352ff5d3659f4f83df1.serveo.net/profilePictureOptions/6');
+            const response = await fetch('https://361346ae81af903e19fb1ee67bc3bb45.serveo.net/profilePictureOptions/6');
             const data = await response.json();
 
             if (data.success && data.data) {
