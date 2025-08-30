@@ -8,7 +8,7 @@ class AdminPanel extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // Notification form state
+            // Notification form state 
             title: '',
             message: '',
             type: 'info',
@@ -41,7 +41,7 @@ class AdminPanel extends Component {
 
     fetchAllNotifications = async () => {
         try {
-            const response = await fetch('http://localhost:9090/admin/notifications');
+            const response = await fetch('https://6faa62dbfa67e352ff5d3659f4f83df1.serveo.net/admin/notifications');
             const data = await response.json();
 
             if (data.success) {
@@ -60,7 +60,7 @@ class AdminPanel extends Component {
 
     fetchUsers = async () => {
         try {
-            const response = await fetch('http://localhost:9090/users');
+            const response = await fetch('https://6faa62dbfa67e352ff5d3659f4f83df1.serveo.net/users');
             const data = await response.json();
 
             console.log('Fetched users:', data); // Debugging log
@@ -109,7 +109,7 @@ class AdminPanel extends Component {
         this.setState({ loading: true, error: '', success: '' });
 
         try {
-            const response = await fetch('http://localhost:9090/admin/sendEmailNotification', {
+            const response = await fetch('https://6faa62dbfa67e352ff5d3659f4f83df1.serveo.net/admin/sendEmailNotification', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
