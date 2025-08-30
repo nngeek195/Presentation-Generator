@@ -678,7 +678,7 @@ class User extends Component {
   // 🔥 UPDATE: fetchTrendingPresentations method in User.js
   fetchTrendingPresentations = async () => {
     try {
-      const response = await fetch('https://fddcbf2993574c63f53c006b80d21d92.serveo.net/trending');
+      const response = await fetch('https://398298a0bc69.ngrok-free.app/trending');
       const data = await response.json();
       if (data.success) {
         const trendingPresentations = data.data.presentations.map(p => ({
@@ -702,7 +702,7 @@ class User extends Component {
 
   viewTrendingPresentation = (presentationId) => {
     // Use Python Flask endpoint
-    const previewUrl = `https://fddcbf2993574c63f53c006b80d21d92.serveo.net/trending/view/${presentationId}`;
+    const previewUrl = `https://398298a0bc69.ngrok-free.app/trending/view/${presentationId}`;
     window.open(previewUrl, '_blank');
   };
 
@@ -762,7 +762,7 @@ class User extends Component {
       alert('Error: User email not found. Please login again.');
       return;
     }
-    const flaskUrl = `https://fddcbf2993574c63f53c006b80d21d92.serveo.net/?userEmail=${encodeURIComponent(userEmail)}`;
+    const flaskUrl = `https://398298a0bc69.ngrok-free.app/?userEmail=${encodeURIComponent(userEmail)}`;
     window.open(flaskUrl, '_blank');
   };
 
@@ -771,7 +771,7 @@ class User extends Component {
     if (!userEmail) return;
 
     try {
-      const response = await fetch(`https://fddcbf2993574c63f53c006b80d21d92.serveo.net/presentations/${encodeURIComponent(userEmail)}`);
+      const response = await fetch(`https://398298a0bc69.ngrok-free.app/presentations/${encodeURIComponent(userEmail)}`);
       const data = await response.json();
 
       if (data.success && Array.isArray(data.presentations)) {
@@ -796,13 +796,13 @@ class User extends Component {
 
   previewPresentation = (presentationId) => {
     console.log('Preview clicked for:', presentationId); // Debug log
-    const previewUrl = `https://fddcbf2993574c63f53c006b80d21d92.serveo.net/presentations/view/${presentationId}`;
+    const previewUrl = `https://398298a0bc69.ngrok-free.app/presentations/view/${presentationId}`;
     window.open(previewUrl, '_blank');
   };
 
   editPresentation = (presentationId) => {
     console.log('Edit clicked for:', presentationId); // Debug log
-    const editUrl = `https://fddcbf2993574c63f53c006b80d21d92.serveo.net/present/${presentationId}`;
+    const editUrl = `https://398298a0bc69.ngrok-free.app/present/${presentationId}`;
     window.open(editUrl, '_blank');
   };
 
@@ -812,7 +812,7 @@ class User extends Component {
       return;
     }
     try {
-      const response = await fetch(`https://fddcbf2993574c63f53c006b80d21d92.serveo.net/presentations/delete/${presentationId}`, {
+      const response = await fetch(`https://398298a0bc69.ngrok-free.app/presentations/delete/${presentationId}`, {
         method: 'DELETE'
       });
       const data = await response.json();
