@@ -678,14 +678,13 @@ class User extends Component {
   // 🔥 UPDATE: fetchTrendingPresentations method in User.js
   fetchTrendingPresentations = async () => {
     try {
-      const response = await fetch('http://localhost:5001/trending');
+      const response = await fetch('https://fddcbf2993574c63f53c006b80d21d92.serveo.net/trending');
       const data = await response.json();
       if (data.success) {
         const trendingPresentations = data.data.presentations.map(p => ({
           id: p._id,
           title: p.presentationName,
-          image: p.previewImageUrl || Presentation_1, // 🔥 USE: previewImageUrl
-          createdAt: p.createdAt,
+          image: p.previewImageUrl || Presentation_1, // 🔥 5001
           type: 'trending',
           code: p.code,
           views: p.views || 0,
@@ -703,7 +702,7 @@ class User extends Component {
 
   viewTrendingPresentation = (presentationId) => {
     // Use Python Flask endpoint
-    const previewUrl = `http://localhost:5001/trending/view/${presentationId}`;
+    const previewUrl = `https://fddcbf2993574c63f53c006b80d21d92.serveo.net/trending/view/${presentationId}`;
     window.open(previewUrl, '_blank');
   };
 
@@ -721,7 +720,7 @@ class User extends Component {
         window.location.href = '/login';
         return false;
       }
-      const response = await fetch('http://localhost:9090/login', {
+      const response = await fetch('https://6faa62dbfa67e352ff5d3659f4f83df1.serveo.net/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: parsedAuthData.email, password: parsedAuthData.password })
@@ -763,7 +762,7 @@ class User extends Component {
       alert('Error: User email not found. Please login again.');
       return;
     }
-    const flaskUrl = `http://localhost:5001/?userEmail=${encodeURIComponent(userEmail)}`;
+    const flaskUrl = `https://fddcbf2993574c63f53c006b80d21d92.serveo.net/?userEmail=${encodeURIComponent(userEmail)}`;
     window.open(flaskUrl, '_blank');
   };
 
@@ -772,7 +771,7 @@ class User extends Component {
     if (!userEmail) return;
 
     try {
-      const response = await fetch(`http://localhost:5001/presentations/${encodeURIComponent(userEmail)}`);
+      const response = await fetch(`https://fddcbf2993574c63f53c006b80d21d92.serveo.net/presentations/${encodeURIComponent(userEmail)}`);
       const data = await response.json();
 
       if (data.success && Array.isArray(data.presentations)) {
@@ -797,13 +796,13 @@ class User extends Component {
 
   previewPresentation = (presentationId) => {
     console.log('Preview clicked for:', presentationId); // Debug log
-    const previewUrl = `http://localhost:5001/presentations/view/${presentationId}`;
+    const previewUrl = `https://fddcbf2993574c63f53c006b80d21d92.serveo.net/presentations/view/${presentationId}`;
     window.open(previewUrl, '_blank');
   };
 
   editPresentation = (presentationId) => {
     console.log('Edit clicked for:', presentationId); // Debug log
-    const editUrl = `http://localhost:5001/present/${presentationId}`;
+    const editUrl = `https://fddcbf2993574c63f53c006b80d21d92.serveo.net/present/${presentationId}`;
     window.open(editUrl, '_blank');
   };
 
@@ -813,7 +812,7 @@ class User extends Component {
       return;
     }
     try {
-      const response = await fetch(`http://localhost:5001/presentations/delete/${presentationId}`, {
+      const response = await fetch(`https://fddcbf2993574c63f53c006b80d21d92.serveo.net/presentations/delete/${presentationId}`, {
         method: 'DELETE'
       });
       const data = await response.json();

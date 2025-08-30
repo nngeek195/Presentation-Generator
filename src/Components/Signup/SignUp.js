@@ -26,14 +26,14 @@ class SignUp extends Component {
         this.usernameCheckTimer = null;
     }
 
-    // Check if email exists in database
+    // Check if email exists in database 9090
     checkEmailExists = async (email) => {
         if (!email || !email.includes('@')) return;
 
         this.setState({ checkingEmail: true, emailError: '' });
 
         try {
-            const response = await fetch(`http://localhost:9090/checkEmail/${encodeURIComponent(email)}`);
+            const response = await fetch(`https://6faa62dbfa67e352ff5d3659f4f83df1.serveo.net/checkEmail/${encodeURIComponent(email)}`);
             const data = await response.json();
 
             if (data.success && data.data?.exists) {
@@ -63,7 +63,7 @@ class SignUp extends Component {
         this.setState({ checkingUsername: true, usernameError: '' });
 
         try {
-            const response = await fetch(`http://localhost:9090/checkUsername/${encodeURIComponent(username)}`);
+            const response = await fetch(`https://6faa62dbfa67e352ff5d3659f4f83df1.serveo.net/checkUsername/${encodeURIComponent(username)}`);
             const data = await response.json();
 
             if (data.success && data.data?.exists) {
@@ -204,7 +204,7 @@ class SignUp extends Component {
         };
 
         try {
-            const response = await fetch('http://localhost:9090/signup', {
+            const response = await fetch('https://6faa62dbfa67e352ff5d3659f4f83df1.serveo.net/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -291,7 +291,7 @@ class SignUp extends Component {
         } = this.state;
 
         return (
-            
+
             <div className='signup_back'>
                 <Grid container className='grid_container'>
                     <Grid className='signup_first_grid' item xs={6}>

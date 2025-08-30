@@ -19,7 +19,7 @@ class LogIn extends Component {
         };
     }
 
-    // 🔧 SINGLE componentDidMount method
+    // 🔧 SINGLE componentDidMount method 9090
     componentDidMount() {
         // Check if user is already logged in
         this.checkExistingAuth();
@@ -49,7 +49,7 @@ class LogIn extends Component {
                     console.log('✅ User already authenticated, validating credentials...');
 
                     // Validate stored credentials with backend
-                    const response = await fetch('http://localhost:9090/login', {
+                    const response = await fetch('https://6faa62dbfa67e352ff5d3659f4f83df1.serveo.net/login', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -87,7 +87,7 @@ class LogIn extends Component {
 
     testBackendConnection = async () => {
         try {
-            const response = await fetch('http://localhost:9090/test');
+            const response = await fetch('https://6faa62dbfa67e352ff5d3659f4f83df1.serveo.net/test');
             const data = await response.json();
             console.log('✅ Backend connection test:', data);
         } catch (error) {
@@ -147,7 +147,7 @@ class LogIn extends Component {
         console.log('📤 Sending login request for:', loginData.email);
 
         try {
-            const response = await fetch('http://localhost:9090/login', {
+            const response = await fetch('https://6faa62dbfa67e352ff5d3659f4f83df1.serveo.net/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
