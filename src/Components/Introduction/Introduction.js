@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
-import image1 from '../SlideShow/Images/image_1.png';
-import image2 from '../SlideShow/Images/image_2.png';
-import image3 from '../SlideShow/Images/image_3.jpg';
-import image4 from '../SlideShow/Images/image_5.png';
+import image1 from '../SlideShow/Images/image_9.jpg';
+import image2 from '../SlideShow/Images/image_10.jpg';
+import image3 from '../SlideShow/Images/image_11.jpg';
+import image4 from '../SlideShow/Images/image_12.jpg';
 import logo from './Logo.png';
 import Logo from './Logo.png'
 
@@ -44,7 +44,7 @@ const GlobalStyles = () => (
     }
     
     .header-container {
-        max-width: 1400px;
+        max-width: 1500px;
         margin: 0 auto;
         display: flex;
         justify-content: space-between;
@@ -53,7 +53,7 @@ const GlobalStyles = () => (
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
         border-radius: 12px;
-        padding: 0.75rem 1.5rem;
+        padding: 0.5rem 1.5rem;
         border: 1px solid rgba(255, 255, 255, 0.3);
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     }
@@ -217,7 +217,7 @@ const GlobalStyles = () => (
         position: relative;
         width: 100%;
         max-width: 500px;
-        height: 400px;
+        height: 500px;
         border-radius: 20px;
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         overflow: hidden;
@@ -338,10 +338,7 @@ const Slideshow = () => {
     image3,
     image4,
 
-    'https://placehold.co/800x600/6366f1/ffffff?text=Slide+1',
-    'https://placehold.co/800x600/ec4899/ffffff?text=Slide+2',
-    'https://placehold.co/800x600/10b981/ffffff?text=Slide+3',
-    'https://placehold.co/800x600/f59e0b/ffffff?text=Slide+4',
+    
   ];
   const [currentIndex, setCurrentIndex] = useState(0);
 
