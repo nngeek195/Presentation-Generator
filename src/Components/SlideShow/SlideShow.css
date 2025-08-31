@@ -22,8 +22,8 @@
 
 @media screen and (max-width:480px) {
   .slideshow {
-    width: 90%; /* Use 90% of the screen width */
-    max-width: 800px; /* But don't let it get bigger than 800px */
+    width: 90%; 
+    max-width: 800px; 
     height: 900px;
     margin: auto;
 }

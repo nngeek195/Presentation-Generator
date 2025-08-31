@@ -14,11 +14,9 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import CustomTabPanel from './CustomTabPanel';
 
-// **UPDATED: Enhanced responsive styles for presentation cards and actions**
 const ActionButtonStyles = () => (
   <style>{`
     :root {
-      /* Color Palette */
       --primary-blue: #2563eb;
       --primary-blue-dark: #1d4ed8;
       --primary-purple: #7c3aed;
@@ -30,7 +28,6 @@ const ActionButtonStyles = () => (
       --primary-green: #059669;
       --primary-green-dark: #047857;
 
-      /* Background & Text */
       --bg-dark-start: #1e293b;
       --bg-dark-end: #334155;
       --bg-dark-accent: #475569;
@@ -39,12 +36,10 @@ const ActionButtonStyles = () => (
       --text-muted: #94a3b8;
       --text-dark-muted: #64748b;
 
-      /* Borders & Shadows */
       --border-light: rgba(255, 255, 255, 0.1);
       --shadow-color-light: rgba(0, 0, 0, 0.3);
       --shadow-color-heavy: rgba(0, 0, 0, 0.4);
 
-      /* Sizing & Radius */
       --card-radius: 16px;
       --button-radius: 8px;
     }
@@ -67,7 +62,6 @@ const ActionButtonStyles = () => (
         background-position: 0% 0%;
       }
     }
-    /* Tabs Navigation */
     .tabs-container {
       margin-bottom: 24px;
       border-bottom: 1px solid var(--border-light);
@@ -117,7 +111,6 @@ const ActionButtonStyles = () => (
       border-radius: 4px;
     }
 
-    /* Responsive Presentation Grid */
     .presentations-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -125,7 +118,6 @@ const ActionButtonStyles = () => (
       padding: 20px 0;
     }
 
-    /* Enhanced Presentation Card */
     .presentation {
       background: linear-gradient(145deg, var(--bg-dark-start), var(--bg-dark-end));
       border-radius: var(--card-radius);
@@ -145,7 +137,6 @@ const ActionButtonStyles = () => (
       border-color: rgba(59, 130, 246, 0.5);
     }
 
-    /* Presentation Image Container */
     .presentation_image {
       position: relative;
       height: 180px;
@@ -164,7 +155,6 @@ const ActionButtonStyles = () => (
       transform: scale(1.1);
     }
 
-    /* Favorite Icon */
     .favorite_icon {
       position: absolute;
       top: 12px;
@@ -189,7 +179,6 @@ const ActionButtonStyles = () => (
       color: var(--primary-amber);
     }
 
-    /* Presentation Topic/Title */
     .presentation_topic {
       padding: 16px 20px;
       flex-grow: 1;
@@ -211,7 +200,6 @@ const ActionButtonStyles = () => (
       margin-bottom: 8px;
     }
 
-    /* Enhanced Action Buttons */
     .presentation-actions {
       display: flex;
       justify-content: space-between;
@@ -224,7 +212,6 @@ const ActionButtonStyles = () => (
       gap: 8px;
     }
 
-    /* Add this to your ActionButtonStyles component */
 .action-button {
   display: inline-flex;
   align-items: center;
@@ -243,13 +230,11 @@ const ActionButtonStyles = () => (
   min-height: 40px;
   position: relative;
   overflow: hidden;
-  /* ADD THESE LINES TO ENSURE CLICKABILITY */
   pointer-events: auto;
   z-index: 10;
-  background: none; /* Reset any inherited background */
+  background: none;
 }
 
-/* Ensure the presentation card doesn't interfere with button clicks */
 .presentation {
   background: linear-gradient(145deg, var(--bg-dark-start), var(--bg-dark-end));
   border-radius: var(--card-radius);
@@ -263,7 +248,6 @@ const ActionButtonStyles = () => (
   flex-direction: column;
 }
 
-/* Ensure presentation-actions container doesn't block clicks */
 .presentation-actions {
   display: flex;
   justify-content: space-between;
@@ -273,20 +257,17 @@ const ActionButtonStyles = () => (
   backdrop-filter: blur(8px);
   border-top: 1px solid var(--border-light);
   gap: 8px;
-  /* ADD THESE LINES */
   position: relative;
   z-index: 5;
   pointer-events: auto;
 }
 
-/* Fix button text visibility */
 .button-text {
   display: inline;
   font-size: 13px;
   font-weight: 600;
 }
 
-/* Ensure hover effects don't interfere */
 .action-button::before {
   content: '';
   position: absolute;
@@ -296,7 +277,6 @@ const ActionButtonStyles = () => (
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
   transition: left 0.5s;
-  /* ADD THIS LINE */
   pointer-events: none;
 }
 
@@ -325,7 +305,6 @@ const ActionButtonStyles = () => (
       transform: translateY(0);
     }
 
-    /* Button Colors */
     .action-button.view {
       background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
       border: 1px solid rgba(37, 99, 235, 0.3);
@@ -353,7 +332,6 @@ const ActionButtonStyles = () => (
       box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4);
     }
 
-    /* 🔥 TRENDING STYLES - Enhanced */
     .trending-presentation {
       position: relative;
       border: 2px solid var(--primary-amber);
@@ -419,7 +397,6 @@ const ActionButtonStyles = () => (
       box-shadow: 0 8px 25px rgba(5, 150, 105, 0.4) !important;
     }
 
-    /* Section Titles */
     .section-title {
       font-size: 24px;
       font-weight: 700;
@@ -441,7 +418,6 @@ const ActionButtonStyles = () => (
       border-bottom-color: rgba(245, 158, 11, 0.3);
     }
 
-    /* 🔥 NEW STYLES FOR ADDITIONAL SECTIONS */
     .section-title.favorites-section {
       color: var(--primary-purple);
       border-bottom-color: rgba(124, 58, 237, 0.3);
@@ -462,20 +438,19 @@ const ActionButtonStyles = () => (
       padding: 0 20px;
     }
 
-    /* Empty State */
     .empty-state {
       text-align: center;
       padding: 60px 20px;
-      color: var(--text-muted); /* --- CORRECTED --- Text color now uses a theme variable */
-      background: rgba(28, 48, 81, 1); /* --- CORRECTED --- Was light blue, now fits dark theme */
+      color: var(--text-muted); 
+      background: rgba(28, 48, 81, 1); 
       border-radius: var(--card-radius);
-      border: 1px dashed var(--border-light); /* --- CORRECTED --- Now uses theme variable */
+      border: 1px dashed var(--border-light); 
     }
 
     .empty-state h4 {
       font-size: 20px;
       margin-bottom: 12px;
-      color: var(--text-light); /* --- CORRECTED --- Brighter color for better visibility */
+      color: var(--text-light); 
     }
 
     .no-trending {
@@ -494,7 +469,6 @@ const ActionButtonStyles = () => (
       font-weight: 700;
     }
 
-    /* Responsive Adjustments */
     @media (max-width: 768px) {
       .presentations-grid {
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -596,7 +570,7 @@ class User extends Component {
       tabValue: 0,
       favorites: [],
       presentations: [],
-      trendingPresentations: [], // 🔥 ADD:.empty-state Trending presentations  
+      trendingPresentations: [],  
       notifications: [],
       notificationCount: 0
     };
@@ -638,7 +612,7 @@ class User extends Component {
         this.fetchNotifications();
         this.fetchNotificationCount();
         this.fetchUserPresentations();
-        this.fetchTrendingPresentations(); // 🔥 ADD: Fetch trending presentations preview
+        this.fetchTrendingPresentations(); 
       }
     });
 
@@ -647,7 +621,6 @@ class User extends Component {
     }
   }
 
-  // 🔥 NEW: Method to render trending presentation card (view-only) 127.0.0.1:5001
   renderTrendingPresentation = (p, showStats = true) => (
     <div className='presentation trending-presentation' key={p.id}>
       <div className='presentation_image'>
@@ -675,7 +648,6 @@ class User extends Component {
     </div>
   );
 
-  // 🔥 UPDATE: fetchTrendingPresentations method in User.js
   fetchTrendingPresentations = async () => {
     try {
       const response = await fetch('https://398298a0bc69.ngrok-free.app/trending');
@@ -684,7 +656,7 @@ class User extends Component {
         const trendingPresentations = data.data.presentations.map(p => ({
           id: p._id,
           title: p.presentationName,
-          image: p.previewImageUrl || Presentation_1, // 🔥 5001
+          image: p.previewImageUrl || Presentation_1,
           type: 'trending',
           code: p.code,
           views: p.views || 0,
@@ -701,7 +673,6 @@ class User extends Component {
   };
 
   viewTrendingPresentation = (presentationId) => {
-    // Use Python Flask endpoint
     const previewUrl = `https://398298a0bc69.ngrok-free.app/trending/view/${presentationId}`;
     window.open(previewUrl, '_blank');
   };
@@ -792,22 +763,21 @@ class User extends Component {
     }
   };
 
-  // Add these methods to your User component if they're missing or update them:
 
   previewPresentation = (presentationId) => {
-    console.log('Preview clicked for:', presentationId); // Debug log
+    console.log('Preview clicked for:', presentationId); 
     const previewUrl = `https://398298a0bc69.ngrok-free.app/presentations/view/${presentationId}`;
     window.open(previewUrl, '_blank');
   };
 
   editPresentation = (presentationId) => {
-    console.log('Edit clicked for:', presentationId); // Debug log
+    console.log('Edit clicked for:', presentationId); 
     const editUrl = `https://398298a0bc69.ngrok-free.app/present/${presentationId}`;
     window.open(editUrl, '_blank');
   };
 
   deletePresentation = async (presentationId) => {
-    console.log('Delete clicked for:', presentationId); // Debug log
+    console.log('Delete clicked for:', presentationId); 
     if (!window.confirm('Are you sure you want to delete this presentation?')) {
       return;
     }
@@ -839,7 +809,6 @@ class User extends Component {
     }));
   }
 
-  // **ADDED: Function to assign a random profile picture on first signup** presentation-actions
   assignRandomProfilePicture = async () => {
     try {
       const response = await fetch('http://localhost:9090/randomProfilePicture');
@@ -854,7 +823,6 @@ class User extends Component {
     }
   };
 
-  // **ADDED: Function to call the Ballerina backend to update the picture**
   updateProfilePicture = async (pictureUrl, unsplashImageId) => {
     try {
       const response = await fetch('http://localhost:9090/updateProfilePicture', {
@@ -883,7 +851,6 @@ class User extends Component {
     }
   };
 
-  // **ADDED: Handler function to be passed as a prop to the modal**
   handleProfilePictureUpdate = (newPictureUrl, unsplashImageId) => {
     this.updateProfilePicture(newPictureUrl, unsplashImageId);
     this.setState({ userProfilePicture: newPictureUrl });
@@ -949,7 +916,6 @@ class User extends Component {
     }
   };
 
-  // 🔥 ADD: Missing markMessageAsRead method
   markMessageAsRead = async (messageId) => {
     try {
       const userEmail = this.state.userEmail;
@@ -967,7 +933,6 @@ class User extends Component {
       const data = await response.json();
 
       if (data.success) {
-        // Remove the message from the state
         this.setState(prevState => ({
           notifications: prevState.notifications.filter(notif => notif.id !== messageId),
           notificationCount: prevState.notificationCount - 1
@@ -990,7 +955,7 @@ class User extends Component {
       tabValue,
       presentations,
       favorites,
-      trendingPresentations // 🔥 ADD: Include trending presentation_topic in render 
+      trendingPresentations 
     } = this.state;
 
     function a11yProps(index) {
@@ -1094,7 +1059,6 @@ class User extends Component {
 
               <CustomTabPanel value={tabValue} index={0}>
                 <div className="presentations-container">
-                  {/* 🔥 NEW: User's Own Presentations Section */}
                   {presentations.length > 0 && (
                     <div className="presentations-section">
                       <h3 className="section-title my-presentations">
@@ -1160,7 +1124,6 @@ class User extends Component {
                     </div>
                   )}
 
-                  {/* 🔥 NEW: Trending Presentations Section */}
                   <div className="presentations-section">
                     <h3 className="section-title trending-section">
                       🔥 Trending Presentations
@@ -1177,7 +1140,6 @@ class User extends Component {
                     )}
                   </div>
 
-                  {/* Show message when user has no presentations */}
                   {presentations.length === 0 && (
                     <div className="presentations-section">
                       <h3 className="section-title my-presentations">
@@ -1237,7 +1199,6 @@ class User extends Component {
                 </div>
               </CustomTabPanel>
 
-              {/* 🔥 UPDATED: Trending Tab Implementation */}
               <CustomTabPanel value={tabValue} index={2}>
                 <div className="presentations-container">
                   <div className="presentations-grid">
@@ -1246,7 +1207,6 @@ class User extends Component {
                         <div className='presentation trending-presentation' key={p.id}>
                           <div className='presentation_image'>
                             <img src={p.image} alt={p.title} />
-                            {/* 🔥 ADD: Trending badge */}
                             <div className="trending-badge">
                               🔥 Trending
                             </div>
@@ -1257,16 +1217,6 @@ class User extends Component {
                               By {p.username} • {p.category}
                             </div>
                           </div>
-                          {/* 🔥 ADD: Trending stats */}
-                          <div className='presentation_stats'>
-                            <span className="stat-item">
-                              👁️ {p.views}
-                            </span>
-                            <span className="stat-item">
-                              ❤️ {p.likes}
-                            </span>
-                          </div>
-                          {/* 🔥 ADD: View-only action for trending empty*/}
                           <div className='presentation-actions'>
                             <button
                               className="action-button view trending-view-only"

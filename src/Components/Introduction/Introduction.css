@@ -1,4 +1,3 @@
-/* Main background with light gradient */
 .intro_back {
   min-height: 100vh;
   background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%);
@@ -9,24 +8,19 @@
 
 }
 
-/* Make logo circular  */
 .logo {
   border-radius: 50%;
 }
 
-/* Add border */
 .logo {
   border: rgba(255, 255, 255, 0);
 }
 
-/* Add background */
 .logo {
   background: rgba(255, 255, 255, 0);
   padding: 0.5rem;
 }
 
-
-/* Subtle background pattern */
 .intro_back::before {
   content: '';
   position: absolute;
@@ -49,7 +43,6 @@
   }
 }
 
-/* SVG background container */
 #bg-wrap {
   position: absolute;
   inset: 0;
@@ -77,12 +70,10 @@
   background: none;
 }
 
-/* src/Components/Introduction/Introduction.css */
 
 .hero-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  /* Equal width columns */
   gap: 4rem;
   max-width: 1200px;
   margin-right: 5cm;
@@ -91,7 +82,6 @@
   align-items: center;
 }
 
-/* Left Section Styles */
 .left-section {
   display: flex;
   flex-direction: column;
@@ -120,16 +110,6 @@
   animation: soft-glow 2s ease-in-out infinite alternate;
 }
 
-/* .subsub_Heading {
-    font-weight: 800;
-} */
-
-
-
-
-
-
-/* Subheading (typewriter lives here) */
 .intro_subheading {
   font-size: clamp(1rem, 2vw, 1.2rem);
   font-family: "Inter", sans-serif;
@@ -141,11 +121,9 @@
   margin: 1.5rem 0 2rem 0;
   padding: 0;
   min-height: 10px;
-  /* prevents layout jump while typing */
 
 }
 
-/* Start button */
 .start_button {
   margin-top: 0.5rem;
   display: flex;
@@ -172,7 +150,6 @@
   box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
 }
 
-/* Right Section - Slideshow */
 .right-section {
   display: flex;
   justify-content: center;
@@ -180,11 +157,9 @@
   padding-left: 2rem;
 }
 
-/* Responsive Design */
 @media (max-width: 992px) {
   .hero-container {
     grid-template-columns: 1fr;
-    /* Stack on mobile */
     gap: 2rem;
     text-align: center;
   }

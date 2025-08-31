@@ -19,12 +19,9 @@ class LogIn extends Component {
         };
     }
 
-    // 🔧 SINGLE componentDidMount method 9090
     componentDidMount() {
-        // Check if user is already logged in
         this.checkExistingAuth();
 
-        // Check if user credentials are saved (Remember Me feature)
         const savedEmail = localStorage.getItem('rememberedEmail');
         if (savedEmail) {
             this.setState({
@@ -33,11 +30,9 @@ class LogIn extends Component {
             });
         }
 
-        // Test backend connection
         this.testBackendConnection();
     }
 
-    // 🔧 FIXED: Check if user is already authenticated (simple version)
     checkExistingAuth = async () => {
         const authData = localStorage.getItem('authData');
 
@@ -48,7 +43,6 @@ class LogIn extends Component {
                 if (parsedAuthData.isAuthenticated && parsedAuthData.email && parsedAuthData.password) {
                     console.log('✅ User already authenticated, validating credentials...');
 
-                    // Validate stored credentials with backend
                     const response = await fetch('https://6faa62dbfa67e352ff5d3659f4f83df1.serveo.net/login', {
                         method: 'POST',
                         headers: {
@@ -72,16 +66,14 @@ class LogIn extends Component {
                 console.log('Stored auth validation failed, user needs to login');
             }
 
-            // If validation fails, clear invalid auth data
             this.clearAuthData();
         }
     }
 
-    // 🔧 SINGLE clearAuthData method
     clearAuthData = () => {
         localStorage.removeItem('authData');
         localStorage.removeItem('userData');
-        localStorage.removeItem('authToken'); // Remove any leftover JWT tokens
+        localStorage.removeItem('authToken'); 
         sessionStorage.clear();
     }
 
@@ -106,7 +98,7 @@ class LogIn extends Component {
         } else {
             this.setState({
                 [name]: value,
-                error: '' // Clear error when user types
+                error: '' 
             });
         }
     }
@@ -119,7 +111,6 @@ class LogIn extends Component {
             return false;
         }
 
-        // Email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
             this.setState({ error: 'Please enter a valid email address' });
@@ -129,7 +120,6 @@ class LogIn extends Component {
         return true;
     }
 
-    // 🔧 CLEANED UP: Simple localStorage-based authentication
     handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -159,10 +149,9 @@ class LogIn extends Component {
             console.log('📥 Login response:', data);
 
             if (data.success) {
-                // 🔑 SIMPLE AUTH: Store credentials and user data in localStorage
                 const authData = {
                     email: this.state.email,
-                    password: this.state.password, // Store for auto-login
+                    password: this.state.password, 
                     isAuthenticated: true,
                     loginTime: new Date().toISOString()
                 };
@@ -178,18 +167,15 @@ class LogIn extends Component {
                     authMethod: 'local'
                 };
 
-                // Store authentication data
                 localStorage.setItem('authData', JSON.stringify(authData));
                 localStorage.setItem('userData', JSON.stringify(userData));
 
-                // Handle Remember Me
                 if (this.state.rememberMe) {
                     localStorage.setItem('rememberedEmail', this.state.email);
                 } else {
                     localStorage.removeItem('rememberedEmail');
                 }
 
-                // Also store in sessionStorage for backward compatibility
                 sessionStorage.setItem('userEmail', data.data.email);
                 sessionStorage.setItem('username', data.data.username);
                 sessionStorage.setItem('userPicture', data.data.profile?.picture || '');
@@ -204,7 +190,6 @@ class LogIn extends Component {
                     error: ''
                 });
 
-                // Redirect to user dashboard
                 setTimeout(() => {
                     window.location.href = '/user';
                 }, 1000);
@@ -226,20 +211,16 @@ class LogIn extends Component {
 
     handleGoogleLogin = async () => {
         console.log('Google login clicked');
-        // Implement Google OAuth logic here
         this.setState({ error: 'Google login coming soon!' });
     }
 
-    // 🔧 SINGLE SET of static methods
     static logout = () => {
-        // Clear all user data
         localStorage.removeItem('authData');
         localStorage.removeItem('userData');
         localStorage.removeItem('rememberedEmail');
-        localStorage.removeItem('authToken'); // Remove any leftover JWT tokens
+        localStorage.removeItem('authToken'); 
         sessionStorage.clear();
 
-        // Redirect to login
         window.location.href = '/login';
     }
 
@@ -272,7 +253,6 @@ class LogIn extends Component {
     render() {
         const { email, password, rememberMe, error, loading, loginSuccess } = this.state;
 
-        // Redirect if login successful
         if (loginSuccess) {
             return <Navigate to="/user" replace />;
         }
@@ -291,7 +271,6 @@ class LogIn extends Component {
                                 <span>Login</span>
                             </div>
 
-                            {/* Error Message */}
                             {error && (
                                 <div style={{
                                     color: '#d32f2f',
@@ -306,7 +285,6 @@ class LogIn extends Component {
                                 </div>
                             )}
 
-                            {/* Success Message */}
                             {loginSuccess && (
                                 <div style={{
                                     color: '#2e7d32',

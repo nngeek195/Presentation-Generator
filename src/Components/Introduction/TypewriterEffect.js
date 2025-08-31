@@ -5,7 +5,6 @@ const TypewriterEffect = ({ text, speed = 50, delayBetweenLines = 800 }) => {
   const [lineIndex, setLineIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
 
-  // Normalize input: if it's a string, wrap it into an array
   const lines = Array.isArray(text) ? text : [text];
 
   useEffect(() => {
@@ -19,7 +18,7 @@ const TypewriterEffect = ({ text, speed = 50, delayBetweenLines = 800 }) => {
         }, speed);
         return () => clearTimeout(timeout);
       } else {
-        // After finishing a line, add a line break and move to next line
+
         const timeout = setTimeout(() => {
           setDisplayedText((prev) => prev + "\n");
           setLineIndex((prev) => prev + 1);

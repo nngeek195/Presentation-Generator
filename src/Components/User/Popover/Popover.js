@@ -6,13 +6,12 @@ import './Popover.css'
 
 export default function MyPopover({ anchorEl, onClose, onLogout, username, userProfilePicture }) {
   const open = Boolean(anchorEl);
-  const id = open ? 'simple-popover' : undefined; // 🔧 FIX: Add 'undefined' instead of empty
+  const id = open ? 'simple-popover' : undefined; 
 
-  // 🔧 FIX: Handle logout properly
   const handleLogout = () => {
-    onClose(); // Close the popover first
+    onClose(); 
     if (onLogout) {
-      onLogout(); // Call the logout function passed from User component
+      onLogout(); 
     }
   };
 
@@ -32,7 +31,6 @@ export default function MyPopover({ anchorEl, onClose, onLogout, username, userP
     >
       <Typography>
         <div className='popover_content'>
-          {/* 🔧 UPDATED: Show user's actual profile picture or default icon */}
           <span>
             {userProfilePicture ? (
               <img
@@ -46,13 +44,11 @@ export default function MyPopover({ anchorEl, onClose, onLogout, username, userP
             )}
           </span>
 
-          {/* 🔧 UPDATED: Show actual username instead of "User's Workspace" */}
           <span>
             {username ? `${username}'s Workspace` : "User's Workspace"}
             <div className='text_member'>Member</div>
           </span>
 
-          {/* 🔧 UPDATED: Use proper logout handler instead of Link */}
           <span>
             <button className='popover_logout' onClick={handleLogout}>
               Log Out
