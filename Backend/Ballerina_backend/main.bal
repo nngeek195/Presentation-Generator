@@ -417,7 +417,7 @@ function sendNotificationEmail(string toEmail, string username, string title, st
             <p>This is an important notification from ${fromName}. Please log in to your account for more details.</p>
             
             <div style="text-align: center; margin: 30px 0;">
-                <a href="https://presentation-generator-pi.vercel.app/login" style="background: #667eea; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; display: inline-block;">
+                <a href="https://localhost:3000/login" style="background: #667eea; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; display: inline-block;">
                     Login to Your Account →
                 </a>
             </div>
@@ -501,7 +501,7 @@ function extractTokenFromHeader(string|http:HeaderNotFoundError authHeaderResult
 
 @http:ServiceConfig {
     cors: {
-        allowOrigins: ["https://presentation-generator-pi.vercel.app"],
+        allowOrigins: ["http://localhost:3000", "https://localhost:3000"],
         allowCredentials: false,
         allowHeaders: ["Content-Type"],
         allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
