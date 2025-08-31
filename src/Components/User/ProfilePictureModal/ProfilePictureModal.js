@@ -1,4 +1,4 @@
-// src/Components/User/ProfilePictureModal/ProfilePictureModal.js
+// src/Components/User/ProfilePictureModal/ProfilePictureModal.js  
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './ProfilePictureModal.css';
@@ -21,7 +21,7 @@ class ProfilePictureModal extends Component {
 
     fetchPictureOptions = async () => {
         try {
-            const response = await fetch('https://sharp-hound-68.loca.lt/profilePictureOptions/6');
+            const response = await fetch('https://par-assist-as-amber.trycloudflare.com/profilePictureOptions/6');
             const data = await response.json();
 
             if (data.success && data.data) {

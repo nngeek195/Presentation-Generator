@@ -49,7 +49,7 @@ class LogIn extends Component {
                     console.log('✅ User already authenticated, validating credentials...');
 
                     // Validate stored credentials with backend
-                    const response = await fetch('https://sharp-hound-68.loca.lt/login', {
+                    const response = await fetch('https://par-assist-as-amber.trycloudflare.com/login', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -87,7 +87,7 @@ class LogIn extends Component {
 
     testBackendConnection = async () => {
         try {
-            const response = await fetch('https://sharp-hound-68.loca.lt/test');
+            const response = await fetch('https://par-assist-as-amber.trycloudflare.com/test');
             const data = await response.json();
             console.log('✅ Backend connection test:', data);
         } catch (error) {
@@ -147,7 +147,7 @@ class LogIn extends Component {
         console.log('📤 Sending login request for:', loginData.email);
 
         try {
-            const response = await fetch('https://sharp-hound-68.loca.lt/login', {
+            const response = await fetch('https://par-assist-as-amber.trycloudflare.com/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -42,7 +42,7 @@ class SimpleAuth {
         return null;
     }
 
-    // Validate current session
+    // Validate current session 
     static async validateSession() {
         const authData = this.getAuthData();
 
@@ -51,7 +51,7 @@ class SimpleAuth {
         }
 
         try {
-            const response = await fetch('https://sharp-hound-68.loca.lt/login', {
+            const response = await fetch('https://par-assist-as-amber.trycloudflare.com/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

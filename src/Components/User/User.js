@@ -678,7 +678,7 @@ class User extends Component {
   // 🔥 UPDATE: fetchTrendingPresentations method in User.js svg
   fetchTrendingPresentations = async () => {
     try {
-      const response = await fetch('https://32988d9a43a1.ngrok-free.app/trending');
+      const response = await fetch('https://e81b2ad44205.ngrok-free.app/trending');
       const data = await response.json();
       if (data.success) {
         const trendingPresentations = data.data.presentations.map(p => ({
@@ -702,7 +702,7 @@ class User extends Component {
 
   viewTrendingPresentation = (presentationId) => {
     // Use Python Flask endpoint
-    const previewUrl = `https://32988d9a43a1.ngrok-free.app/trending/view/${presentationId}`;
+    const previewUrl = `https://e81b2ad44205.ngrok-free.app/trending/view/${presentationId}`;
     window.open(previewUrl, '_blank');
   };
 
@@ -720,7 +720,7 @@ class User extends Component {
         window.location.href = '/login';
         return false;
       }
-      const response = await fetch('https://sharp-hound-68.loca.lt/login', {
+      const response = await fetch('https://par-assist-as-amber.trycloudflare.com/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: parsedAuthData.email, password: parsedAuthData.password })
@@ -762,7 +762,7 @@ class User extends Component {
       alert('Error: User email not found. Please login again.');
       return;
     }
-    const flaskUrl = `https://32988d9a43a1.ngrok-free.app/?userEmail=${encodeURIComponent(userEmail)}`;
+    const flaskUrl = `https://e81b2ad44205.ngrok-free.app/?userEmail=${encodeURIComponent(userEmail)}`;
     window.open(flaskUrl, '_blank');
   };
 
@@ -771,7 +771,7 @@ class User extends Component {
     if (!userEmail) return;
 
     try {
-      const response = await fetch(`https://32988d9a43a1.ngrok-free.app/presentations/${encodeURIComponent(userEmail)}`);
+      const response = await fetch(`https://e81b2ad44205.ngrok-free.app/presentations/${encodeURIComponent(userEmail)}`);
       const data = await response.json();
 
       if (data.success && Array.isArray(data.presentations)) {
@@ -796,13 +796,13 @@ class User extends Component {
 
   previewPresentation = (presentationId) => {
     console.log('Preview clicked for:', presentationId); // Debug log
-    const previewUrl = `https://32988d9a43a1.ngrok-free.app/presentations/view/${presentationId}`;
+    const previewUrl = `https://e81b2ad44205.ngrok-free.app/presentations/view/${presentationId}`;
     window.open(previewUrl, '_blank');
   };
 
   editPresentation = (presentationId) => {
     console.log('Edit clicked for:', presentationId); // Debug log
-    const editUrl = `https://32988d9a43a1.ngrok-free.app/present/${presentationId}`;
+    const editUrl = `https://e81b2ad44205.ngrok-free.app/present/${presentationId}`;
     window.open(editUrl, '_blank');
   };
 
@@ -812,7 +812,7 @@ class User extends Component {
       return;
     }
     try {
-      const response = await fetch(`https://32988d9a43a1.ngrok-free.app/presentations/delete/${presentationId}`, {
+      const response = await fetch(`https://e81b2ad44205.ngrok-free.app/presentations/delete/${presentationId}`, {
         method: 'DELETE'
       });
       const data = await response.json();
@@ -842,7 +842,7 @@ class User extends Component {
   // **ADDED: Function to assign a random profile picture on first signup** presentation-actions
   assignRandomProfilePicture = async () => {
     try {
-      const response = await fetch('https://32988d9a43a1.ngrok-free.app/randomProfilePicture');
+      const response = await fetch('https://e81b2ad44205.ngrok-free.app/randomProfilePicture');
       const data = await response.json();
       if (data.success && data.data) {
         const pictureUrl = data.data.url;
@@ -857,7 +857,7 @@ class User extends Component {
   // **ADDED: Function to call the Ballerina backend to update the picture**
   updateProfilePicture = async (pictureUrl, unsplashImageId) => {
     try {
-      const response = await fetch('https://32988d9a43a1.ngrok-free.app/updateProfilePicture', {
+      const response = await fetch('https://e81b2ad44205.ngrok-free.app/updateProfilePicture', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -906,7 +906,7 @@ class User extends Component {
     const { userEmail } = this.state;
     if (!userEmail) return;
     try {
-      const response = await fetch(`https://32988d9a43a1.ngrok-free.app/notifications/${encodeURIComponent(userEmail)}`);
+      const response = await fetch(`https://e81b2ad44205.ngrok-free.app/notifications/${encodeURIComponent(userEmail)}`);
       const data = await response.json();
       if (data.success && data.data) {
         this.setState({
@@ -923,7 +923,7 @@ class User extends Component {
     const { userEmail } = this.state;
     if (!userEmail) return;
     try {
-      const response = await fetch(`https://32988d9a43a1.ngrok-free.app/notifications/count/${encodeURIComponent(userEmail)}`);
+      const response = await fetch(`https://e81b2ad44205.ngrok-free.app/notifications/count/${encodeURIComponent(userEmail)}`);
       const data = await response.json();
       if (data.success && data.data) {
         this.setState({ notificationCount: data.data.emailCount || 0 });
@@ -935,7 +935,7 @@ class User extends Component {
 
   resetNotificationCount = async () => {
     try {
-      const response = await fetch('https://32988d9a43a1.ngrok-free.app/notifications/reset', {
+      const response = await fetch('https://e81b2ad44205.ngrok-free.app/notifications/reset', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userEmail: this.state.userEmail })
@@ -953,7 +953,7 @@ class User extends Component {
   markMessageAsRead = async (messageId) => {
     try {
       const userEmail = this.state.userEmail;
-      const response = await fetch('https://32988d9a43a1.ngrok-free.app/messages/markRead', {
+      const response = await fetch('https://e81b2ad44205.ngrok-free.app/messages/markRead', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
