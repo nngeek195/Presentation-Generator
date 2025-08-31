@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-
 import image1 from '../SlideShow/Images/image_9.jpg';
 import image2 from '../SlideShow/Images/image_10.jpg';
 import image3 from '../SlideShow/Images/image_11.jpg';
 import image4 from '../SlideShow/Images/image_12.jpg';
-import logo from './Logo.png';
 import Logo from './Logo.png'
 
 const GlobalStyles = () => (

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import './SignUp.css'
 import Grid from '@mui/material/Grid';
-import signup_g from '../assests/signup_g.png'
 import { Link } from 'react-router-dom'
 import SlideShow from '../SlideShow/SlideShow';
 
