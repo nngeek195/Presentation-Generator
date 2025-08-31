@@ -21,12 +21,10 @@ class SignUp extends Component {
             checkingUsername: false
         };
 
-        // Debounce timers
         this.emailCheckTimer = null;
         this.usernameCheckTimer = null;
     }
 
-    // Check if email exists in database 9090
     checkEmailExists = async (email) => {
         if (!email || !email.includes('@')) return;
 
@@ -56,7 +54,6 @@ class SignUp extends Component {
         }
     }
 
-    // Check if username exists in database
     checkUsernameExists = async (username) => {
         if (!username || username.length < 3) return;
 
@@ -94,58 +91,49 @@ class SignUp extends Component {
             error: ''
         });
 
-        // Debounced email check
         if (name === 'email') {
             this.setState({ emailError: '' });
 
-            // Clear previous timer
             if (this.emailCheckTimer) {
                 clearTimeout(this.emailCheckTimer);
             }
 
-            // Validate email format first
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (value && !emailRegex.test(value)) {
                 this.setState({ emailError: 'Please enter a valid email address' });
                 return;
             }
 
-            // Set new timer for email check
             this.emailCheckTimer = setTimeout(() => {
                 if (value && emailRegex.test(value)) {
                     this.checkEmailExists(value);
                 }
-            }, 500); // Wait 500ms after user stops typing
+            }, 500); 
         }
 
-        // Debounced username check
         if (name === 'username') {
             this.setState({ usernameError: '' });
 
-            // Clear previous timer
             if (this.usernameCheckTimer) {
                 clearTimeout(this.usernameCheckTimer);
             }
 
-            // Basic username validation
             if (value && value.length < 3) {
                 this.setState({ usernameError: 'Username must be at least 3 characters' });
                 return;
             }
 
-            // Set new timer for username check
             this.usernameCheckTimer = setTimeout(() => {
                 if (value && value.length >= 3) {
                     this.checkUsernameExists(value);
                 }
-            }, 500); // Wait 500ms after user stops typing
+            }, 500); 
         }
     }
 
     validateForm = async () => {
         const { email, username, password, emailError, usernameError } = this.state;
 
-        // Check if there are existing errors
         if (emailError || usernameError) {
             this.setState({ error: 'Please fix the errors before submitting' });
             return false;
@@ -156,26 +144,22 @@ class SignUp extends Component {
             return false;
         }
 
-        // Email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
             this.setState({ error: 'Please enter a valid email address' });
             return false;
         }
 
-        // Username validation
         if (username.length < 3) {
             this.setState({ error: 'Username must be at least 3 characters' });
             return false;
         }
 
-        // Password validation (minimum 6 characters)
         if (password.length < 6) {
             this.setState({ error: 'Password must be at least 6 characters' });
             return false;
         }
 
-        // Final check for email and username availability
         const emailExists = await this.checkEmailExists(email);
         const usernameExists = await this.checkUsernameExists(username);
 
@@ -221,7 +205,6 @@ class SignUp extends Component {
                     loading: false
                 });
 
-                // Store user data in localStorage including the profile picture
                 if (data.data) {
                     localStorage.setItem('userData', JSON.stringify({
                         email: data.data.email,
@@ -232,7 +215,6 @@ class SignUp extends Component {
                     }));
                 }
 
-                // Redirect to login after successful signup
                 setTimeout(() => {
                     window.location.href = '/login';
                 }, 2000);
@@ -242,11 +224,10 @@ class SignUp extends Component {
                     loading: false
                 });
 
-                // If email exists error from backend, update emailError
                 if (data.message?.toLowerCase().includes('email')) {
                     this.setState({ emailError: data.message });
                 }
-                // If username exists error from backend, update usernameError
+
                 if (data.message?.toLowerCase().includes('username')) {
                     this.setState({ usernameError: data.message });
                 }
@@ -262,12 +243,10 @@ class SignUp extends Component {
 
 
     handleGoogleSignup = async () => {
-        // Implement Google OAuth logic here
         console.log('Google signup clicked');
     }
 
     componentWillUnmount() {
-        // Clear timers when component unmounts
         if (this.emailCheckTimer) {
             clearTimeout(this.emailCheckTimer);
         }

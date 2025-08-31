@@ -7,8 +7,6 @@ import image4 from '../SlideShow/Images/image_12.jpg';
 import logo from './Logo.png';
 import Logo from './Logo.png'
 
-// --- CSS Styles ---
-// All styles are included here to keep the component self-contained.
 const GlobalStyles = () => (
   <style>{`
     /* Import Fonts */
@@ -283,7 +281,6 @@ const GlobalStyles = () => (
 );
 
 
-// Helper Component: Header
 const Header = () => (
   <header className="header">
     <div className="header-container">
@@ -297,7 +294,6 @@ const Header = () => (
   </header>
 );
 
-// Helper Component: Typewriter Effect
 const TypewriterEffect = ({ lines, speed = 50 }) => {
   const [currentLineIndex, setCurrentLineIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState('');
@@ -329,7 +325,6 @@ const TypewriterEffect = ({ lines, speed = 50 }) => {
 };
 
 
-// Helper Component: Slideshow
 const Slideshow = () => {
   const images = [
 
@@ -365,7 +360,6 @@ const Slideshow = () => {
 };
 
 
-// Main App Component
 const App = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
