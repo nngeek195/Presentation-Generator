@@ -41,7 +41,7 @@ class AdminPanel extends Component {
 
     fetchAllNotifications = async () => {
         try {
-            const response = await fetch('https://361346ae81af903e19fb1ee67bc3bb45.serveo.net/admin/notifications');
+            const response = await fetch('https://silent-dog-85.loca.lt/admin/notifications');
             const data = await response.json();
 
             if (data.success) {
@@ -60,7 +60,7 @@ class AdminPanel extends Component {
 
     fetchUsers = async () => {
         try {
-            const response = await fetch('https://361346ae81af903e19fb1ee67bc3bb45.serveo.net/users');
+            const response = await fetch('https://silent-dog-85.loca.lt/users');
             const data = await response.json();
 
             console.log('Fetched users:', data); // Debugging log
@@ -109,7 +109,7 @@ class AdminPanel extends Component {
         this.setState({ loading: true, error: '', success: '' });
 
         try {
-            const response = await fetch('https://361346ae81af903e19fb1ee67bc3bb45.serveo.net/admin/sendEmailNotification', {
+            const response = await fetch('https://silent-dog-85.loca.lt/admin/sendEmailNotification', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -136,7 +136,7 @@ class AdminPanel extends Component {
                 });
                 // Refresh user count and notifications
                 this.fetchAllNotifications();
-                this.fetchUsers(); // Refresh user count
+                this.fetchUsers(); // Refresh user count 
             } else {
                 this.setState({
                     error: data.message || 'Failed to send email notification',

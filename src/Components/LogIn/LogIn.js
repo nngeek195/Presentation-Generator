@@ -49,7 +49,7 @@ class LogIn extends Component {
                     console.log('✅ User already authenticated, validating credentials...');
 
                     // Validate stored credentials with backend
-                    const response = await fetch('https://361346ae81af903e19fb1ee67bc3bb45.serveo.net/login', {
+                    const response = await fetch('https://https://silent-dog-85.loca.lt/login', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -87,7 +87,7 @@ class LogIn extends Component {
 
     testBackendConnection = async () => {
         try {
-            const response = await fetch('https://361346ae81af903e19fb1ee67bc3bb45.serveo.net/test');
+            const response = await fetch('https://https://silent-dog-85.loca.lt/test');
             const data = await response.json();
             console.log('✅ Backend connection test:', data);
         } catch (error) {
@@ -147,7 +147,7 @@ class LogIn extends Component {
         console.log('📤 Sending login request for:', loginData.email);
 
         try {
-            const response = await fetch('https://361346ae81af903e19fb1ee67bc3bb45.serveo.net/login', {
+            const response = await fetch('https://https://silent-dog-85.loca.lt/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

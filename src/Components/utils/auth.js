@@ -51,7 +51,7 @@ class SimpleAuth {
         }
 
         try {
-            const response = await fetch('https://361346ae81af903e19fb1ee67bc3bb45.serveo.net/login', {
+            const response = await fetch('https://silent-dog-85.loca.lt/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

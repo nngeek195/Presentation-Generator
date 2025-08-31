@@ -33,7 +33,7 @@ class SignUp extends Component {
         this.setState({ checkingEmail: true, emailError: '' });
 
         try {
-            const response = await fetch(`https://361346ae81af903e19fb1ee67bc3bb45.serveo.net/checkEmail/${encodeURIComponent(email)}`);
+            const response = await fetch(`https://https://silent-dog-85.loca.lt/checkEmail/${encodeURIComponent(email)}`);
             const data = await response.json();
 
             if (data.success && data.data?.exists) {
@@ -63,7 +63,7 @@ class SignUp extends Component {
         this.setState({ checkingUsername: true, usernameError: '' });
 
         try {
-            const response = await fetch(`https://361346ae81af903e19fb1ee67bc3bb45.serveo.net/checkUsername/${encodeURIComponent(username)}`);
+            const response = await fetch(`https://https://silent-dog-85.loca.lt/checkUsername/${encodeURIComponent(username)}`);
             const data = await response.json();
 
             if (data.success && data.data?.exists) {
@@ -204,7 +204,7 @@ class SignUp extends Component {
         };
 
         try {
-            const response = await fetch('https://361346ae81af903e19fb1ee67bc3bb45.serveo.net/signup', {
+            const response = await fetch('https://https://silent-dog-85.loca.lt/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
