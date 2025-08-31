@@ -1,0 +1,12 @@
+
+smtpHost = "smtp.gmail.com"
+smtpPort = 587
+emailUsername = "webify.me.official@gmail.com"
+emailPassword = "ubmy aoez xlew wjcm"
+fromEmail = "webify.me.official@gmail.com"
+fromName = "Webify.me"
+
+
+host = "localhost"
+port = 27017
+database = "userDb"
