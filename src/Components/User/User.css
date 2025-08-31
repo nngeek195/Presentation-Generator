@@ -125,7 +125,6 @@
     display: flex;
     align-items: center;
     padding: var(--spacing-md) var(--spacing-xl);
-    background: var(--white);
     backdrop-filter: blur(20px);
     position: sticky;
     top: 0;
