@@ -350,7 +350,7 @@ const Slideshow = () => {
 };
 
 
-const App = () => {
+const Introduction = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -451,4 +451,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Introduction;
