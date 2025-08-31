@@ -42,7 +42,7 @@ class LogIn extends Component {
                 if (parsedAuthData.isAuthenticated && parsedAuthData.email && parsedAuthData.password) {
                     console.log('✅ User already authenticated, validating credentials...');
 
-                    const response = await fetch('https://6faa62dbfa67e352ff5d3659f4f83df1.serveo.net/login', {
+                    const response = await fetch('http://localhost:9090/login', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -72,13 +72,13 @@ class LogIn extends Component {
     clearAuthData = () => {
         localStorage.removeItem('authData');
         localStorage.removeItem('userData');
-        localStorage.removeItem('authToken'); 
+        localStorage.removeItem('authToken');
         sessionStorage.clear();
     }
 
     testBackendConnection = async () => {
         try {
-            const response = await fetch('https://par-assist-as-amber.trycloudflare.com/test');
+            const response = await fetch('https://localhost:9090/test');
             const data = await response.json();
             console.log('✅ Backend connection test:', data);
         } catch (error) {
@@ -97,7 +97,7 @@ class LogIn extends Component {
         } else {
             this.setState({
                 [name]: value,
-                error: '' 
+                error: ''
             });
         }
     }
@@ -136,7 +136,7 @@ class LogIn extends Component {
         console.log('📤 Sending login request for:', loginData.email);
 
         try {
-            const response = await fetch('https://par-assist-as-amber.trycloudflare.com/login', {
+            const response = await fetch('http://localhost:9090/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -150,7 +150,7 @@ class LogIn extends Component {
             if (data.success) {
                 const authData = {
                     email: this.state.email,
-                    password: this.state.password, 
+                    password: this.state.password,
                     isAuthenticated: true,
                     loginTime: new Date().toISOString()
                 };
@@ -217,7 +217,7 @@ class LogIn extends Component {
         localStorage.removeItem('authData');
         localStorage.removeItem('userData');
         localStorage.removeItem('rememberedEmail');
-        localStorage.removeItem('authToken'); 
+        localStorage.removeItem('authToken');
         sessionStorage.clear();
 
         window.location.href = '/login';
