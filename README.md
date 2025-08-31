@@ -7,6 +7,10 @@
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Ballerina](https://img.shields.io/badge/Ballerina-464646?style=for-the-badge&logo=ballerina&logoColor=FF7300)
 ![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+![Gemini API](https://img.shields.io/badge/Gemini%20API-4285F4?style=for-the-badge&logo=google&logoColor=white)
+![Unsplash API](https://img.shields.io/badge/Unsplash%20API-000000?style=for-the-badge&logo=unsplash&logoColor=white)
+
+
 
 Transform your ideas into stunning, editable presentations instantly. Webify.me leverages a powerful dual-backend system to automate content writing, design, and image sourcing, allowing you to focus on your message.
 
