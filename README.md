@@ -1,4 +1,7 @@
-# ✨ Webify.me: AI-Powered Presentation Generator
+<img width="1024" height="248" alt="Logo1" src="https://github.com/user-attachments/assets/1466ce8b-fadb-406b-b9b6-262c86377ac8" />
+
+
+# ✨ AI-Powered Presentation Generator
 
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
@@ -137,5 +140,5 @@ Ensure you have the following software installed on your machine:
         ```
 
 You should now have all three services (React, Python, Ballerina) and the database running! Open your browser to `http://localhost:3000` to see the application.
-<img width="1024" height="248" alt="Logo1" src="https://github.com/user-attachments/assets/f3706774-99c6-4ae8-8ab7-7ae7e306fe0e" />
+
 
