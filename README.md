@@ -58,7 +58,7 @@ Ensure you have the following software installed on your machine:
 
 1.  **Clone the Repository**
     ```sh
-    git clone [https://github.com/nngeek195/Presentation-Generator.git]
+    git clone https://github.com/nngeek195/Presentation-Generator.git
     cd webify.me
     ```
 
