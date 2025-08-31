@@ -1,70 +1,149 @@
-# Getting Started with Create React App
+# ✨ Webify.me: AI-Powered Presentation Generator
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Ballerina](https://img.shields.io/badge/Ballerina-464646?style=for-the-badge&logo=ballerina&logoColor=FF7300)
+![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
 
-## Available Scripts
+Transform your ideas into stunning, editable presentations instantly. Webify.me leverages a powerful dual-backend system to automate content writing, design, and image sourcing, allowing you to focus on your message.
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🚀 About The Project
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Webify.me is a full-stack web application designed to solve a common problem: the time and effort required to create professional presentations. By simply providing a topic, our application uses AI to generate a complete presentation, which can then be customized in a real-time, interactive editor.
 
-### `npm test`
+This project is built on a modern, distributed architecture featuring a React frontend, a Python service for AI tasks, and a robust Ballerina service for core backend logic and user management.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## ✅ Key Features
 
-### `npm run build`
+* **AI-Powered Content Generation**: Automatically creates presentation outlines, slide content, and titles.
+* **Dynamic Image Sourcing**: Intelligently finds and embeds relevant images from Unsplash.
+* **Interactive WYSIWYG Editor**: Drag, drop, resize, and edit every element of your presentation.
+* **Secure User Authentication**: Complete user management system for signing up, logging in, and managing profiles.
+* **Personalized Dashboards**: Save, view, edit, and manage all your created presentations.
+* **Community & Trending Section**: Discover popular presentations created by other users.
+* **Admin & Notification System**: A full administrative backend to manage users and send platform-wide notifications via email.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🛠️ Tech Stack & Architecture
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+We employ a sophisticated microservices architecture to ensure scalability and separation of concerns.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* **Frontend**: A modern, responsive user interface built with **React**.
+* **AI Engine (Python/Flask)**: A specialized service dedicated to creative tasks. It interfaces with **Google's Gemini API** for content generation and the **Unsplash API** for images.
+* **Core Backend (Ballerina)**: The platform's foundation. This highly efficient, secure service handles all business logic, including user authentication, profile management, notification delivery, and all primary interactions with our database.
+* **Database**: **MongoDB** serves as our flexible and scalable NoSQL database for storing all user and presentation data.
 
-### `npm run eject`
+## 📁 Project Structure
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The repository is organized with the React project at the root and the two backend services nested within a `Backend` directory.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<img width="331" height="223" alt="image" src="https://github.com/user-attachments/assets/49a6fe31-380e-4e81-b6b5-9f7fbb45ed8a" />
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+## ⚙️ Getting Started
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+To get a local copy up and running, please follow these steps.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Prerequisites
 
-### Code Splitting
+Ensure you have the following software installed on your machine:
+* [Node.js](https://nodejs.org/) (v18.x or later)
+* [Python](https://www.python.org/) (v3.10 or later)
+* [Ballerina](https://ballerina.io/) (Swan Lake version)
+* [MongoDB Community Server](https://www.mongodb.com/try/download/community)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Installation & Setup
 
-### Analyzing the Bundle Size
+1.  **Clone the Repository**
+    ```sh
+    git clone [https://github.com/your-username/webify.me.git](https://github.com/your-username/webify.me.git)
+    cd webify.me
+    ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+2.  **Environment Variables**
+    Create a `.env` file in the root of the **`Python/`** directory. This file will store your secret keys and database connection string. You can copy the template from `.env.example` if you create one.
 
-### Making a Progressive Web App
+    ```ini
+    # Backend/Python/.env
+    MONGO_URI="mongodb://localhost:27017/"
+    GEMINI_API_KEY="YOUR_GEMINI_API_KEY"
+    UNSPLASH_ACCESS_KEY="YOUR_UNSPLASH_ACCESS_KEY"
+    ```
+    *Note: The Ballerina service also requires configuration for database and email credentials. This is typically managed in a `Config.toml` file within the Ballerina project.*
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+3.  **Database Setup (MongoDB)**
+    * Start your MongoDB server.
+    * Connect to it using `mongosh` or a GUI like MongoDB Compass.
+    * Create a new database named **`userDb`**.
+    * Inside `userDb`, create the following collections:
+        * `Trending`
+        * `admin`
+        * `adminMessages`
+        * `notificationCounter`
+        * `notifications`
+        * `presentations`
+        * `userData`
+        * `users`
 
-### Advanced Configuration
+4.  **Backend Setup (Python - AI Engine)**
+    * Navigate to the Python backend directory.
+        ```sh
+        cd Backend/Python
+        ```
+    * Create and activate a virtual environment.
+        ```sh
+        # For Windows
+        python -m venv .venv
+        .\.venv\Scripts\activate
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+        # For macOS/Linux
+        python3 -m venv .venv
+        source .venv/bin/activate
+        ```
+    * Install the required packages.
+        ```sh
+        pip install -r requirements.txt
+        ```
+    * Run the Flask server (typically on port 5001).
+        ```sh
+        flask run --port=5001
+        ```
+        Keep this terminal running.
 
-### Deployment
+5.  **Backend Setup (Ballerina - Core Service)**
+    * Open a **new terminal**.
+    * Navigate to the Ballerina backend directory.
+        ```sh
+        cd Backend/Ballerina_backend
+        ```
+    * Run the Ballerina service using the CLI (typically on port 9090).
+        ```sh
+        bal run
+        ```
+        Keep this terminal running.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+6.  **Frontend Setup (React)**
+    * Open a **third terminal**.
+    * Navigate to the root directory of the project.
+    * Install the required npm packages.
+        ```sh
+        npm install
+        ```
+    * Start the React development server (typically on port 3000).
+        ```sh
+        npm start
+        ```
 
-### `npm run build` fails to minify
+You should now have all three services (React, Python, Ballerina) and the database running! Open your browser to `http://localhost:3000` to see the application.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 🤝 Contributing
+
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1.  Fork the Project
+2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3.  Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4.  Push to the Branch (`git push origin feature/AmazingFeature`)
+5.  Open a Pull Request
