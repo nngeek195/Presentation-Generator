@@ -3,7 +3,6 @@ import './User.css';
 import Grid from '@mui/material/Grid';
 import Logo1 from './Logo1.png';
 import { FaUserCircle, FaPlus, FaAngleDown, FaCamera, FaStar, FaRegStar } from 'react-icons/fa';
-import Presentation_1 from './Presentation_1.png';
 import { MdOutlineDelete, MdOutlineEdit, MdOutlineRemoveRedEye } from "react-icons/md";
 import ProfilePictureModal from './ProfilePictureModal/ProfilePictureModal';
 import Popover from './Popover/Popover'
@@ -563,7 +562,7 @@ class User extends Component {
       tabValue: 0,
       favorites: [],
       presentations: [],
-      trendingPresentations: [], 
+      trendingPresentations: [],
       notifications: [],
       notificationCount: 0
     };
@@ -605,7 +604,7 @@ class User extends Component {
         this.fetchNotifications();
         this.fetchNotificationCount();
         this.fetchUserPresentations();
-        this.fetchTrendingPresentations(); 
+        this.fetchTrendingPresentations();
       }
     });
 
@@ -649,7 +648,7 @@ class User extends Component {
         const trendingPresentations = data.data.presentations.map(p => ({
           id: p._id,
           title: p.presentationName,
-          image: p.previewImageUrl || Presentation_1,
+          image: p.previewImageUrl,
           type: 'trending',
           code: p.code,
           views: p.views || 0,
@@ -743,7 +742,7 @@ class User extends Component {
         const formattedPresentations = data.presentations.map(p => ({
           id: p._id,
           title: p.presentationName,
-          image: p.previewImageUrl || Presentation_1,
+          image: p.previewImageUrl,
           createdAt: p.createdAt,
           type: 'python'
         }));
@@ -771,7 +770,7 @@ class User extends Component {
   };
 
   deletePresentation = async (presentationId) => {
-    console.log('Delete clicked for:', presentationId); 
+    console.log('Delete clicked for:', presentationId);
     if (!window.confirm('Are you sure you want to delete this presentation?')) {
       return;
     }
@@ -950,7 +949,7 @@ class User extends Component {
       tabValue,
       presentations,
       favorites,
-      trendingPresentations 
+      trendingPresentations
     } = this.state;
 
     function a11yProps(index) {
