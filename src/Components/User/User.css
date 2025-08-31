@@ -1,8 +1,4 @@
-/* Enhanced CSS with White Background Theme */
-
-/* CSS Custom Properties for White Theme */
 :root {
-    /* Color Palette */
     --primary-blue: #3b82f6;
     --primary-blue-hover: #2563eb;
     --secondary-blue: #1e90ff;
@@ -11,7 +7,6 @@
     --warning-orange: #f59e0b;
     --danger-red: #ef4444;
 
-    /* White Theme Colors */
     --white: #ffffff;
     --gray-50: #f8fafc;
     --gray-100: #f1f5f9;
@@ -24,36 +19,30 @@
     --gray-800: #1e293b;
     --gray-900: #0f172a;
 
-    /* Background Colors */
     --bg-primary: #ffffff;
     --bg-secondary: #f8fafc;
     --bg-tertiary: #f1f5f9;
 
-    /* Text Colors */
     --text-primary: #1e293b;
     --text-secondary: #475569;
     --text-muted: #64748b;
 
-    /* Gradients for White Theme */
     --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
     --gradient-success: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
     --gradient-glass: rgba(255, 255, 255, 0.8);
     --gradient-glass-border: rgba(0, 0, 0, 0.1);
 
-    /* Shadows for White Theme */
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 
-    /* Transitions */
     --transition-fast: all 0.15s ease-out;
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
-    /* Spacing */
     --spacing-xs: 0.25rem;
     --spacing-sm: 0.5rem;
     --spacing-md: 1rem;
@@ -61,7 +50,6 @@
     --spacing-xl: 2rem;
     --spacing-2xl: 3rem;
 
-    /* Border Radius */
     --radius-sm: 0.375rem;
     --radius-md: 0.5rem;
     --radius-lg: 0.75rem;
@@ -70,7 +58,6 @@
     --radius-full: 9999px;
 }
 
-/* Clean White Background */
 .user_back {
     min-height: 100vh;
     background: var(--bg-primary);
@@ -91,7 +78,6 @@
     z-index: -1;
 }
 
-/* Subtle SVG Background Pattern */
 .svg_background {
     position: fixed;
     top: 0;
@@ -120,7 +106,6 @@
     }
 }
 
-/* Clean White Header */
 .header_one {
     display: flex;
     align-items: center;
@@ -139,7 +124,6 @@
     margin-left: auto;
 }
 
-/* Enhanced Logo for White Background */
 .logo1 {
     width: 256px;
     height: 62px;
@@ -152,7 +136,6 @@
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
 }
 
-/* Modern Workspace Button for White Theme */
 .workspace {
     display: flex;
     margin-right: var(--spacing-xl);
@@ -198,7 +181,6 @@
     color: var(--primary-blue);
 }
 
-/* Enhanced Notification System for White Theme */
 .notification_container {
     position: relative;
     display: inline-block;
@@ -276,7 +258,6 @@
     }
 }
 
-/* Enhanced Profile Picture for White Theme */
 .profile-picture-container {
     position: relative;
     display: inline-block;
@@ -332,7 +313,6 @@
     transform: scale(1.2);
 }
 
-/* Enhanced Presentations Section for White Theme */
 .presentations {
     max-width: 1800px;
     margin: 0 auto;
@@ -398,7 +378,6 @@
     transform: rotate(180deg) scale(1.2);
 }
 
-/* Clean Grid System for White Theme */
 .presentations-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -406,7 +385,6 @@
     padding: var(--spacing-lg) 0;
 }
 
-/* Ultra-Clean Presentation Cards */
 .presentation {
     background: var(--white);
     border-radius: var(--radius-2xl);
@@ -443,7 +421,6 @@
     border-color: var(--primary-blue);
 }
 
-/* Enhanced Image Container */
 .presentation_image {
     position: relative;
     height: 200px;
@@ -452,7 +429,6 @@
     background: var(--bg-secondary);
 }
 
-/* Enhanced Image Container (continued) */
 .presentation_image img {
     width: 100%;
     height: 100%;
@@ -466,7 +442,6 @@
     filter: brightness(1) contrast(1.05);
 }
 
-/* Enhanced Favorite Icon for White Theme */
 .favorite_icon {
     position: absolute;
     right: var(--spacing-md);
@@ -516,7 +491,6 @@
     }
 }
 
-/* Enhanced Content Area for White Theme */
 .presentation_content {
     padding: var(--spacing-lg);
     flex-grow: 1;
@@ -559,7 +533,6 @@
     gap: var(--spacing-xs);
 }
 
-/* Enhanced Action Buttons for White Theme */
 .presentation_actions {
     display: flex;
     gap: var(--spacing-sm);
@@ -591,7 +564,6 @@
     letter-spacing: 0.5px;
 }
 
-/* View Button for White Theme */
 .presentation_view button {
     background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-hover));
     color: var(--white);
@@ -604,7 +576,6 @@
     box-shadow: 0 8px 25px rgba(59, 130, 246, 0.35);
 }
 
-/* Edit Button for White Theme */
 .presentation_edit button {
     background: linear-gradient(135deg, #8b5cf6, #7c3aed);
     color: var(--white);
@@ -617,7 +588,6 @@
     box-shadow: 0 8px 25px rgba(139, 92, 246, 0.35);
 }
 
-/* Delete Button for White Theme favorite*/
 .presentation_delete button {
     background: linear-gradient(135deg, var(--danger-red), #dc2626);
     color: var(--white);
@@ -630,7 +600,6 @@
     box-shadow: 0 8px 25px rgba(239, 68, 68, 0.35);
 }
 
-/* Button Shimmer Effect */
 .presentation_view button::before,
 .presentation_edit button::before,
 .presentation_delete button::before {
@@ -650,7 +619,6 @@
     left: 100%;
 }
 
-/* Enhanced Section Titles for White Theme */
 .presentations-section {
     margin-bottom: var(--spacing-2xl);
     position: relative;
@@ -723,7 +691,6 @@
     }
 }
 
-/* Enhanced Empty State for White Theme */
 .empty-state {
     text-align: center;
     padding: var(--spacing-2xl) var(--spacing-xl);
@@ -764,7 +731,6 @@
     opacity: 0.8;
 }
 
-/* Trending Presentation Enhancements for White Theme */
 .trending-presentation {
     position: relative;
     border: 2px solid transparent;
@@ -846,7 +812,6 @@
     opacity: 0.8;
 }
 
-/* Enhanced Icons for White Theme */
 .default_icon_1 {
     height: 2rem;
     width: 2rem;
@@ -860,7 +825,6 @@
     transition: var(--transition-smooth);
 }
 
-/* Loading States for White Theme */
 .presentation.loading {
     pointer-events: none;
     position: relative;
@@ -888,7 +852,6 @@
     }
 }
 
-/* Enhanced Mobile Responsiveness for White Theme */
 @media screen and (max-width: 1200px) {
     .presentations-grid {
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -1092,7 +1055,6 @@
     }
 }
 
-/* Extra Small Devices */
 @media screen and (max-width: 360px) {
     .presentations {
         padding: var(--spacing-sm);
@@ -1126,7 +1088,6 @@
     }
 }
 
-/* Large Desktop Optimizations */
 @media screen and (min-width: 1400px) {
     .presentations-grid {
         grid-template-columns: repeat(4, 1fr);
@@ -1152,7 +1113,6 @@
     }
 }
 
-/* Ultra-wide Screen Optimizations */
 @media screen and (min-width: 1920px) {
     .presentations {
         max-width: 2200px;
@@ -1174,7 +1134,6 @@
     }
 }
 
-/* White Theme Dark Mode Override */
 @media (prefers-color-scheme: dark) {
     .user_back {
         background: var(--bg-primary) !important;
@@ -1198,7 +1157,6 @@
     }
 }
 
-/* High Contrast Mode for White Theme */
 @media (prefers-contrast: high) {
     .presentation {
         border: 2px solid var(--gray-800);
@@ -1222,7 +1180,6 @@
     }
 }
 
-/* Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
 
     *,
@@ -1244,7 +1201,6 @@
     }
 }
 
-/* Print Styles for White Theme */
 @media print {
     .user_back {
         background: white !important;
@@ -1282,7 +1238,6 @@
     }
 }
 
-/* Focus States for Accessibility */
 .workspace button:focus-visible,
 .presentations_create button:focus-visible,
 .presentation_view button:focus-visible,
@@ -1299,7 +1254,6 @@
     outline-offset: 4px;
 }
 
-/* Enhanced Scrollbar for White Theme */
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -1319,7 +1273,6 @@
     background: linear-gradient(135deg, var(--gray-400), var(--gray-500));
 }
 
-/* Selection Styles for White Theme */
 ::selection {
     background: rgba(59, 130, 246, 0.2);
     color: var(--text-primary);
@@ -1330,7 +1283,6 @@
     color: var(--text-primary);
 }
 
-/* Enhanced Menu Container for Mobile White Theme */
 .menu_container {
     display: none;
     position: fixed;
@@ -1384,7 +1336,6 @@
     color: var(--white);
 }
 
-/* Enhanced Tabs Container for White Theme */
 .tabs_container {
     display: flex;
     gap: var(--spacing-lg);
@@ -1428,7 +1379,6 @@
     box-shadow: 0 4px 14px rgba(59, 130, 246, 0.25);
 }
 
-/* Enhanced Animations for White Theme */
 @keyframes slideInUp {
     from {
         opacity: 0;
@@ -1463,7 +1413,6 @@
     }
 }
 
-/* Apply animations to elements */
 .presentation {
     animation: slideInUp 0.6s ease-out forwards;
 }
@@ -1492,7 +1441,6 @@
     animation: fadeIn 1s ease-out forwards;
 }
 
-/* Enhanced Error States for White Theme */
 .presentation.error {
     border: 2px solid var(--danger-red);
     background: rgba(239, 68, 68, 0.05);
@@ -1511,7 +1459,6 @@
     backdrop-filter: blur(4px);
 }
 
-/* Enhanced Success States for White Theme */
 .presentation.success {
     border: 2px solid var(--success-green);
     animation: successPulse 0.6s ease-out;
@@ -1531,7 +1478,6 @@
     }
 }
 
-/* Enhanced Tooltips for White Theme */
 [data-tooltip] {
     position: relative;
 }
@@ -1564,7 +1510,6 @@
     z-index: 1000;
 }
 
-/* Utility Classes for White Theme */
 .sr-only {
     position: absolute;
     width: 1px;
@@ -1610,7 +1555,6 @@
     background-color: var(--white);
 }
 
-/* Enhanced Card Variants for White Theme */
 .presentation.featured {
     border: 2px solid var(--primary-blue);
     background: linear-gradient(135deg,
@@ -1633,7 +1577,6 @@
     opacity: 0.7;
 }
 
-/* Enhanced Button Variants */
 .btn-primary {
     background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-hover));
     color: var(--white);
@@ -1695,7 +1638,6 @@
     color: var(--primary-blue);
 }
 
-/* Enhanced Form Elements for White Theme */
 .form-input {
     width: 100%;
     padding: var(--spacing-md);
@@ -1728,7 +1670,6 @@
     margin-bottom: var(--spacing-lg);
 }
 
-/* Enhanced Modal Styles for White Theme */
 .modal-overlay {
     position: fixed;
     inset: 0;
@@ -1808,7 +1749,6 @@
     justify-content: flex-end;
 }
 
-/* Enhanced Alert Styles for White Theme */
 .alert {
     padding: var(--spacing-md) var(--spacing-lg);
     border-radius: var(--radius-lg);
@@ -1843,7 +1783,6 @@
     color: #1e40af;
 }
 
-/* Enhanced Badge Styles for White Theme */
 .badge {
     display: inline-flex;
     align-items: center;
@@ -1880,7 +1819,6 @@
     color: var(--white);
 }
 
-/* Enhanced Dropdown Styles for White Theme */
 .dropdown {
     position: relative;
     display: inline-block;
@@ -1943,7 +1881,6 @@
     color: var(--primary-blue);
 }
 
-/* Enhanced Pagination for White Theme */
 .pagination {
     display: flex;
     align-items: center;
@@ -1985,7 +1922,6 @@
     pointer-events: none;
 }
 
-/* Enhanced Search Bar for White Theme */
 .search-container {
     position: relative;
     max-width: 400px;
@@ -2018,7 +1954,6 @@
     font-size: 1.25rem;
 }
 
-/* Enhanced Filter Buttons for White Theme */
 .filter-container {
     display: flex;
     gap: var(--spacing-sm);
@@ -2052,7 +1987,6 @@
     color: var(--white);
 }
 
-/* Enhanced Stats Cards for White Theme */
 .stats-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -2111,7 +2045,6 @@
     right: var(--spacing-lg);
 }
 
-/* Enhanced Progress Bar for White Theme */
 .progress-container {
     margin: var(--spacing-lg) 0;
 }
@@ -2163,7 +2096,6 @@
     }
 }
 
-/* Enhanced Breadcrumb for White Theme */
 .breadcrumb {
     display: flex;
     align-items: center;
@@ -2193,7 +2125,6 @@
     font-size: 0.75rem;
 }
 
-/* Enhanced Card Grid for White Theme */
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -2274,7 +2205,6 @@
     gap: var(--spacing-sm);
 }
 
-/* Enhanced Timeline for White Theme */
 .timeline {
     position: relative;
     padding-left: var(--spacing-xl);
@@ -2333,7 +2263,6 @@
     line-height: 1.6;
 }
 
-/* Enhanced Skeleton Loading for White Theme */
 .skeleton {
     background: linear-gradient(90deg, var(--gray-200) 25%, var(--gray-100) 50%, var(--gray-200) 75%);
     background-size: 200% 100%;
@@ -2376,7 +2305,6 @@
     margin-bottom: var(--spacing-lg);
 }
 
-/* Enhanced Floating Action Button for White Theme */
 .fab {
     position: fixed;
     bottom: var(--spacing-xl);
@@ -2406,7 +2334,6 @@
     transform: scale(0.95);
 }
 
-/* Enhanced Accordion for White Theme */
 .accordion {
     border: 1px solid var(--gray-200);
     border-radius: var(--radius-lg);
@@ -2463,7 +2390,6 @@
     line-height: 1.6;
 }
 
-/* Enhanced Chip/Tag Component for White Theme */
 .chip {
     display: inline-flex;
     align-items: center;
@@ -2502,7 +2428,6 @@
     background: rgba(255, 255, 255, 0.2);
 }
 
-/* Enhanced Toggle Switch for White Theme */
 .toggle-container {
     display: flex;
     align-items: center;
@@ -2546,7 +2471,6 @@
     cursor: pointer;
 }
 
-/* Final Responsive Adjustments for White Theme */
 @media screen and (max-width: 320px) {
     .presentations {
         padding: var(--spacing-sm);
@@ -2584,7 +2508,6 @@
     }
 }
 
-/* Enhanced Performance Optimizations */
 .presentation,
 .presentation_image img,
 .action-button,
@@ -2592,14 +2515,12 @@
     will-change: transform;
 }
 
-/* GPU Acceleration for Smooth Animations */
 .presentation:hover,
 .action-button:hover,
 .fab:hover {
     transform: translateZ(0);
 }
 
-/* Optimize for Touch Devices */
 @media (hover: none) and (pointer: coarse) {
     .presentation:hover {
         transform: none;
@@ -2614,7 +2535,6 @@
     }
 }
 
-/* Enhanced Accessibility Features */
 @media (prefers-reduced-motion: reduce) {
     .skeleton {
         animation: none;
@@ -2629,7 +2549,6 @@
     }
 }
 
-/* High Contrast Enhancements */
 @media (prefers-contrast: high) {
     .presentation {
         border-width: 2px;
@@ -2645,7 +2564,6 @@
     }
 }
 
-/* Print Optimizations */
 @media print {
 
     .fab,

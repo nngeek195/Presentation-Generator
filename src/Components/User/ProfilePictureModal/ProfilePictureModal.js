@@ -1,4 +1,3 @@
-// src/Components/User/ProfilePictureModal/ProfilePictureModal.js  
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './ProfilePictureModal.css';
@@ -70,7 +69,6 @@ class ProfilePictureModal extends Component {
                             <div className='loading'>Loading pictures...</div>
                         ) : (
                             <div className='picture-grid'>
-                                {/* Current picture option */}
                                 {currentPicture && (
                                     <div
                                         className={`picture-option ${selectedPicture === currentPicture ? 'selected' : ''}`}
@@ -81,7 +79,6 @@ class ProfilePictureModal extends Component {
                                     </div>
                                 )}
 
-                                {/* New picture options */}
                                 {pictureOptions.map((image, index) => (
                                     <div
                                         key={index}

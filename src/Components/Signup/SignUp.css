@@ -1,10 +1,8 @@
-/* Variables for easier theme management */
 :root {
-    /* Colors - UPDATED TO LIGHT BLUE THEME */
-    --primary-gradient-start: #e0f7fa; /* Light Cyan */
-    --primary-gradient-end: #b4feff;   /* Light Blue */
-    --secondary-gradient-start: #81d4fa; /* A slightly darker blue for buttons */
-    --secondary-gradient-end: #00aeff;   /* A medium blue for buttons */
+    --primary-gradient-start: #e0f7fa; 
+    --primary-gradient-end: #b4feff;   
+    --secondary-gradient-start: #81d4fa; 
+    --secondary-gradient-end: #00aeff;   
     --white: #ffffff;
     --light-gray: #e0e0e0;
     --medium-gray: #bdbdbd;
@@ -14,7 +12,6 @@
     --success-color: #2e7d32;
     --success-bg: #e8f5e9;
 
-    /* Spacing */
     --spacing-xs: 0.4rem;
     --spacing-sm: 0.8rem;
     --spacing-md: 1.2rem;
@@ -22,25 +19,21 @@
     --spacing-xl: 2.4rem;
     --spacing-xxl: 4rem;
 
-    /* Border Radius */
     --border-radius-sm: 4px;
     --border-radius-md: 6.4px;
     --border-radius-lg: 24px;
     --border-radius-pill: 2rem;
 
-    /* Font Sizes */
     --font-size-sm: 0.8rem;
     --font-size-md: 0.9rem;
     --font-size-lg: 1.4rem;
     --font-size-xl: 2.4rem;
 
-    /* Box Shadow */
     --box-shadow-light: 0 2px 4px rgba(0, 0, 0, 0.1);
     --box-shadow-md: 0 4px 8px rgba(0, 0, 0, 0.15);
     --box-shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-/* --- ✨ NEW ANIMATED BACKGROUND ✨ --- */
 @keyframes gradientAnimation {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
@@ -48,7 +41,6 @@
 }
 
 .signup_back {
-    /* Using the new light blue variables */
     background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end), var(--white));
     overflow: hidden;
     min-height: 100vh;
@@ -56,12 +48,9 @@
     justify-content: center;
     align-items: center;
 
-    /* Adding the animation */
-    background-size: 200% 200%; /* Make gradient larger to allow movement */
-    animation: gradientAnimation 15s ease infinite; /* Apply the keyframe animation */
+    background-size: 200% 200%; 
+    animation: gradientAnimation 15s ease infinite;
 }
-
-/* --- The rest of the styles remain the same, with minor adjustments for the new theme --- */
 
 .signup_first_grid {
     display: flex;
@@ -182,7 +171,6 @@
     height: 2.8rem; 
     width: calc(100% - (2 * var(--spacing-xxl)));
     border-radius: var(--border-radius-pill);
-    /* UPDATED BUTTON GRADIENT */
     background: linear-gradient(90deg, var(--secondary-gradient-start), var(--secondary-gradient-end));
     color: var(--white);
     font-weight: 700;
@@ -297,7 +285,6 @@
     height: auto;
 }
 
-/* Responsive Adjustments */
 @media screen and (max-width: 960px) { 
     .signup_first_grid,
     .signup_second_grid {
