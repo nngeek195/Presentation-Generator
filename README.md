@@ -58,7 +58,7 @@ Ensure you have the following software installed on your machine:
 
 1.  **Clone the Repository**
     ```sh
-    git clone [https://github.com/your-username/webify.me.git](https://github.com/your-username/webify.me.git)
+    git clone [https://github.com/nngeek195/Presentation-Generator.git]
     cd webify.me
     ```
 
@@ -138,12 +138,3 @@ Ensure you have the following software installed on your machine:
 
 You should now have all three services (React, Python, Ballerina) and the database running! Open your browser to `http://localhost:3000` to see the application.
 
-## 🤝 Contributing
-
-Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-1.  Fork the Project
-2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3.  Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4.  Push to the Branch (`git push origin feature/AmazingFeature`)
-5.  Open a Pull Request
