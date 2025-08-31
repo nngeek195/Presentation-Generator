@@ -344,6 +344,7 @@
     display: flex;
     justify-content: flex-start;
     margin-bottom: var(--spacing-xl);
+    margin-left: 2rem;
 }
 
 .presentations_create button {
