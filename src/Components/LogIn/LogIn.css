@@ -1,10 +1,8 @@
-/* Variables for easier theme management */
 :root {
-    /* Colors - UPDATED TO LIGHT BLUE THEME */
-    --primary-gradient-start: #e0f7fa; /* Light Cyan */
-    --primary-gradient-end: #b4feff;   /* Light Blue */
-    --secondary-gradient-start: #81d4fa; /* A slightly darker blue for buttons */
-    --secondary-gradient-end: #00aeff;   /* A medium blue for buttons */
+    --primary-gradient-start: #e0f7fa; 
+    --primary-gradient-end: #b4feff;   
+    --secondary-gradient-start: #81d4fa; 
+    --secondary-gradient-end: #00aeff;   
     --white: #ffffff;
     --light-gray: #e0e0e0;
     --medium-gray: #bdbdbd;
@@ -14,7 +12,6 @@
     --success-color: #2e7d32;
     --success-bg: #e8f5e9;
 
-    /* Spacing */
     --spacing-xs: 0.4rem;
     --spacing-sm: 0.8rem;
     --spacing-md: 1.2rem;
@@ -22,32 +19,27 @@
     --spacing-xl: 2.4rem;
     --spacing-xxl: 4rem;
 
-    /* Border Radius */
     --border-radius-sm: 4px;
     --border-radius-md: 6.4px;
     --border-radius-lg: 24px;
     --border-radius-pill: 2rem;
 
-    /* Font Sizes */
     --font-size-sm: 0.8rem;
     --font-size-md: 0.9rem;
     --font-size-lg: 1.4rem;
     --font-size-xl: 2.4rem;
 
-    /* Box Shadow */
     --box-shadow-light: 0 2px 4px rgba(0, 0, 0, 0.1);
     --box-shadow-md: 0 4px 8px rgba(0, 0, 0, 0.15);
     --box-shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-/* --- ✨ NEW ANIMATED BACKGROUND ✨ --- */
 @keyframes gradientAnimation {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
-/* General Body/Background Styles */
 .signup_back, .login_back {
     background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end), var(--white));
     overflow: hidden;
@@ -59,7 +51,6 @@
     animation: gradientAnimation 15s ease infinite;
 }
 
-/* --- Signup Page Specific Styles --- */
 
 .signup_first_grid {
     display: flex;
@@ -262,7 +253,6 @@
     color: #1976d2; 
 }
 
-/* --- Slideshow and Visuals Section (Shared) --- */
 .signup_second_grid, .login_first_grid {
     color: var(--white);
     display: flex;
@@ -301,7 +291,6 @@
     cursor: pointer;
 }
 
-/* --- NEW: Login Page Styles --- */
 
 .login_second_grid {
     display: flex;
@@ -442,7 +431,6 @@
     color: var(--dark-gray);
 }
 
-/* Responsive Adjustments */
 @media screen and (max-width: 960px) { 
     .signup_back, .login_back {
         flex-direction: column;
@@ -456,7 +444,6 @@
         min-height: 50vh;
     }
 
-    /* Order login form first on mobile */
     .login_first_grid { order: 2; }
     .login_second_grid { order: 1; }
 
