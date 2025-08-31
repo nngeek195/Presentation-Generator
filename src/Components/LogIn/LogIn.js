@@ -42,9 +42,7 @@ class LogIn extends Component {
                 if (parsedAuthData.isAuthenticated && parsedAuthData.email && parsedAuthData.password) {
                     console.log('✅ User already authenticated, validating credentials...');
 
-
-                    // Validate stored credentials with backend
-                    const response = await fetch('https://localhost:9090/login', {
+                    const response = await fetch('http://localhost:9090/login', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -138,7 +136,7 @@ class LogIn extends Component {
         console.log('📤 Sending login request for:', loginData.email);
 
         try {
-            const response = await fetch('https://localhost:9090/login', {
+            const response = await fetch('http://localhost:9090/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

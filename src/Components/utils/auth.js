@@ -50,7 +50,7 @@ class SimpleAuth {
         }
 
         try {
-            const response = await fetch('https://localhost:9090/login', {
+            const response = await fetch('http://localhost:9090/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
