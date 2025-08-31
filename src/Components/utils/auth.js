@@ -1,6 +1,5 @@
-// auth.js - Simple authentication utility
+
 class SimpleAuth {
-    // Check if user is logged in
     static isLoggedIn() {
         const authData = localStorage.getItem('authData');
         if (authData) {
@@ -14,7 +13,7 @@ class SimpleAuth {
         return false;
     }
 
-    // Get current user data
+
     static getCurrentUser() {
         const userData = localStorage.getItem('userData');
         if (userData) {
@@ -28,7 +27,7 @@ class SimpleAuth {
         return null;
     }
 
-    // Get auth credentials
+
     static getAuthData() {
         const authData = localStorage.getItem('authData');
         if (authData) {
@@ -42,7 +41,7 @@ class SimpleAuth {
         return null;
     }
 
-    // Validate current session 
+
     static async validateSession() {
         const authData = this.getAuthData();
 
@@ -51,7 +50,7 @@ class SimpleAuth {
         }
 
         try {
-            const response = await fetch('https://par-assist-as-amber.trycloudflare.com/login', {
+            const response = await fetch('https://localhost:9090/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -70,7 +69,7 @@ class SimpleAuth {
         }
     }
 
-    // Logout user
+
     static logout() {
         localStorage.removeItem('authData');
         localStorage.removeItem('userData');
@@ -79,7 +78,7 @@ class SimpleAuth {
         window.location.href = '/login';
     }
 
-    // Protect page (use in componentDidMount)
+
     static async protectPage() {
         if (!this.isLoggedIn()) {
             window.location.href = '/login';
@@ -96,5 +95,5 @@ class SimpleAuth {
     }
 }
 
-// Export for use in other components
+
 export default SimpleAuth;

@@ -21,7 +21,7 @@ class ProfilePictureModal extends Component {
 
     fetchPictureOptions = async () => {
         try {
-            const response = await fetch('https://par-assist-as-amber.trycloudflare.com/profilePictureOptions/6');
+            const response = await fetch('https://localhost:9090/profilePictureOptions/6');
             const data = await response.json();
 
             if (data.success && data.data) {
