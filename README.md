@@ -65,7 +65,7 @@ Ensure you have the following software installed on your machine:
 
 1.  **Clone the Repository**
     ```sh
-    git clone https://github.com/nngeek195/Presentation-Generator.git
+    git clone https://github.com/nngeek195/iwb25-122-king-codes.git
     cd webify.me
     ```
 
