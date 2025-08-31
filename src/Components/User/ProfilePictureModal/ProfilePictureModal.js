@@ -21,7 +21,7 @@ class ProfilePictureModal extends Component {
 
     fetchPictureOptions = async () => {
         try {
-            const response = await fetch('https://silent-dog-85.loca.lt/profilePictureOptions/6');
+            const response = await fetch('https://sharp-hound-68.loca.lt/profilePictureOptions/6');
             const data = await response.json();
 
             if (data.success && data.data) {

@@ -720,7 +720,7 @@ class User extends Component {
         window.location.href = '/login';
         return false;
       }
-      const response = await fetch('https://silent-dog-85.loca.lt.net/login', {
+      const response = await fetch('https://sharp-hound-68.loca.lt/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: parsedAuthData.email, password: parsedAuthData.password })
@@ -883,7 +883,7 @@ class User extends Component {
     }
   };
 
-  // **ADDED: Handler function to be passed as a prop to the modal**
+  // **ADDED: Handler function to be passed as a prop to the modal** lt
   handleProfilePictureUpdate = (newPictureUrl, unsplashImageId) => {
     this.updateProfilePicture(newPictureUrl, unsplashImageId);
     this.setState({ userProfilePicture: newPictureUrl });

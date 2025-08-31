@@ -51,7 +51,7 @@ class SimpleAuth {
         }
 
         try {
-            const response = await fetch('https://silent-dog-85.loca.lt/login', {
+            const response = await fetch('https://sharp-hound-68.loca.lt/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
