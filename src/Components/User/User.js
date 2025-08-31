@@ -36,19 +36,13 @@ const ActionButtonStyles = () => (
       --text-muted: #94a3b8;
       --text-dark-muted: #64748b;
 
-      --border-light: rgba(255, 255, 255, 0.1);
-      --shadow-color-light: rgba(0, 0, 0, 0.3);
-      --shadow-color-heavy: rgba(0, 0, 0, 0.4);
+      /* Borders & Shadows */
+      --border-light: rgba(255, 255, 255, 1);
+      --shadow-color-light: rgba(255, 255, 255, 1);
+      --shadow-color-heavy: rgba(255, 255, 255, 1);
 
       --card-radius: 16px;
       --button-radius: 8px;
-    }
-    .user_back {
-      background-color: var(--bg-dark-start);
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0' x2='0' y1='1' y2='0'%3E%3Cstop offset='0' stop-color='%230FF'/%3E%3Cstop offset='1' stop-color='%23CF6'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' x1='0' x2='0' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%23F00'/%3E%3Cstop offset='1' stop-color='%23FC0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='%23FFF' fill-opacity='0' stroke-miterlimit='10'%3E%3Cg stroke='url(%23a)' stroke-width='3.3'%3E%3Cpath transform='translate(-35 8) rotate(5 1409 581) scale(1.02)' d='M1409 581 1450.35 511 1490 581z'/%3E%3Ccircle stroke-width='1.1' transform='translate(-20 20) rotate(6 800 450) scale(1.01)' cx='500' cy='100' r='40'/%3E%3Cpath transform='translate(18 -60) rotate(60 401 736) scale(1.01)' d='M400.86 735.5h-83.73c0-23.12 18.74-41.87 41.87-41.87S400.86 712.38 400.86 735.5z'/%3E%3C/g%3E%3Cg stroke='url(%23b)' stroke-width='1'%3E%3Cpath transform='translate(120 -8) rotate(2 150 345) scale(0.98)' d='M149.8 345.2 118.4 389.8 149.8 434.4 181.2 389.8z'/%3E%3Crect stroke-width='2.2' transform='translate(-80 -50) rotate(72 1089 759)' x='1039' y='709' width='100' height='100'/%3E%3Cpath transform='translate(-120 40) rotate(12 1400 132)' d='M1426.8 132.4 1405.7 168.8 1363.7 168.8 1342.7 132.4 1363.7 96 1405.7 96z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-      background-attachment: fixed;
-      background-size: cover;
-      animation: animateSvgBackground 60s linear infinite;
     }
 
     @keyframes animateSvgBackground {
@@ -570,7 +564,7 @@ class User extends Component {
       tabValue: 0,
       favorites: [],
       presentations: [],
-      trendingPresentations: [],  
+      trendingPresentations: [], // 🔥 ADD:.empty-state Trending presentations  serveo
       notifications: [],
       notificationCount: 0
     };
@@ -648,9 +642,10 @@ class User extends Component {
     </div>
   );
 
+  // 🔥 UPDATE: fetchTrendingPresentations method in User.js svg
   fetchTrendingPresentations = async () => {
     try {
-      const response = await fetch('https://398298a0bc69.ngrok-free.app/trending');
+      const response = await fetch('https://e81b2ad44205.ngrok-free.app/trending');
       const data = await response.json();
       if (data.success) {
         const trendingPresentations = data.data.presentations.map(p => ({
@@ -673,7 +668,8 @@ class User extends Component {
   };
 
   viewTrendingPresentation = (presentationId) => {
-    const previewUrl = `https://398298a0bc69.ngrok-free.app/trending/view/${presentationId}`;
+    // Use Python Flask endpoint
+    const previewUrl = `https://e81b2ad44205.ngrok-free.app/trending/view/${presentationId}`;
     window.open(previewUrl, '_blank');
   };
 
@@ -691,7 +687,7 @@ class User extends Component {
         window.location.href = '/login';
         return false;
       }
-      const response = await fetch('https://6faa62dbfa67e352ff5d3659f4f83df1.serveo.net/login', {
+      const response = await fetch('https://par-assist-as-amber.trycloudflare.com/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: parsedAuthData.email, password: parsedAuthData.password })
@@ -733,7 +729,7 @@ class User extends Component {
       alert('Error: User email not found. Please login again.');
       return;
     }
-    const flaskUrl = `https://398298a0bc69.ngrok-free.app/?userEmail=${encodeURIComponent(userEmail)}`;
+    const flaskUrl = `https://e81b2ad44205.ngrok-free.app/?userEmail=${encodeURIComponent(userEmail)}`;
     window.open(flaskUrl, '_blank');
   };
 
@@ -742,7 +738,7 @@ class User extends Component {
     if (!userEmail) return;
 
     try {
-      const response = await fetch(`https://398298a0bc69.ngrok-free.app/presentations/${encodeURIComponent(userEmail)}`);
+      const response = await fetch(`https://e81b2ad44205.ngrok-free.app/presentations/${encodeURIComponent(userEmail)}`);
       const data = await response.json();
 
       if (data.success && Array.isArray(data.presentations)) {
@@ -765,14 +761,14 @@ class User extends Component {
 
 
   previewPresentation = (presentationId) => {
-    console.log('Preview clicked for:', presentationId); 
-    const previewUrl = `https://398298a0bc69.ngrok-free.app/presentations/view/${presentationId}`;
+    console.log('Preview clicked for:', presentationId); // Debug log
+    const previewUrl = `https://e81b2ad44205.ngrok-free.app/presentations/view/${presentationId}`;
     window.open(previewUrl, '_blank');
   };
 
   editPresentation = (presentationId) => {
-    console.log('Edit clicked for:', presentationId); 
-    const editUrl = `https://398298a0bc69.ngrok-free.app/present/${presentationId}`;
+    console.log('Edit clicked for:', presentationId); // Debug log
+    const editUrl = `https://e81b2ad44205.ngrok-free.app/present/${presentationId}`;
     window.open(editUrl, '_blank');
   };
 
@@ -782,7 +778,7 @@ class User extends Component {
       return;
     }
     try {
-      const response = await fetch(`https://398298a0bc69.ngrok-free.app/presentations/delete/${presentationId}`, {
+      const response = await fetch(`https://e81b2ad44205.ngrok-free.app/presentations/delete/${presentationId}`, {
         method: 'DELETE'
       });
       const data = await response.json();
@@ -811,7 +807,7 @@ class User extends Component {
 
   assignRandomProfilePicture = async () => {
     try {
-      const response = await fetch('http://localhost:9090/randomProfilePicture');
+      const response = await fetch('https://e81b2ad44205.ngrok-free.app/randomProfilePicture');
       const data = await response.json();
       if (data.success && data.data) {
         const pictureUrl = data.data.url;
@@ -825,7 +821,7 @@ class User extends Component {
 
   updateProfilePicture = async (pictureUrl, unsplashImageId) => {
     try {
-      const response = await fetch('http://localhost:9090/updateProfilePicture', {
+      const response = await fetch('https://e81b2ad44205.ngrok-free.app/updateProfilePicture', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -851,6 +847,7 @@ class User extends Component {
     }
   };
 
+  // **ADDED: Handler function to be passed as a prop to the modal** lt
   handleProfilePictureUpdate = (newPictureUrl, unsplashImageId) => {
     this.updateProfilePicture(newPictureUrl, unsplashImageId);
     this.setState({ userProfilePicture: newPictureUrl });
@@ -873,7 +870,7 @@ class User extends Component {
     const { userEmail } = this.state;
     if (!userEmail) return;
     try {
-      const response = await fetch(`http://localhost:9090/notifications/${encodeURIComponent(userEmail)}`);
+      const response = await fetch(`https://e81b2ad44205.ngrok-free.app/notifications/${encodeURIComponent(userEmail)}`);
       const data = await response.json();
       if (data.success && data.data) {
         this.setState({
@@ -890,7 +887,7 @@ class User extends Component {
     const { userEmail } = this.state;
     if (!userEmail) return;
     try {
-      const response = await fetch(`http://localhost:9090/notifications/count/${encodeURIComponent(userEmail)}`);
+      const response = await fetch(`https://e81b2ad44205.ngrok-free.app/notifications/count/${encodeURIComponent(userEmail)}`);
       const data = await response.json();
       if (data.success && data.data) {
         this.setState({ notificationCount: data.data.emailCount || 0 });
@@ -902,7 +899,7 @@ class User extends Component {
 
   resetNotificationCount = async () => {
     try {
-      const response = await fetch('http://localhost:9090/notifications/reset', {
+      const response = await fetch('https://e81b2ad44205.ngrok-free.app/notifications/reset', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userEmail: this.state.userEmail })
@@ -919,7 +916,7 @@ class User extends Component {
   markMessageAsRead = async (messageId) => {
     try {
       const userEmail = this.state.userEmail;
-      const response = await fetch('http://localhost:9090/messages/markRead', {
+      const response = await fetch('https://e81b2ad44205.ngrok-free.app/messages/markRead', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

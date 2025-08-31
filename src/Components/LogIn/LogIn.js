@@ -79,7 +79,7 @@ class LogIn extends Component {
 
     testBackendConnection = async () => {
         try {
-            const response = await fetch('https://6faa62dbfa67e352ff5d3659f4f83df1.serveo.net/test');
+            const response = await fetch('https://par-assist-as-amber.trycloudflare.com/test');
             const data = await response.json();
             console.log('✅ Backend connection test:', data);
         } catch (error) {
@@ -137,7 +137,7 @@ class LogIn extends Component {
         console.log('📤 Sending login request for:', loginData.email);
 
         try {
-            const response = await fetch('https://6faa62dbfa67e352ff5d3659f4f83df1.serveo.net/login', {
+            const response = await fetch('https://par-assist-as-amber.trycloudflare.com/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

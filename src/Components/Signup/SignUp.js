@@ -31,7 +31,7 @@ class SignUp extends Component {
         this.setState({ checkingEmail: true, emailError: '' });
 
         try {
-            const response = await fetch(`https://6faa62dbfa67e352ff5d3659f4f83df1.serveo.net/checkEmail/${encodeURIComponent(email)}`);
+            const response = await fetch(`https://par-assist-as-amber.trycloudflare.com/checkEmail/${encodeURIComponent(email)}`);
             const data = await response.json();
 
             if (data.success && data.data?.exists) {
@@ -60,7 +60,7 @@ class SignUp extends Component {
         this.setState({ checkingUsername: true, usernameError: '' });
 
         try {
-            const response = await fetch(`https://6faa62dbfa67e352ff5d3659f4f83df1.serveo.net/checkUsername/${encodeURIComponent(username)}`);
+            const response = await fetch(`https://par-assist-as-amber.trycloudflare.com/checkUsername/${encodeURIComponent(username)}`);
             const data = await response.json();
 
             if (data.success && data.data?.exists) {
@@ -188,7 +188,7 @@ class SignUp extends Component {
         };
 
         try {
-            const response = await fetch('https://6faa62dbfa67e352ff5d3659f4f83df1.serveo.net/signup', {
+            const response = await fetch('https://par-assist-as-amber.trycloudflare.com/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
