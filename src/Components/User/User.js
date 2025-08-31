@@ -548,6 +548,7 @@ const ActionButtonStyles = () => (
   `}</style>
 );
 
+
 class User extends Component {
   constructor(props) {
     super(props);
@@ -564,15 +565,89 @@ class User extends Component {
       presentations: [],
       trendingPresentations: [],
       notifications: [],
-      notificationCount: 0
+      notificationCount: 0,
+      isLoading: true,
+      authError: false
     };
   }
 
   async componentDidMount() {
-    const isAuthenticated = await this.checkAuthentication();
+    console.log('🔄 User component mounting...');
+
+    // Use simple authentication check instead of server validation
+    const isAuthenticated = this.checkAuthentication();
     if (!isAuthenticated) {
       return;
     }
+
+    // Get user data from storage
+    this.loadUserDataFromStorage();
+  }
+
+  // Simplified authentication check (no server call)
+  checkAuthentication = () => {
+    console.log('🛡️ Checking authentication...');
+
+    const authData = localStorage.getItem('authData');
+    const userData = localStorage.getItem('userData');
+
+    console.log('Auth data exists:', !!authData);
+    console.log('User data exists:', !!userData);
+
+    if (!authData || !userData) {
+      console.log('❌ No auth/user data found, redirecting to login');
+      this.redirectToLogin();
+      return false;
+    }
+
+    try {
+      const parsedAuthData = JSON.parse(authData);
+      const parsedUserData = JSON.parse(userData);
+
+      console.log('Parsed auth data:', {
+        isAuthenticated: parsedAuthData.isAuthenticated,
+        hasEmail: !!parsedAuthData.email,
+        loginTime: parsedAuthData.loginTime
+      });
+
+      // Check if authenticated and has required data
+      if (!parsedAuthData.isAuthenticated || !parsedUserData.email) {
+        console.log('❌ Invalid auth data, redirecting to login');
+        this.clearAuthData();
+        this.redirectToLogin();
+        return false;
+      }
+
+      // Check if session is expired (24 hours)
+      if (parsedAuthData.loginTime) {
+        const loginTime = new Date(parsedAuthData.loginTime);
+        const now = new Date();
+        const hoursDiff = (now - loginTime) / (1000 * 60 * 60);
+
+        console.log('Session age (hours):', hoursDiff.toFixed(2));
+
+        if (hoursDiff > 24) {
+          console.log('❌ Session expired, logging out');
+          this.clearAuthData();
+          this.redirectToLogin();
+          return false;
+        }
+      }
+
+      console.log('✅ Authentication check passed');
+      return true;
+
+    } catch (error) {
+      console.error('❌ Error parsing auth data:', error);
+      this.clearAuthData();
+      this.redirectToLogin();
+      return false;
+    }
+  }
+
+  // Load user data from localStorage/sessionStorage
+  loadUserDataFromStorage = () => {
+    console.log('📂 Loading user data from storage...');
 
     const userData = localStorage.getItem('userData');
     let userEmail, username, userPicture;
@@ -583,23 +658,48 @@ class User extends Component {
         userEmail = parsedData.email;
         username = parsedData.username;
         userPicture = parsedData.picture;
+
+        console.log('User data from localStorage:', {
+          email: userEmail,
+          username: username,
+          hasPicture: !!userPicture
+        });
       } catch (error) {
-        console.error('Error parsing user data:', error);
+        console.error('Error parsing user data from localStorage:', error);
+        // Fallback to sessionStorage
         userEmail = sessionStorage.getItem('userEmail');
         username = sessionStorage.getItem('username');
         userPicture = sessionStorage.getItem('userPicture');
+
+        console.log('Fallback to sessionStorage:', {
+          email: userEmail,
+          username: username,
+          hasPicture: !!userPicture
+        });
       }
     } else {
+      // Get from sessionStorage
       userEmail = sessionStorage.getItem('userEmail');
       username = sessionStorage.getItem('username');
       userPicture = sessionStorage.getItem('userPicture');
+
+      console.log('Data from sessionStorage only:', {
+        email: userEmail,
+        username: username,
+        hasPicture: !!userPicture
+      });
     }
 
+    // Update state with user data
     this.setState({
       userEmail: userEmail || '',
       username: username || 'User',
-      userProfilePicture: userPicture
+      userProfilePicture: userPicture,
+      isLoading: false
     }, () => {
+      console.log('✅ User data loaded into state');
+
+      // Load additional data if we have user email
       if (userEmail) {
         this.fetchNotifications();
         this.fetchNotificationCount();
@@ -608,11 +708,326 @@ class User extends Component {
       }
     });
 
+    // Assign random profile picture if none exists
     if (!userPicture && userEmail) {
       this.assignRandomProfilePicture();
     }
   }
 
+  // Clear authentication data
+  clearAuthData = () => {
+    console.log('🧹 Clearing auth data...');
+    localStorage.removeItem('authData');
+    localStorage.removeItem('userData');
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('rememberedEmail');
+    sessionStorage.clear();
+  }
+
+  // Redirect to login
+  redirectToLogin = () => {
+    console.log('🔄 Redirecting to login...');
+    window.location.href = '/login';
+  }
+
+  // Handle logout
+  handleLogout = () => {
+    console.log('🚪 Logging out...');
+    this.clearAuthData();
+    this.redirectToLogin();
+  }
+
+  // Optional: Server validation method (use sparingly)
+  validateWithServer = async () => {
+    const authData = localStorage.getItem('authData');
+    if (!authData) return false;
+
+    try {
+      const parsedAuthData = JSON.parse(authData);
+
+      // Fix: Use HTTP instead of HTTPS
+      const response = await fetch('http://localhost:9090/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: parsedAuthData.email,
+          password: parsedAuthData.password
+        })
+      });
+
+      if (!response.ok) {
+        return false;
+      }
+
+      const result = await response.json();
+      return result.success;
+
+    } catch (error) {
+      console.error('Server validation error:', error);
+      // Don't logout on network errors - might be temporary
+      return true;
+    }
+  }
+
+  generateNewPresentation = () => {
+    const { userEmail } = this.state;
+    if (!userEmail) {
+      alert('Error: User email not found. Please login again.');
+      return;
+    }
+    // Fix: Use HTTP instead of HTTPS
+    const flaskUrl = `http://localhost:5001/?userEmail=${encodeURIComponent(userEmail)}`;
+    window.open(flaskUrl, '_blank');
+  };
+
+  fetchUserPresentations = async () => {
+    const { userEmail } = this.state;
+    if (!userEmail) return;
+
+    try {
+      // Fix: Use HTTP instead of HTTPS
+      const response = await fetch(`http://localhost:5001/presentations/${encodeURIComponent(userEmail)}`);
+      const data = await response.json();
+
+      if (data.success && Array.isArray(data.presentations)) {
+        const formattedPresentations = data.presentations.map(p => ({
+          id: p._id,
+          title: p.presentationName,
+          image: p.previewImageUrl,
+          createdAt: p.createdAt,
+          type: 'python'
+        }));
+        this.setState({ presentations: formattedPresentations });
+      } else {
+        console.error("Failed to fetch presentations:", data.message);
+        this.setState({ presentations: [] });
+      }
+    } catch (error) {
+      console.error('Error fetching Flask presentations:', error);
+    }
+  };
+
+  fetchTrendingPresentations = async () => {
+    try {
+      // Fix: Use HTTP instead of HTTPS
+      const response = await fetch('http://localhost:5001/trending');
+      const data = await response.json();
+      if (data.success) {
+        const trendingPresentations = data.data.presentations.map(p => ({
+          id: p._id,
+          title: p.presentationName,
+          image: p.previewImageUrl,
+          type: 'trending',
+          code: p.code,
+          views: p.views || 0,
+          likes: p.likes || 0,
+          category: p.category || 'General',
+          username: p.username,
+          email: p.email
+        }));
+        this.setState({ trendingPresentations });
+      }
+    } catch (error) {
+      console.error('Error fetching trending presentations:', error);
+    }
+  };
+
+  fetchNotifications = async () => {
+    const { userEmail } = this.state;
+    if (!userEmail) return;
+    try {
+      // Fix: Use HTTP instead of HTTPS
+      const response = await fetch(`http://localhost:5001/notifications/${encodeURIComponent(userEmail)}`);
+      const data = await response.json();
+      if (data.success && data.data) {
+        this.setState({
+          notifications: data.data.notifications || [],
+          notificationCount: data.data.count || 0
+        });
+      }
+    } catch (error) {
+      console.error('Error fetching notifications:', error);
+    }
+  };
+
+  fetchNotificationCount = async () => {
+    const { userEmail } = this.state;
+    if (!userEmail) return;
+    try {
+      // Fix: Use HTTP instead of HTTPS
+      const response = await fetch(`http://localhost:5001/notifications/count/${encodeURIComponent(userEmail)}`);
+      const data = await response.json();
+      if (data.success && data.data) {
+        this.setState({ notificationCount: data.data.emailCount || 0 });
+      }
+    } catch (error) {
+      console.error('Error fetching notification count:', error);
+    }
+  };
+
+  resetNotificationCount = async () => {
+    try {
+      // Fix: Use HTTP instead of HTTPS
+      const response = await fetch('http://localhost:5001/notifications/reset', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userEmail: this.state.userEmail })
+      });
+      const data = await response.json();
+      if (data.success) {
+        this.setState({ notificationCount: 0 });
+      }
+    } catch (error) {
+      console.error('Error resetting notification count:', error);
+    }
+  };
+
+  previewPresentation = (presentationId) => {
+    console.log('Preview clicked for:', presentationId);
+    // Fix: Use HTTP instead of HTTPS
+    const previewUrl = `http://localhost:5001/presentations/view/${presentationId}`;
+    window.open(previewUrl, '_blank');
+  };
+
+  editPresentation = (presentationId) => {
+    console.log('Edit clicked for:', presentationId);
+    // Fix: Use HTTP instead of HTTPS
+    const editUrl = `http://localhost:5001/present/${presentationId}`;
+    window.open(editUrl, '_blank');
+  };
+
+  deletePresentation = async (presentationId) => {
+    console.log('Delete clicked for:', presentationId);
+    if (!window.confirm('Are you sure you want to delete this presentation?')) {
+      return;
+    }
+    try {
+      // Fix: Use HTTP instead of HTTPS
+      const response = await fetch(`http://localhost:5001/presentations/delete/${presentationId}`, {
+        method: 'DELETE'
+      });
+      const data = await response.json();
+      if (data.success) {
+        this.setState(prevState => ({
+          presentations: prevState.presentations.filter(p => p.id !== presentationId)
+        }));
+        alert('Presentation deleted successfully!');
+      } else {
+        alert('Error deleting presentation: ' + data.message);
+      }
+    } catch (error) {
+      console.error('Error deleting presentation:', error);
+      alert('An error occurred while deleting the presentation.');
+    }
+  };
+
+  viewTrendingPresentation = (presentationId) => {
+    // Fix: Use HTTP instead of HTTPS
+    const previewUrl = `http://localhost:5001/trending/view/${presentationId}`;
+    window.open(previewUrl, '_blank');
+  };
+
+  assignRandomProfilePicture = async () => {
+    try {
+      // Fix: Use HTTP instead of HTTPS
+      const response = await fetch('http://localhost:5001/randomProfilePicture');
+      const data = await response.json();
+      if (data.success && data.data) {
+        const pictureUrl = data.data.url;
+        await this.updateProfilePicture(pictureUrl, null);
+        this.setState({ userProfilePicture: pictureUrl });
+      }
+    } catch (error) {
+      console.error('Error fetching random profile picture:', error);
+    }
+  };
+
+  updateProfilePicture = async (pictureUrl, unsplashImageId) => {
+    try {
+      // Fix: Use HTTP instead of HTTPS
+      const response = await fetch('http://localhost:5001/updateProfilePicture', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: this.state.userEmail,
+          pictureUrl: pictureUrl,
+          unsplashImageId: unsplashImageId
+        })
+      });
+      const data = await response.json();
+      if (data.success) {
+        console.log('Profile picture updated successfully');
+        const userData = localStorage.getItem('userData');
+        if (userData) {
+          const parsedData = JSON.parse(userData);
+          parsedData.picture = pictureUrl;
+          localStorage.setItem('userData', JSON.stringify(parsedData));
+        }
+      } else {
+        console.error('Failed to update profile picture:', data.message);
+      }
+    } catch (error) {
+      console.error('Error updating profile picture:', error);
+    }
+  };
+  markMessageAsRead = async (messageId) => {
+    try {
+      const userEmail = this.state.userEmail;
+      // Fix: Use HTTP instead of HTTPS
+      const response = await fetch('http://localhost:5001/messages/markRead', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userEmail: userEmail,
+          messageId: messageId
+        })
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        this.setState(prevState => ({
+          notifications: prevState.notifications.filter(notif => notif.id !== messageId),
+          notificationCount: prevState.notificationCount - 1
+        }));
+      }
+    } catch (error) {
+      console.error('Error marking message as read:', error);
+    }
+  };
+
+  // Toggle favorite presentation
+  toggleFavorite = (id) => {
+    this.setState(prevState => ({
+      favorites: prevState.favorites.includes(id)
+        ? prevState.favorites.filter(favId => favId !== id)
+        : [...prevState.favorites, id]
+    }));
+  }
+
+  // Profile picture modal handlers
+  handleProfilePictureUpdate = (newPictureUrl, unsplashImageId) => {
+    this.updateProfilePicture(newPictureUrl, unsplashImageId);
+    this.setState({ userProfilePicture: newPictureUrl });
+    sessionStorage.setItem('userPicture', newPictureUrl);
+    this.handleProfilePictureModalClose();
+  };
+
+  handleOpen = (event) => this.setState({ anchorEl: event.currentTarget });
+  handleClose = () => this.setState({ anchorEl: null });
+  handleProfilePictureClick = () => this.setState({ showProfilePictureModal: true });
+  handleProfilePictureModalClose = () => this.setState({ showProfilePictureModal: false });
+
+  handleModalOpen = (event) => {
+    this.setState({ anchorE2: event.currentTarget });
+    this.resetNotificationCount();
+  };
+  handleModalClose = () => this.setState({ anchorE2: null });
+  handleTabChange = (event, newValue) => this.setState({ tabValue: newValue });
+
+  // Render trending presentation
   renderTrendingPresentation = (p, showStats = true) => (
     <div className='presentation trending-presentation' key={p.id}>
       <div className='presentation_image'>
@@ -640,303 +1055,6 @@ class User extends Component {
     </div>
   );
 
-  fetchTrendingPresentations = async () => {
-    try {
-      const response = await fetch('https://localhost:5001/trending');
-      const data = await response.json();
-      if (data.success) {
-        const trendingPresentations = data.data.presentations.map(p => ({
-          id: p._id,
-          title: p.presentationName,
-          image: p.previewImageUrl,
-          type: 'trending',
-          code: p.code,
-          views: p.views || 0,
-          likes: p.likes || 0,
-          category: p.category || 'General',
-          username: p.username,
-          email: p.email
-        }));
-        this.setState({ trendingPresentations });
-      }
-    } catch (error) {
-      console.error('Error fetching trending presentations:', error);
-    }
-  };
-
-  viewTrendingPresentation = (presentationId) => {
-    // Use Python Flask endpoint
-    const previewUrl = `https://localhost:5001/trending/view/${presentationId}`;
-    window.open(previewUrl, '_blank');
-  };
-
-  checkAuthentication = async () => {
-    const authData = localStorage.getItem('authData');
-    if (!authData) {
-      console.log('No auth data found, redirecting to login');
-      window.location.href = '/login';
-      return false;
-    }
-    try {
-      const parsedAuthData = JSON.parse(authData);
-      if (!parsedAuthData.isAuthenticated || !parsedAuthData.email || !parsedAuthData.password) {
-        this.clearAuthData();
-        window.location.href = '/login';
-        return false;
-      }
-      const response = await fetch('https://localhost:9090/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: parsedAuthData.email, password: parsedAuthData.password })
-      });
-      const result = await response.json();
-      if (!result.success) {
-        this.clearAuthData();
-        window.location.href = '/login';
-        return false;
-      }
-      const { email, username, profile } = result.data;
-      const userData = { email, username, picture: profile.picture };
-      localStorage.setItem('userData', JSON.stringify(userData));
-      this.setState({ userEmail: email, username, userProfilePicture: profile.picture });
-
-      return true;
-    } catch (error) {
-      console.error('Auth validation error:', error);
-      this.clearAuthData();
-      window.location.href = '/login';
-      return false;
-    }
-  }
-
-  clearAuthData = () => {
-    localStorage.removeItem('authData');
-    localStorage.removeItem('userData');
-    sessionStorage.clear();
-  }
-
-  handleLogout = () => {
-    this.clearAuthData();
-    window.location.href = '/login';
-  }
-
-  generateNewPresentation = () => {
-    const { userEmail } = this.state;
-    if (!userEmail) {
-      alert('Error: User email not found. Please login again.');
-      return;
-    }
-    const flaskUrl = `https://localhost:5001/?userEmail=${encodeURIComponent(userEmail)}`;
-    window.open(flaskUrl, '_blank');
-  };
-
-  fetchUserPresentations = async () => {
-    const { userEmail } = this.state;
-    if (!userEmail) return;
-
-    try {
-      const response = await fetch(`https://localhost:5001/presentations/${encodeURIComponent(userEmail)}`);
-      const data = await response.json();
-
-      if (data.success && Array.isArray(data.presentations)) {
-        const formattedPresentations = data.presentations.map(p => ({
-          id: p._id,
-          title: p.presentationName,
-          image: p.previewImageUrl,
-          createdAt: p.createdAt,
-          type: 'python'
-        }));
-        this.setState({ presentations: formattedPresentations });
-      } else {
-        console.error("Failed to fetch presentations:", data.message);
-        this.setState({ presentations: [] });
-      }
-    } catch (error) {
-      console.error('Error fetching Flask presentations:', error);
-    }
-  };
-
-
-  previewPresentation = (presentationId) => {
-    console.log('Preview clicked for:', presentationId); // Debug log
-    const previewUrl = `https://localhost:5001/presentations/view/${presentationId}`;
-    window.open(previewUrl, '_blank');
-  };
-
-  editPresentation = (presentationId) => {
-    console.log('Edit clicked for:', presentationId); // Debug log
-    const editUrl = `https://localhost:5001/present/${presentationId}`;
-    window.open(editUrl, '_blank');
-  };
-
-  deletePresentation = async (presentationId) => {
-    console.log('Delete clicked for:', presentationId);
-    if (!window.confirm('Are you sure you want to delete this presentation?')) {
-      return;
-    }
-    try {
-      const response = await fetch(`https://localhost:5001/presentations/delete/${presentationId}`, {
-        method: 'DELETE'
-      });
-      const data = await response.json();
-      if (data.success) {
-        this.setState(prevState => ({
-          presentations: prevState.presentations.filter(p => p.id !== presentationId)
-        }));
-        alert('Presentation deleted successfully!');
-      } else {
-        alert('Error deleting presentation: ' + data.message);
-      }
-    } catch (error) {
-      console.error('Error deleting presentation:', error);
-      alert('An error occurred while deleting the presentation.');
-    }
-  };
-
-
-  toggleFavorite = (id) => {
-    this.setState(prevState => ({
-      favorites: prevState.favorites.includes(id)
-        ? prevState.favorites.filter(favId => favId !== id)
-        : [...prevState.favorites, id]
-    }));
-  }
-
-  assignRandomProfilePicture = async () => {
-    try {
-      const response = await fetch('https://localhost:5001/randomProfilePicture');
-      const data = await response.json();
-      if (data.success && data.data) {
-        const pictureUrl = data.data.url;
-        await this.updateProfilePicture(pictureUrl, null);
-        this.setState({ userProfilePicture: pictureUrl });
-      }
-    } catch (error) {
-      console.error('Error fetching random profile picture:', error);
-    }
-  };
-
-  updateProfilePicture = async (pictureUrl, unsplashImageId) => {
-    try {
-      const response = await fetch('https://localhost:5001/updateProfilePicture', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email: this.state.userEmail,
-          pictureUrl: pictureUrl,
-          unsplashImageId: unsplashImageId
-        })
-      });
-      const data = await response.json();
-      if (data.success) {
-        console.log('Profile picture updated successfully');
-        const userData = localStorage.getItem('userData');
-        if (userData) {
-          const parsedData = JSON.parse(userData);
-          parsedData.picture = pictureUrl;
-          localStorage.setItem('userData', JSON.stringify(parsedData));
-        }
-      } else {
-        console.error('Failed to update profile picture:', data.message);
-      }
-    } catch (error) {
-      console.error('Error updating profile picture:', error);
-    }
-  };
-
-  // **ADDED: Handler function to be passed as a prop to the modal** lt
-  handleProfilePictureUpdate = (newPictureUrl, unsplashImageId) => {
-    this.updateProfilePicture(newPictureUrl, unsplashImageId);
-    this.setState({ userProfilePicture: newPictureUrl });
-    sessionStorage.setItem('userPicture', newPictureUrl);
-    this.handleProfilePictureModalClose();
-  };
-
-  handleOpen = (event) => this.setState({ anchorEl: event.currentTarget });
-  handleClose = () => this.setState({ anchorEl: null });
-  handleProfilePictureClick = () => this.setState({ showProfilePictureModal: true });
-  handleProfilePictureModalClose = () => this.setState({ showProfilePictureModal: false });
-  handleModalOpen = (event) => {
-    this.setState({ anchorE2: event.currentTarget });
-    this.resetNotificationCount();
-  };
-  handleModalClose = () => this.setState({ anchorE2: null });
-  handleTabChange = (event, newValue) => this.setState({ tabValue: newValue });
-
-  fetchNotifications = async () => {
-    const { userEmail } = this.state;
-    if (!userEmail) return;
-    try {
-      const response = await fetch(`https://localhost:5001/notifications/${encodeURIComponent(userEmail)}`);
-      const data = await response.json();
-      if (data.success && data.data) {
-        this.setState({
-          notifications: data.data.notifications || [],
-          notificationCount: data.data.count || 0
-        });
-      }
-    } catch (error) {
-      console.error('Error fetching notifications:', error);
-    }
-  };
-
-  fetchNotificationCount = async () => {
-    const { userEmail } = this.state;
-    if (!userEmail) return;
-    try {
-      const response = await fetch(`https://localhost:5001/notifications/count/${encodeURIComponent(userEmail)}`);
-      const data = await response.json();
-      if (data.success && data.data) {
-        this.setState({ notificationCount: data.data.emailCount || 0 });
-      }
-    } catch (error) {
-      console.error('Error fetching notification count:', error);
-    }
-  };
-
-  resetNotificationCount = async () => {
-    try {
-      const response = await fetch('https://localhost:5001/notifications/reset', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ userEmail: this.state.userEmail })
-      });
-      const data = await response.json();
-      if (data.success) {
-        this.setState({ notificationCount: 0 });
-      }
-    } catch (error) {
-      console.error('Error resetting notification count:', error);
-    }
-  };
-
-  markMessageAsRead = async (messageId) => {
-    try {
-      const userEmail = this.state.userEmail;
-      const response = await fetch('https://localhost:5001/messages/markRead', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          userEmail: userEmail,
-          messageId: messageId
-        })
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        this.setState(prevState => ({
-          notifications: prevState.notifications.filter(notif => notif.id !== messageId),
-          notificationCount: prevState.notificationCount - 1
-        }));
-      }
-    } catch (error) {
-      console.error('Error marking message as read:', error);
-    }
-  };
-
   render() {
     const {
       userProfilePicture,
@@ -949,8 +1067,58 @@ class User extends Component {
       tabValue,
       presentations,
       favorites,
-      trendingPresentations
+      trendingPresentations,
+      isLoading,
+      authError
     } = this.state;
+
+    // Show loading state
+    if (isLoading) {
+      return (
+        <div className="loading-container" style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100vh',
+          fontSize: '18px',
+          color: '#666'
+        }}>
+          🔄 Loading...
+        </div>
+      );
+    }
+
+    // Show auth error state
+    if (authError) {
+      return (
+        <div className="auth-error-container" style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100vh',
+          fontSize: '18px',
+          color: '#d32f2f'
+        }}>
+          <h2>❌ Authentication Error</h2>
+          <p>Please log in again to continue.</p>
+          <button
+            onClick={() => window.location.href = '/login'}
+            style={{
+              padding: '10px 20px',
+              backgroundColor: '#2563eb',
+              color: 'white',
+              border: 'none',
+              borderRadius: '5px',
+              cursor: 'pointer',
+              marginTop: '20px'
+            }}
+          >
+            Go to Login
+          </button>
+        </div>
+      );
+    }
 
     function a11yProps(index) {
       return {
@@ -961,7 +1129,6 @@ class User extends Component {
 
     return (
       <div className='user_back'>
-
         <ActionButtonStyles />
         <div className='header'>
           <Grid container>
@@ -1111,7 +1278,6 @@ class User extends Component {
                                 <span className="button-text">Delete</span>
                               </button>
                             </div>
-
                           </div>
                         ))}
                       </div>
@@ -1241,5 +1407,3 @@ class User extends Component {
 }
 
 export default User;
-
-
