@@ -9,10 +9,8 @@ import Logo from './Logo.png'
 
 const GlobalStyles = () => (
   <style>{`
-    /* Import Fonts */
     @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@600;700;800&family=Inter:wght@400;600&display=swap');
 
-    /* CSS Variables for consistent theming */
     :root {
       --primary-blue: #3b82f6;
       --primary-blue-light: #60a5fa;
@@ -23,7 +21,6 @@ const GlobalStyles = () => (
       --background-end: #bae6fd;
     }
 
-    /* Base Body Styles */
     body {
       font-family: 'Inter', sans-serif;
       margin: 0;
@@ -31,7 +28,6 @@ const GlobalStyles = () => (
       box-sizing: border-box;
     }
 
-    /* --- Header Styles --- */
     .header {
         position: absolute;
         top: 0;
@@ -63,7 +59,6 @@ const GlobalStyles = () => (
   font-weight: 700;
 }
 
-/* Style for the actual logo image */
 .logo img {
   height: 50px; /* You can change this value! Try 25px or 35px to see what you like. */
   margin-right: 0.5rem;
@@ -105,7 +100,6 @@ const GlobalStyles = () => (
         display: none; /* Hidden on desktop */
     }
 
-    /* --- Main Page Styles --- */
     .intro_back {
         min-height: 100vh;
         background: linear-gradient(135deg, var(--background-start) 0%, var(--background-mid) 50%, var(--background-end) 100%);
@@ -210,7 +204,6 @@ const GlobalStyles = () => (
         perspective: 1000px;
     }
     
-    /* --- Slideshow Styles --- */
     .slideshow-container {
         position: relative;
         width: 100%;
@@ -247,7 +240,6 @@ const GlobalStyles = () => (
         transform: scale(1.1);
     }
 
-    /* --- Responsive Design --- */
     @media (max-width: 992px) {
         .hero-container {
             grid-template-columns: 1fr;
@@ -270,11 +262,11 @@ const GlobalStyles = () => (
         }
         
         .nav-links {
-            display: none; /* Hide nav links on mobile */
+            display: none; 
         }
         
         .mobile-menu-btn {
-            display: block; /* Show hamburger menu */
+            display: block; 
         }
     }
   `}</style>

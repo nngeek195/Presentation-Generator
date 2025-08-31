@@ -8,7 +8,6 @@ class AdminPanel extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // Notification form state 
             title: '',
             message: '',
             type: 'info',
@@ -18,7 +17,6 @@ class AdminPanel extends Component {
             success: '',
             error: '',
 
-            // Admin panel state
             activeTab: 'notifications',
             allNotifications: [],
             users: [],
@@ -63,7 +61,7 @@ class AdminPanel extends Component {
             const response = await fetch('https://par-assist-as-amber.trycloudflare.com/users');
             const data = await response.json();
 
-            console.log('Fetched users:', data); // Debugging log
+            console.log('Fetched users:', data); 
 
             if (data.success) {
                 this.setState({
@@ -81,7 +79,6 @@ class AdminPanel extends Component {
 
     fetchStats = async () => {
         try {
-            // You can implement a dedicated stats endpoint later ngrok
             this.setState({
                 stats: {
                     ...this.state.stats,
@@ -134,9 +131,8 @@ class AdminPanel extends Component {
                     priority: 2,
                     loading: false
                 });
-                // Refresh user count and notifications
                 this.fetchAllNotifications();
-                this.fetchUsers(); // Refresh user count 
+                this.fetchUsers(); 
             } else {
                 this.setState({
                     error: data.message || 'Failed to send email notification',
@@ -291,7 +287,6 @@ class AdminPanel extends Component {
                     </div>
 
                     <div className="admin-main">
-                        {/* Send Notifications Tab */}
                         {activeTab === 'notifications' && (
                             <div className="notification-form-container">
                                 <div className="card">
@@ -409,7 +404,6 @@ class AdminPanel extends Component {
                             </div>
                         )}
 
-                        {/* Notification History Tab */}
                         {activeTab === 'history' && (
                             <div className="notification-history">
                                 <div className="card">
@@ -519,7 +513,6 @@ class AdminPanel extends Component {
                             </div>
                         )}
 
-                        {/* Users Management Tab */}
                         {activeTab === 'users' && (
                             <div className="users-management">
                                 <div className="card">

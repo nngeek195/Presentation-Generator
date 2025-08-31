@@ -36,7 +36,6 @@ const ActionButtonStyles = () => (
       --text-muted: #94a3b8;
       --text-dark-muted: #64748b;
 
-      /* Borders & Shadows */
       --border-light: rgba(255, 255, 255, 1);
       --shadow-color-light: rgba(255, 255, 255, 1);
       --shadow-color-heavy: rgba(255, 255, 255, 1);
@@ -564,7 +563,7 @@ class User extends Component {
       tabValue: 0,
       favorites: [],
       presentations: [],
-      trendingPresentations: [], // 🔥 ADD:.empty-state Trending presentations  serveo
+      trendingPresentations: [], 
       notifications: [],
       notificationCount: 0
     };
@@ -642,7 +641,6 @@ class User extends Component {
     </div>
   );
 
-  // 🔥 UPDATE: fetchTrendingPresentations method in User.js svg
   fetchTrendingPresentations = async () => {
     try {
       const response = await fetch('https://e81b2ad44205.ngrok-free.app/trending');
